@@ -30,6 +30,6 @@ label start:
 
     # This ends the game.
 
-    jump menu2
+    jump begin_chase_room
 
     return
