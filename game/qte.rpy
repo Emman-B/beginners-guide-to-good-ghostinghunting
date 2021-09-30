@@ -24,14 +24,15 @@ init:
     $ timer_range_warehouse = 0; #length of time to chase in 2nd part of qte
     $ visited_right_deadend = False;
     $ visited_left_deadend = False;
-    define mc = "elodie" #can change name
+    define mc = "player" #can change name
 
 ##every decision is a label menu##
 
+#active chase, qte fast"
 label begin_chase_room:
     
     if visited_right_deadend:
-        e "you arrived at where you've begin"
+        "I somehow ended up outside the same room I started in."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'death'
@@ -39,67 +40,79 @@ label begin_chase_room:
     menu:
         "{color=#f00}Do nothing{/color}":
             hide screen countdown
-            e "you have been killed by the ghost"
+            "{i}If I stay still maybe it will leave me alone.{/i}"
+            "I felt a chill down my shoulder blades."
+            "{i}What was that?{/i}"
+            mc "A-"
             jump death
         "{color=#f00}Go left{/color}":
             hide screen countdown
-            e "you turn left"
+            "I turned left and speed down the hall, shining my flashlight ahead for visibility."
             jump room_02
         "{color=#f00}Go right{/color}":
             hide screen countdown
-            e "you make a right turn"
+            "I swiftly made a right and run down the dimly lit hallway."
             $ visited_right_deadend = True
             jump begin_chase_room
             
 label room_02:
     hide screen countdown
-    "Decision 2"
+    "I came upon another room."
+    "After a quick glance around the room, I found no good hiding spots."
+    "I heard a soft whisper from behind me and I bolted out of the room and decided to..."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'death'
     show screen countdown
     menu: 
-        "{color=#f00}Left{/color}":
+        "{color=#f00}Go left{/color}":
             hide screen countdown
-            e "you make a left turn"
+            "I took another left and continued running forward."
+            "{i}I can heard the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
-        "{color=#f00}Middle{/color}":
+        "{color=#f00}Head straight{/color}":
             hide screen countdown
-            e "you go through the middle"
+            "I dashed down the hallway."
             jump room_03
             
-        "{color=#f00}Right{/color}":
+        "{color=#f00}Go right{/color}":
             hide screen countdown
-            e "you make a right turn"
+            "I turned to the right and shined the lights down the rightside hallway"
+            "{i}This looks like it may leads to a way out.{\i}"
             jump warehouse
 
 label room_03:
     hide screen countdown
-    "Decision 3" 
+    "I see a room up ahead and did a quick peek into the room looking for any good hiding spots."
+    "{i}Another room with no decent hiding spots, huh.{\i}"
+    "My flashlight started flashing uncontrollably and I heard the familiar whispers creeping closer to me and I..."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'death'
     show screen countdown
     menu: 
-        "{color=#f00}Left{/color}":
+        "{color=#f00}Go left{/color}":
             hide screen countdown
-            e "you make a left turn"
+            "I take a sharp left and continued sprinting down the hall."
             $ visited_left_deadend = True
             jump begin_chase_room
             
-        "{color=#f00}Right{/color}":
+        "{color=#f00}Go right{/color}":
             hide screen countdown
-            e "you make a right turn"
+            "I decided to go right."
             jump warehouse
 
-
+#choices are lowercase bc mc is panicking, qte slower#
 label warehouse:
-    e "you ran to the warehouse"
-    
+    "My flashlight flickered some more before completely turning off."
+    "I couldn't do anything except run blindly straight ahead."
+    "After a few minutes of running in the dark, I ended up in a semi-dark room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
-    "ghost_at_exit_mc_hiding"
+    "Looking around in the dimmed lights, I noticed a few broken furnitures scattered throughout the room"
+    "I sneak behind a fallen table closest to me and crouched down."
+    "{i}What should I do now...{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump= 'death'
@@ -107,17 +120,23 @@ label ghost_at_exit_mc_hiding:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
+            "I kept quiet and stayed behind the table."
             jump ghost_explore_another_part_of_room
         "{color=#f00}distract{/color}":
             hide screen countdown
+            "{i}Maybe I can distract it with this glass bottle.{\i}"
             jump ghost_gets_close_mc_while_walking_to_distract
         "{color=#f00}run{/color}":
             hide screen countdown
+            "I peeked out from behind the table and notice something resembling an exit at the other end of the room."
+            "{i}Could that be the exit?{/i}"
+            "I decided to risk it and dash across the room."
             jump exit_wo_friends
 
 label ghost_explore_another_part_of_room:
     hide screen countdown
-    "ghost_explore_another_part_of_room"
+    "I can heard the distant whispers and objects hitting the floor"
+    "{i}It must be over there...what should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'death'
@@ -125,34 +144,54 @@ label ghost_explore_another_part_of_room:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
+            "I chose to continue hiding behind the table."
             jump ghost_explore_very_close_to_mc
         "{color=#f00}distract{/color}":
             hide screen countdown
+            "I threw the glass bottle I found near my feet to the opposite corner of the room."
             jump ghost_investigates_distraction
         "{color=#f00}run{/color}":
             hide screen countdown
+            "I craned my neck around the leg of the table and notice something looking like an exit on the other side of the room."
+            "{i}If I can run fast enough and make it there, I can probably make it out.{/i}"
+            "I made a mad dash for the exit."
             jump death
 label ghost_gets_close_mc_while_walking_to_distract:
     hide screen countdown
-    "ghost_gets_close_mc_while_walking_to_distract"
+    "The bottle hit the ground few feet away from me and made a huge shattering sound."
+    "The shatter echoed through the room for a few seconds."
+    "I ducked down behind a couch and thought about my choices. I..."
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'death'
     show screen countdown
     menu:
-        "{color=#000}hide{/color}":
+        "{color=#f00}hide{/color}":
             hide screen countdown
+            "I clamped both of my hands over my mouth and inched closer to the couch and hid myself."
+            "I can hear faint whispering coming closer to me."
+            "I dug my fingers into my cheeks to prevent myself from making even a single breath."
             jump ghost_investigates_distraction
         "{color=#f00}distract{/color}":
+            "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
+            "{i}I can try throwing my flashligh-{/i}"
+            "I felt an icky chill breathe on my neck and my visions blackened."
             hide screen countdown
             jump death
         "{color=#f00}run{/color}":
             hide screen countdown
+            "I crawled to the other side of the couch and peeked out. Glancing around, I see a wide opened door close by."
+            "{i}Could that be the exit? Should I risk it?{/i}"
+            "I decided to risk it."
+            "Sucking in a deep breath, I leaped out from behind the couch and run straight for the exit."
+            "However in the middle of my dash I tripped over some trash on the ground and fell right in front of the door."
+            "I could feel the whispering coming closer so I ignore the pain on my head and quickly pushed myself up from the ground."
             jump mc_gets_injured
 
 label ghost_explore_very_close_to_mc:
     hide screen countdown
-    "ghost_explore_very_close_to_mc"
+    "I held my breath when I felt the ghost approaching the area I'm hiding in."
+    "{i}What should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'death'
@@ -160,72 +199,78 @@ label ghost_explore_very_close_to_mc:
     menu: 
         "{color=#f00}hide{/color}":
             hide screen countdown
+            "{i}I figured I should play it safe and continue to hide behind the table.{/i}"
+            "{i}As long as I stay quiet, it shouldn't be able to notice me.{/i}"
+            "{i}My teammates will notice me missing and look for me so I should stay put here.{/i}"
+            "I leaned toward the table and stayed quiet for a few minutes before feeling that same chill run down my back."
+            "I tried leaping away from the table but all I heard was the whisperings ringing louder and louder in my ears before I blacked out."
             jump death
         "{color=#f00}run{/color}":
             hide screen countdown
-            python:
+            "I cautiously peeked out from the side of the table and notice a doorway at the end of the room."
+            "{i}That might be the exit. If I can make it to the door, I can escape. I can do this.{/i}"
+            "I braced myself, jumping from behind the table and raced for the door on the other side of the room."
+            "{i}It's all or nothing now{i/}"
+            python: ##50/50 chance of survival
                 chance_survival = (renpy.random.random()*99)+1
                 if(chance_survival > 50):
                     renpy.jump('death')
                 if(chance_survival <= 50):
                     renpy.jump('exit_warehouse')
-                ##
+                
 label ghost_investigates_distraction:
     hide screen countdown
-    "ghost_investigates_distraction"
+    "I heard the sound of glass shifting in the distance."
+    "{i}It's not gonna stay distracted forever so I should..."
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'death'
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
+            "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{i/}"
+            "I continued to hide behind the couch and keep very still."
             hide screen countdown
             jump ghost_explore_very_close_to_mc
         "{color=#f00}run{/color}":
+            "{i}It's distracted now, I should make a break for it.{/i}"
+            "I creeped closer to the open doorway I saw earlier and then I bolted for the door."
             hide screen countdown
             jump exit_warehouse
 
 label mc_gets_injured:
-    "mc_gets_injured"
-    # TODO: variable for being injured when exiting
-    jump exit_warehouse
+    "I rushed through the doorway and slammed the door shut behind me."
+    "{i}I'm safe...{/i}"
+    "I wiped the sweats off my forehead before wincing. The bump on my forehead throbbed painfully."
+    "{i}Dang, must have got that from when I fell...tch{/i}"
+    jump exit_injured
 
-##endings
+#endings#
 label death:
     hide screen countdown
-    e "you have died"
+    "{b}You have been killed by the ghost.{/b}"
     jump restart
 label restart:
     menu: 
         "{color=#f00}Try again.{/color}":
             jump begin_chase_room
 label exit_warehouse:
-    e "you have made it out alive"
+    "I pushed past the doorway and close the door behind me. Suddenly I felt so exhausted."
+    "{i}It seems like I've made to the backyard of the house.{/i}"
+    "I backed away from the door behind me and slumping down onto the ground before calling my teammates through the walkie-talkie."
+    return
+label exit_injured:
+    mc "At least I got out alive."
+    "I touched the bump on my forehead again and blenched."
+    mc "There's probably an icepack back at the truck."
     return
 label exit_wo_friends:
-    e "you made it out alive but your friends did not (poggers)"
+    "I made it through the doorway and close the door behind before fleeing a few feet away."
+    "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
+    "After a few moments of catching my breath, I clicked on the walkie-talkie to call my teammates."
+    mc "Hello? Hey I'm in the backyard, where is everyo-"
+    "I was cutted off by a loud screech followed muffled screams and static."
+    mc "H-hey where are you g-guys??"
+    "The static noise quickly muffled out any voices and screams before going silent."
+    me "...No..N-no..s"
     return
-
-
-python: # TODO: delete this python section
-    """
-    label menu2_v2:
-        $ time = 5.0
-        $ timer_range = 5.0
-        $ timer_jump = 'menu2_slow'
-        show screen countdown
-        menu:
-            "choice 1 slow":
-                hide screen countdown
-                e "choice 1 slow"
-                jump menu2_end
-            "choice 2":
-                hide screen countdown
-                e "choice 2, slow"
-                jump menu2_end
-    label menu2_slow:
-        e "you were really slow"
-    label menu2_end:
-        e "anyways"
-        return
-    """
