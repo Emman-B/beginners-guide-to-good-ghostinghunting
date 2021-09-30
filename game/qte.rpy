@@ -192,6 +192,7 @@ label mc_gets_injured:
 
 ##endings
 label death:
+    hide screen countdown
     e "you have died"
     jump restart
 label restart:
