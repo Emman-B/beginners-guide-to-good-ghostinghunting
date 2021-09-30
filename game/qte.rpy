@@ -1,3 +1,9 @@
+"""
+Code derived from: https://www.renpy.org/wiki/renpy/doc/cookbook/Timed_menus
+
+This code handles quick-time events in the form of timed choices.
+"""
+
 transform alpha_dissolve:
     alpha 0.0
     linear 0.5 alpha 1.0
@@ -12,9 +18,10 @@ init:
     $ timer_range = 0
     $ timer_jump = 0
     define e = "elodie"
+
 label menu2:
-    $ time = 5
-    $ timer_range = 10
+    $ time = 5.0
+    $ timer_range = 5.0
     $ timer_jump = 'menu2_v2'
     show screen countdown
     menu:
@@ -27,9 +34,9 @@ label menu2:
             e "you chose choice 2 fast"
             jump menu2_end
 label menu2_v2:
-    $ time = 5
-    $ timer_range = 5
-    $ timer_jump = 'menus2_slow'
+    $ time = 5.0
+    $ timer_range = 5.0
+    $ timer_jump = 'menu2_slow'
     show screen countdown
     menu:
         "choice 1 slow":
@@ -44,7 +51,4 @@ label menu2_slow:
     e "you were really slow"
 label menu2_end:
     e "anyways"
-    return
-label start:
-    jump menu2
     return
