@@ -25,12 +25,15 @@ init:
     $ visited_right_deadend = False;
     $ visited_left_deadend = False;
     define mc = "player" #can change name
+    
 
 ##every decision is a label menu##
 
 #active chase, qte fast"
 label begin_chase_room:
-    
+    play music mazebgm fadein 5.0 
+    python:
+        renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_deadend:
         "I somehow ended up outside the same room I started in."
     $ time = 5.0
@@ -116,6 +119,8 @@ label ghost_at_exit_mc_hiding:
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump= 'timerout'
+    python:
+        renpy.music.set_volume(0.2, delay = 0, channel=u'music')
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
@@ -247,6 +252,8 @@ label mc_gets_injured:
 
 #endings#
 label timerout:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=3.0)
     hide screen countdown
     "I barely had time to make a choice before I feel the chilliness of the ghost behind me."
     mc "N-no, I should have come to a decision quicker..!"
@@ -260,16 +267,22 @@ label restart:
         "{color=#f00}Try again.{/color}":
             jump begin_chase_room
 label exit_warehouse:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     "I pushed past the doorway and close the door behind me. Suddenly I felt so exhausted."
     "{i}It seems like I've made to the backyard of the house.{/i}"
     "I backed away from the door behind me and slumping down onto the ground before calling my teammates through the walkie-talkie."
     return
 label exit_injured:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     mc "At least I got out alive."
     "I touched the bump on my forehead again and blenched."
     mc "There's probably an icepack back at the truck."
     return
 label exit_wo_friends:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     "I made it through the doorway and close the door behind before fleeing a few feet away."
     "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
     "After a few moments of catching my breath, I clicked on the walkie-talkie to call my teammates."
@@ -277,5 +290,5 @@ label exit_wo_friends:
     "I was cutted off by a loud screech followed muffled screams and static."
     mc "H-hey where are you g-guys??"
     "The static noise quickly muffled out any voices and screams before going silent."
-    me "...No..N-no..s"
+    mc "...No..N-no.."
     return
