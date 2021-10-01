@@ -53,14 +53,14 @@ label begin_chase_room:
         "{color=#f00}Go left{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight volume 4
+            play sound runningLight volume 1.0
             #sfx#
             "I turned left and speed down the hall, shining my flashlight ahead for visibility."
             jump room_02
         "{color=#f00}Go right{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight volume 4
+            play sound runningLight volume 1.0
             #sfx#
             "I swiftly made a right and run down the dimly lit hallway."
             $ visited_right_deadend = True
@@ -82,7 +82,7 @@ label room_02:
         "{color=#f00}Go left{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight
+            play sound runningLight volume 1.0
             #sfx#
             "I took another left and continued running forward."
             "{i}I can heard the whispers right behind me. I need to get out of here befo-{/i}"
@@ -91,7 +91,7 @@ label room_02:
         "{color=#f00}Head straight{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLoud
+            play sound runningLoud volume 1.0
             #sfx#
             "I dashed down the hallway."
             jump room_03
@@ -99,7 +99,7 @@ label room_02:
         "{color=#f00}Go right{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight
+            play sound runningLight volume 1.0
             #sfx#
             "I turned to the right and shined the lights down the rightside hallway"
             "{i}This looks like it may leads to a way out.{\i}"
@@ -118,7 +118,7 @@ label room_03:
         "{color=#f00}Go left{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight
+            play sound runningLight volume 1.0
             #sfx#
             "I take a sharp left and continued sprinting down the hall."
             $ visited_left_deadend = True
@@ -127,7 +127,7 @@ label room_03:
         "{color=#f00}Go right{/color}":
             hide screen countdown
             #sfx#
-            play sound runningLight
+            play sound runningLight volume 1.0
             #sfx#
             "I decided to go right."
             jump warehouse
@@ -167,7 +167,7 @@ label ghost_at_exit_mc_hiding:
             "I peeked out from behind the table and notice something resembling an exit at the other end of the room."
             "{i}Could that be the exit?{/i}"
             #sfx#
-            play sound runningLoud
+            play sound runningLoud volume 1.0
             #sfx#
             "I decided to risk it and dash across the room."
             jump exit_wo_friends
@@ -198,7 +198,7 @@ label ghost_explore_another_part_of_room:
 label ghost_gets_close_mc_while_walking_to_distract:
     hide screen countdown
     #sfx#
-    play sound glassShatter
+    play sound glassShatter volume 1.0
     #sfx#
     "The bottle hit the ground few feet away from me and made a huge shattering sound."
     "The shatter echoed through the room for a few seconds."
@@ -227,7 +227,7 @@ label ghost_gets_close_mc_while_walking_to_distract:
             "I decided to risk it."
             "Sucking in a deep breath, I leaped out from behind the couch and run straight for the exit."
             #sfx#
-            play sound runningLoud
+            play sound runningLoud volume 1.0
             #sfx#
             "However in the middle of my dash I tripped over some trash on the ground and fell right in front of the door."
             "I could feel the whispering coming closer so I ignore the pain on my head and quickly pushed myself up from the ground."
@@ -255,7 +255,7 @@ label ghost_explore_very_close_to_mc:
             "I cautiously peeked out from the side of the table and notice a doorway at the end of the room."
             "{i}That might be the exit. If I can make it to the door, I can escape. I can do this.{/i}"
             #sfx#
-            play sound runningLoud
+            play sound runningLoud volume 1.0
             #sfx#
             "I braced myself, jumping from behind the table and raced for the door on the other side of the room."
             "{i}It's all or nothing now{i/}"
@@ -284,7 +284,7 @@ label ghost_investigates_distraction:
             hide screen countdown
             "{i}It's distracted now, I should make a break for it.{/i}"
             #sfx#
-            play sound runningLoud
+            play sound runningLoud volume 1.0
             #sfx#
             "I creeped closer to the open doorway I saw earlier and then I bolted for the door."
             jump exit_warehouse
@@ -292,8 +292,8 @@ label ghost_investigates_distraction:
 label mc_gets_injured:
     "I rushed through the doorway and slammed the door shut behind me."
     #sfx#
-    play sound doorSlam
-    play sound heavyBreath2
+    play sound doorSlam volume 1.0
+    play sound heavyBreath2 volume 1.0
     #sfx#
     "{i}I'm safe...{/i}"
     "I wiped the sweats off my forehead before wincing. The bump on my forehead throbbed painfully."
@@ -330,11 +330,11 @@ label exit_warehouse:
     play music mainbgm fadein 5.0 fadeout 2.5
     "I pushed past the doorway and close the door behind me. Suddenly I felt so exhausted."
     #sfx#
-    play sound doorSlamClick
+    play sound doorSlamClick volume 1.0
     #sfx#
     "{i}It seems like I've made to the backyard of the house.{/i}"
     #sfx#
-    play sound heavyBreath2
+    play sound heavyBreath2 volume 1.0
     #sfx#
     "I backed away from the door behind me and slumping down onto the ground before calling my teammates through the walkie-talkie."
     return
@@ -357,16 +357,14 @@ label exit_wo_friends:
 
     "I made it through the doorway and close the door behind before fleeing a few feet away."
     #sfx#
-    play sound doorSlam
-    #sfx#
-    #sfx#
-    play sound heavyBreath2
+    play sound doorSlam volume 1.0
+    play sound heavyBreath2 volume 1.0
     #sfx#
     "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
     "After a few moments of catching my breath, I clicked on the walkie-talkie to call my teammates."
     mc "Hello? Hey I'm in the backyard, where is everyo-"
     "I was cutted off by a loud screech followed muffled screams and static."
-    play sound radioStatic
+    play sound radioStatic volume 1.0
     mc "H-hey where are you g-guys??"
     "The static noise quickly muffled out any voices and screams before going silent."
     mc "...No..N-no.."
