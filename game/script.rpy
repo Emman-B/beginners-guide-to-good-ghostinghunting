@@ -20,7 +20,8 @@ init python:
 
 ##MUSIC##
 define audio.mazebgm = "./music/panik@theHouseonYYYYstreet.wav"
-define audio.mainbgm = "./music/Ringin_eaR.wav"
+define audio.mainbgm = "./music/Ringin_eaR_ost_ver.wav"
+define audio.enteringHouse = "./music/Ringin_eaR.wav"
 define audio.setupbgm = "./music/Ghost_techies.wav"
 #########
 
@@ -28,8 +29,8 @@ define audio.setupbgm = "./music/Ghost_techies.wav"
 define audio.glassShatter = "./sfx/glass_shatter10.wav"
 define audio.doorSlam = "./sfx/door_slam.wav"
 define audio.doorSlamClick = "./sfx/door_slam_click.wav"
-define audio.heavyBreath1 = "./sfx/heavy_breathing01.wav"
-define audio.heavyBreath2 = "./sfx/heavy_breathing02.wav"
+define audio.heavyBreathFast = "./sfx/heavy_breathing_fast.wav"
+define audio.heavyBreathSlow = "./sfx/heavy_breathing_slow.wav"
 define audio.clothRustling = "./sfx/cloth_rustling.wav"
 define audio.runningLight = "./sfx/footstep_running_light.wav"
 define audio.runningLoud = "./sfx/footstep_running_loud.wav"

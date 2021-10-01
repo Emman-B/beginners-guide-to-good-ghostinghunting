@@ -95,12 +95,12 @@ label room_02:
             "I dashed down the hallway."
             jump room_03
             
-        "{color=#c81126}Go right{/color}":
+        "{color=#c81126}Go down stair{/color}":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
-            "I turned to the right, shining the lights down the rightside hallway."
+            "I turned right and shine the lights down the hallway. I notice the staircase."
             "{i}This looks like it may leads to a way out.{\i}"
             jump warehouse
 

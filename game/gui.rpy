@@ -70,7 +70,7 @@ define gui.text_size = 25
 define gui.name_text_size = 50
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 22
+define gui.interface_text_size = 35
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 27
@@ -210,7 +210,7 @@ define gui.choice_button_text_font = "NovaSlim-Regular.ttf"
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
 define gui.choice_button_text_idle_color = "#cccccc"
-define gui.choice_button_text_hover_color = "#111312"
+define gui.choice_button_text_hover_color = "#78877b"
 define gui.choice_button_text_insensitive_color = "#444444"
 
 
@@ -226,9 +226,9 @@ define gui.slot_button_height = 206
 define gui.slot_button_borders = Borders(10, 10, 10, 10)
 define gui.slot_button_text_size = 14
 define gui.slot_button_text_xalign = 0.5
-define gui.slot_button_text_idle_color = gui.idle_small_color
-define gui.slot_button_text_selected_idle_color = gui.selected_color
-define gui.slot_button_text_selected_hover_color = gui.hover_color
+define gui.slot_button_text_idle_color = "#00311e"
+define gui.slot_button_text_selected_idle_color = "#e3e5e3"
+define gui.slot_button_text_selected_hover_color = "#7a857d"
 
 ## The width and height of thumbnails used by the save slots.
 define config.thumbnail_width = 256
