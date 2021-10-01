@@ -79,18 +79,6 @@ image bg bathroom night = "./images/Bath_house_text_night1_v2.png"
 image bg bathroomGhostOrb night = "./images/Bath_house_text_night2_v2.png"
 
 #########
-label start:
-    scene bg dorm night with fade
-
-    show elodie neutral at left
-    show vance neutral at right
-
-    python:
-        mcname = renpy.input("What is your name?", length=32)
-        mcname = mcname.strip()
-        if not mcname: 
-            mcname = "Emm Cee"
-    mc "The name is [mc]."
 
 label DEBUG_start_menu:
     menu:
@@ -106,12 +94,17 @@ label DEBUG_start_menu:
             return
 
 label start:
-    "Hello there. What is your name?"
+    scene bg dorm night with fade
+
+    show elodie neutral at left
+    show vance neutral at right
+
     python:
-        mcname = renpy.input("I'm...", length=32)
+        mcname = renpy.input("What is your name?", length=32)
         mcname = mcname.strip()
         if not mcname: 
             mcname = "Emm Cee"
+    mc "The name is [mc]."
     
     if DEBUG_start_menu_testing:
         call DEBUG_start_menu
@@ -176,3 +169,11 @@ label ch02:
     know about ghost hunting. I’m sure I’ll learn a lot from watching them."
 
     il "I’m opening the trunk. Get your things."
+
+    "My things? Uh..."
+
+    "While Ilse grabs the Ghyson Vac-Pack and secures it onto their back, I look at the
+    heaping pile of objects nearly spilling out of the open trunk."
+    
+    "Not only are all the ghost hunting gadgets dumped in this pile, but a good portion of
+    it is made of snacks."
