@@ -178,3 +178,57 @@ label ch02:
     
     "Not only are all the ghost hunting gadgets dumped in this pile, but a good portion of
     it is made of snacks."
+
+    "I have no doubt that the snacks were packed by Elodie."
+    
+    "Speaking of, Elodie finally slinks out of the car."
+
+    el "What am I supposed to bring again?"
+
+    "Even as she asks, she doesn’t look up from her phone screen."
+
+    il "Here. You can watch over the EMF meter this time."
+
+    el "Right. The enterprise media functions."
+
+    "The what now?"
+
+    mc "Do you mean the-"
+
+    el "Sorry, sorry. I was watching a video. I meant the Ecto-Mode Finder!"
+
+    mc "Huh? I thought it was the electromag-"
+
+    el "Eggs, muffins, frittata!"
+
+    "Elodie rushes past me to the pile of everything and grabs her snacks, 
+    stuffing whatever fits into her pockets. 
+    She must’ve had food on her mind."
+
+    el "This job is cutting into my dinner time, you know?"
+
+    el "Let’s get in, clean the place, prove nothing spooky’s up, and get out."
+
+    mc "Huh? Is it likely for it to end up being nothing?
+        The client seemed pretty scared of going back to the house.
+        It doesn’t look like the usual haunted house, but there must be 
+        something paranormal going on if we were called in, right?"
+
+    il "It’s possible. There are false alarms once in a while."
+
+    il "But whether there is or isn’t a ghost, we’ll still at least check thoroughly like we were hired to."
+
+    il "However, I do believe there’s something. The signs the client reported are pretty convincing."
+
+    "As expected of the boss! Their confidence is a steady presence that bolsters my own courage."
+
+    "I quickly find my heavy-duty flashlight and video camera. Luckily, neither were damaged during the drive." 
+
+    "With the video cam, I’ll be able to record my first job for prosperity!"
+
+    "And maybe if I’m lucky, I can get a glimpse of the ghost!"
+
+    "In my excitement, I nearly miss that only three of our four member team are present."
+
+    mc "Where’s Vance?"
+    
