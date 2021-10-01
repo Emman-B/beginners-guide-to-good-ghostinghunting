@@ -21,8 +21,8 @@ init python:
 
 ##MUSIC##
 define audio.mazebgm = "./music/panik@theHouseonYYYYstreet.wav"
-define audio.mainbgm = "./music/Ringin'earR.wav"
-define audio.mainbgm = "./music/Ghost techies.wav"
+define audio.mainbgm = "./music/Ringin_eaR.wav"
+define audio.setupbgm = "./music/Ghost techies.wav"
 #########
 
 ##SFX##
