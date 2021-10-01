@@ -73,7 +73,7 @@ image bg dorm evening = "./images/A01-3_HomeBase_DormRoom_Evening.png"
 image bg bathroom day = "./images/Bath_house_test_daytime_v3.png"
 image bg bathroom dusk = "./images/Bath_house_text_dusk_v2.png"
 image bg bathroom night = "./images/Bath_house_text_night1_v2.png"
-image bg bathroom night = "./images/Bath_house_text_night2_v2.png"
+image bg bathroomGhostOrb night = "./images/Bath_house_text_night2_v2.png"
 
 #########
 label start:
