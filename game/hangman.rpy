@@ -59,7 +59,7 @@ init 5 python:
         "i will kill you"
     ]
 
-    # set messages to be told per try (first item = first message shown at the start)
+    # set messages to be told per used-up try (first item = first message shown at the start)
     # player lose feelings to body parts.
     messages_per_try = [
             None,
@@ -81,9 +81,20 @@ screen hangman(message):
     style_prefix "black"
     frame:
         xalign 0.5
-        ypos 0.5
+        ypos 0.45
         vbox:
             text "[message]"
+
+style black_frame:
+    background "#000000d9"
+
+screen hangman_used(used_letters):
+    style_prefix "black"
+    frame:
+        xalign 0.5
+        ypos 0.60
+        vbox:
+            text "Letters Used: \"[used_letters]\""
 
 style black_frame:
     background "#000000d9"
@@ -156,6 +167,7 @@ label hangman:
                     print_current += " _ "
             # renpy.say(None, print_current)
             renpy.show_screen("hangman", print_current)
+            renpy.show_screen("hangman_used", excluded_letters)
 
             """
             4.15) Print a message (if able to)
@@ -215,11 +227,16 @@ label hangman:
         on whether they won or not.
         """
         renpy.show_screen("hangman", answer)
+        renpy.hide_screen("hangman_used")
         if correct_answer_found:
             renpy.play(audio.correct, channel=u'sound')
             renpy.say(None, "I did it. I did it!! I guessed correct and was able to communicate with the ghost! \"[answer]\", huh!? Man..this ghost sounds aggressive." )
         else:
             renpy.play(audio.buzzWrong, channel=u'sound')
-            renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
+            # Possibly print the last message
+            if message_index == current_tries and message_index < len(messages_per_try):
+                say_message_object(messages_per_try[message_index])
+                message_index += 1
+             renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
 
     return
