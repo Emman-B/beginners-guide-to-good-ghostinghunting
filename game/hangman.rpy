@@ -10,7 +10,7 @@ init 0 python:
             self.message = message
 
     # Functions
-    def request_hangman_answer():
+    def request_input_for_hangman_answer():
         """
         Debug function requesting user input for hangman answers
 
@@ -24,6 +24,17 @@ init 0 python:
         
         renpy.say(None, "Answer retrieved!")
         return answer
+    
+    def randomly_select_hangman_answer(possible_answers):
+        """
+        Randomly selects an answer for hangman from a list of possible answers.
+
+        Parameters:
+            possible_answers (array of strings): array of possible answers
+
+        Returns: the selected answer
+        """
+        return renpy.random.choice(possible_answers)
 
     def say_message_object(message):
         """
@@ -32,19 +43,32 @@ init 0 python:
         Parameters:
             message (Message): the message object containing the character and message
         """
-        renpy.say(message.character, message.message)
+        if (message != None):
+            renpy.say(message.character, message.message)
     
 
 # init python priority 5: place to setup variables
 init 5 python:
     # set max number of tries
-    max_tries = 3
+    max_tries = 6
+
+    DEBUG_force_request_answer = False # For debugging, forcibly requests an answer
+    possible_answers = [
+        "leave my home",
+        "get the heck out",
+        "i will kill you"
+    ]
 
     # set messages to be told per try (first item = first message shown at the start)
+    # player lose feelings to body parts.
     messages_per_try = [
-            Message("Bob", "Hello world!"),
-            Message("Steve", "Oh no, you don't have many tries"),
-            Message("Mike", "It's your last try!")
+            None,
+            Message("Vance", "Eeek, [mc] are you okay?? Ilse, we shouldn't do this, it's dangerous!"),
+            Message("Ilse", "[mc], if you can't handle it, you can tap out with me."),
+            Message("Elodie", "You look like you need a Snackersbar, [mc]."),
+            Message(mc, "H-hu...I can't f-feel my legs and arms a-anymore.."),
+            Message("Vance", "Ilse!! Please stop them, I don't think they can hang on a-anymore!")
+            Message(mc, "F-feel hollow and t-tired...F-feel like t-throwing up..")
         ]
 
 
@@ -77,7 +101,13 @@ label hangman:
         """
         1) Retrieve an answer
         """
-        answer = request_hangman_answer()
+        answer = ""
+        if (DEBUG_force_request_answer):
+            # DEBUG: Retrieves answer from standard input
+            answer = request_input_for_hangman_answer()
+        else:
+            # This retrieves an answer from a list of possible answers
+            answer = randomly_select_hangman_answer(possible_answers)
 
 
         """

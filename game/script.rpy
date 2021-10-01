@@ -6,6 +6,8 @@
 # name of the character.
 
 define e = Character("Eileen")
+#mc input name
+define mc = Character("[mcname]")
 ##configure fonts ##
 #name: Nova Slim
 #text: Inconsolata
@@ -13,10 +15,7 @@ define e = Character("Eileen")
 #hangman: Lacquer
 init python:
     config.preload_fonts = ['NovaSlim-Regular.ttf','PoorStory-Regular.ttf','Lacquer-Regular.ttf','Inconsolata-Regular.ttf']
-    #change fonts in gui.rpy#
-    #style.default.font = "NovaSlim-Regular.ttf"
-#define gui.text_font = "Inconsolata-Regular.ttf" #sets dialogue text to inconsolata
-#style say_label font "PoorStory-Regular.ttf" #sets character font to nova slim
+    
 # The game starts here.
 
 ##MUSIC##
@@ -42,6 +41,12 @@ define audio.clickSingle = "./sfx/click_single.wav"
 define audio.windClose = "./sfx/wind_med_speed_close.wav"
 #######
 label start:
+    python:
+        mcname = renpy.input("What is your name?", length=32)
+        mcname = mcname.strip()
+        if not mcname: 
+            "Emm Cee"
+    mc "The name is [mc]."
 
     scene debug_bg
 
