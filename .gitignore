@@ -25,3 +25,7 @@ log.txt
 errors.txt
 traceback.txt
 files.txt
+
+# Remove auto-generated .DS_Store files #
+#########################################
+.DS_Store
