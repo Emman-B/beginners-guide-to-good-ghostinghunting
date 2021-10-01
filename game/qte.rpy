@@ -31,11 +31,10 @@ init:
 
 #active chase, qte fast"
 label begin_chase_room:
-    #music#
-    #play music mazebgm fadein 5.0 
-    #python:
-        #renpy.music.set_volume(0.3, delay=0, channel =u'music')
-    #music#
+    python:
+        if renpy.music.get_playing == None or renpy.music.get_playing != audio.mazebgm:
+            renpy.music.play(audio.mazebgm, u'music', loop=True, fadein=5.0)
+        renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_deadend:
         "I somehow ended up outside the same room I started in."
     $ time = 5.0
@@ -311,10 +310,14 @@ label timerout:
     mc "N-no, I should have come to a decision quicker..!"
     jump death
 label death:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     hide screen countdown
     "{b}You have been killed by the ghost.{/b}"
     jump restart
 label restart:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     menu: 
         "{color=#f00}Try again.{/color}":
             jump begin_chase_room
@@ -323,6 +326,7 @@ label exit_warehouse:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
     "I pushed past the doorway and close the door behind me. Suddenly I felt so exhausted."
     #sfx#
     play sound doorSlamClick
@@ -338,6 +342,7 @@ label exit_injured:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
     mc "At least I got out alive."
     "I touched the bump on my forehead again and blenched."
     mc "There's probably an icepack back at the truck."
@@ -347,6 +352,8 @@ label exit_wo_friends:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
+
     "I made it through the doorway and close the door behind before fleeing a few feet away."
     #sfx#
     play sound doorSlam
