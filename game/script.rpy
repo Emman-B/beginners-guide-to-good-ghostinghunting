@@ -21,8 +21,8 @@ init python:
 
 ##MUSIC##
 define audio.mazebgm = "./music/panik@theHouseonYYYYstreet.wav"
-define audio.mainbgm = "./music/Ringin'earR.wav"
-define audio.mainbgm = "./music/Ghost techies.wav"
+define audio.mainbgm = "./music/Ringin'eaR.wav"
+define audio.setupbgm = "./music/Ghost techies.wav"
 #########
 
 ##SFX##
@@ -32,6 +32,9 @@ define audio.doorSlamClick = "./sound_edited/door_slam_click.wav"
 define audio.heavyBreath1 = "./sound_edited/heavy_breathing01.wav"
 define audio.heavyBreath2 = "./sound_edited/heavy_breathing02.wav"
 define audio.clothRustling = "./sound_edited/cloth_rustling.wav"
+define audio.runningLight = "./sound_edited/footstep_running_light.wav"
+define audio.runningLoud = "./sound_edited/footstep_running_loud.wav"
+define audio.radioStatic = "./sound_edited/radio_stathicc.wav"
 #######
 label start:
 
