@@ -43,7 +43,54 @@ define audio.electronicAmbience = "./sfx/electronic_ambience.wav"
 define audio.clickSingle = "./sfx/click_single.wav"
 define audio.windClose = "./sfx/wind_med_speed_close.wav"
 define audio.correct ="./sfx/correct.wav"
+define audio.radioStatic = "./sfx/radio_static.wav"
 #######
+
+##Image Character Sprites##
+image bp sad = "./images/bp_rock_d.png"
+
+image ghost mad = "./images/ghost_mad.png"
+image ghost neutral = "./images/ghost_neutral.png"
+
+image elodie neutral = "./images/elodie_neutral.png"
+image elodie happy = "./images/elodie_happy.png"
+image elodie scared = "./images/elodie_scared.png"
+
+image vance neutral = "./images/vance_neutral.png"
+image vance scared = "./images/vance_scared.png"
+image vance happy = "./images/vance_happy.png"
+
+image ilse happy = "./images/ilse_happy.png"
+image ilse mad = "./images/ilse_mad.png"
+image ilse neutral = "./images/ilse_neutral.png"
+image ilse scared = "./images/ilse_scared.png"
+
+image mc happy = "./images/mc_happy.png"
+image mc neutral = "./images/mc_neutral.png"
+image mc scared = "./images/mc_scared.png"
+
+##Image Backgrounds##
+image bg dorm night = "./images/A01-3_HomeBase_DormRoom_Night.png"
+image bg dorm day = "./images/A01-3_HomeBase_DormRoom_daytime.png"
+image bg dorm evening = "./images/A01-3_HomeBase_DormRoom_Evening.png"
+image bg bathroom day = "./images/Bath_house_test_daytime_v3.png"
+image bg bathroom dusk = "./images/Bath_house_text_dusk_v2.png"
+image bg bathroom night = "./images/Bath_house_text_night1_v2.png"
+image bg bathroomGhostOrb night = "./images/Bath_house_text_night2_v2.png"
+
+#########
+label start:
+    scene bg dorm night with fade
+
+    show elodie neutral at left
+    show vance neutral at right
+
+    python:
+        mcname = renpy.input("What is your name?", length=32)
+        mcname = mcname.strip()
+        if not mcname: 
+            mcname = "Emm Cee"
+    mc "The name is [mc]."
 
 label DEBUG_start_menu:
     menu:
