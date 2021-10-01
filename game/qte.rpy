@@ -84,7 +84,7 @@ label room_02:
             play sound runningLight volume 1.0
             #sfx#
             "I took another left and continued running forward."
-            "{i}I can heard the whispers right behind me. I need to get out of here befo-{/i}"
+            "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
         "{color=#f00}Head straight{/color}":

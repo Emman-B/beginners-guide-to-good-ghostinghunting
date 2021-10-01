@@ -108,6 +108,8 @@ style black_frame:
 """
 # Hangman starts here
 label hangman:
+    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.2 loop
+
     python:
         """
         1) Retrieve an answer
@@ -239,5 +241,5 @@ label hangman:
                 say_message_object(messages_per_try[message_index])
                 message_index += 1
             renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
-
+    stop music fadeout 1.0
     return
