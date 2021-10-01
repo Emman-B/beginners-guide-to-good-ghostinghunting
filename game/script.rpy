@@ -41,16 +41,17 @@ define audio.clickSingle = "./sfx/click_single.wav"
 define audio.windClose = "./sfx/wind_med_speed_close.wav"
 #######
 label start:
+    scene debug_bg
+
+    show debug_character
+
     python:
         mcname = renpy.input("What is your name?", length=32)
         mcname = mcname.strip()
         if not mcname: 
-            "Emm Cee"
+            mcname = "Emm Cee"
     mc "The name is [mc]."
 
-    scene debug_bg
-
-    show debug_character
 
     menu:
         "You're in the debug menu! Choose where you want to be sent."
