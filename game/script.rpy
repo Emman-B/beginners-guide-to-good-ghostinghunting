@@ -26,15 +26,15 @@ define audio.setupbgm = "./music/Ghost techies.wav"
 #########
 
 ##SFX##
-define audio.glassShatter = "./sound_edited/glass_shatter10.wav"
-define audio.doorSlam = "./sound_edited/door_slam.wav"
-define audio.doorSlamClick = "./sound_edited/door_slam_click.wav"
-define audio.heavyBreath1 = "./sound_edited/heavy_breathing01.wav"
-define audio.heavyBreath2 = "./sound_edited/heavy_breathing02.wav"
-define audio.clothRustling = "./sound_edited/cloth_rustling.wav"
-define audio.runningLight = "./sound_edited/footstep_running_light.wav"
-define audio.runningLoud = "./sound_edited/footstep_running_loud.wav"
-define audio.radioStatic = "./sound_edited/radio_stathicc.wav"
+define audio.glassShatter = "./sfx/glass_shatter10.wav"
+define audio.doorSlam = "./sfx/door_slam.wav"
+define audio.doorSlamClick = "./sfx/door_slam_click.wav"
+define audio.heavyBreath1 = "./sfx/heavy_breathing01.wav"
+define audio.heavyBreath2 = "./sfx/heavy_breathing02.wav"
+define audio.clothRustling = "./sfx/cloth_rustling.wav"
+define audio.runningLight = "./sfx/footstep_running_light.wav"
+define audio.runningLoud = "./sfx/footstep_running_loud.wav"
+define audio.radioStatic = "./sfx/radio_static.wav"
 #######
 label start:
 

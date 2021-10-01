@@ -258,7 +258,7 @@ label ghost_explore_very_close_to_mc:
             play sound runningLoud volume 1.0
             #sfx#
             "I braced myself, jumping from behind the table and raced for the door on the other side of the room."
-            "{i}It's all or nothing now{i/}"
+            "{i}It's all or nothing now{/i}"
             python: ##50/50 chance of survival
                 chance_survival = (renpy.random.random()*99)+1
                 if(chance_survival > 50):
@@ -277,7 +277,7 @@ label ghost_investigates_distraction:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
-            "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{i/}"
+            "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{/i}"
             "I continued to hide behind the couch and keep very still."
             jump ghost_explore_very_close_to_mc
         "{color=#f00}run{/color}":
@@ -334,7 +334,7 @@ label exit_warehouse:
     #sfx#
     "{i}It seems like I've made to the backyard of the house.{/i}"
     #sfx#
-    play sound heavyBreath2 volume 1.0
+    play sound heavyBreath2 volume 1.0 fadeout 0.5
     #sfx#
     "I backed away from the door behind me and slumping down onto the ground before calling my teammates through the walkie-talkie."
     return
@@ -358,7 +358,8 @@ label exit_wo_friends:
     "I made it through the doorway and close the door behind before fleeing a few feet away."
     #sfx#
     play sound doorSlam volume 1.0
-    play sound heavyBreath2 volume 1.0
+    play sound heavyBreath2 volume 1.0 fadeout 0.5
+
     #sfx#
     "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
     "After a few moments of catching my breath, I clicked on the walkie-talkie to call my teammates."
