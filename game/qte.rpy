@@ -31,8 +31,10 @@ init:
 
 #active chase, qte fast"
 label begin_chase_room:
-    play music mazebgm fadein 5.0 
     python:
+        currently_playing = renpy.music.get_playing(channel=u'music')
+        if currently_playing == None or currently_playing != audio.mazebgm:
+            renpy.music.play(audio.mazebgm, u'music', loop=True, fadein=5.0)
         renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_deadend:
         "I somehow ended up outside the same room I started in."
@@ -50,10 +52,16 @@ label begin_chase_room:
             jump death
         "{color=#f00}Go left{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I turned left and speed down the hall, shining my flashlight ahead for visibility."
             jump room_02
         "{color=#f00}Go right{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I swiftly made a right and run down the dimly lit hallway."
             $ visited_right_deadend = True
             jump begin_chase_room
@@ -62,6 +70,9 @@ label room_02:
     hide screen countdown
     "I came upon another room."
     "After a quick glance around the room, I found no good hiding spots."
+    #sfx#
+    play sound runningLight
+    #sfx#
     "I heard a soft whisper from behind me and I bolted out of the room and decided to..."
     $ time = 5.0
     $ timer_range_chase = 5.0
@@ -70,17 +81,26 @@ label room_02:
     menu: 
         "{color=#f00}Go left{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I took another left and continued running forward."
             "{i}I can heard the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
         "{color=#f00}Head straight{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLoud volume 1.0
+            #sfx#
             "I dashed down the hallway."
             jump room_03
             
         "{color=#f00}Go right{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I turned to the right and shined the lights down the rightside hallway"
             "{i}This looks like it may leads to a way out.{\i}"
             jump warehouse
@@ -97,12 +117,18 @@ label room_03:
     menu: 
         "{color=#f00}Go left{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I take a sharp left and continued sprinting down the hall."
             $ visited_left_deadend = True
             jump begin_chase_room
             
         "{color=#f00}Go right{/color}":
             hide screen countdown
+            #sfx#
+            play sound runningLight volume 1.0
+            #sfx#
             "I decided to go right."
             jump warehouse
 
@@ -110,6 +136,9 @@ label room_03:
 label warehouse:
     "My flashlight flickered some more before completely turning off."
     "I couldn't do anything except run blindly straight ahead."
+    #sfx#
+    play sound runningLight
+    #sfx#
     "After a few minutes of running in the dark, I ended up in a semi-dark room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
@@ -119,8 +148,10 @@ label ghost_at_exit_mc_hiding:
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump= 'timerout'
+    #music#
     python:
         renpy.music.set_volume(0.2, delay = 0, channel=u'music')
+    #music#
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
@@ -135,6 +166,9 @@ label ghost_at_exit_mc_hiding:
             hide screen countdown
             "I peeked out from behind the table and notice something resembling an exit at the other end of the room."
             "{i}Could that be the exit?{/i}"
+            #sfx#
+            play sound runningLoud volume 1.0
+            #sfx#
             "I decided to risk it and dash across the room."
             jump exit_wo_friends
 
@@ -163,6 +197,9 @@ label ghost_explore_another_part_of_room:
             jump death
 label ghost_gets_close_mc_while_walking_to_distract:
     hide screen countdown
+    #sfx#
+    play sound glassShatter volume 1.0
+    #sfx#
     "The bottle hit the ground few feet away from me and made a huge shattering sound."
     "The shatter echoed through the room for a few seconds."
     "I ducked down behind a couch and thought about my choices. I..."
@@ -189,6 +226,9 @@ label ghost_gets_close_mc_while_walking_to_distract:
             "{i}Could that be the exit? Should I risk it?{/i}"
             "I decided to risk it."
             "Sucking in a deep breath, I leaped out from behind the couch and run straight for the exit."
+            #sfx#
+            play sound runningLoud volume 1.0
+            #sfx#
             "However in the middle of my dash I tripped over some trash on the ground and fell right in front of the door."
             "I could feel the whispering coming closer so I ignore the pain on my head and quickly pushed myself up from the ground."
             jump mc_gets_injured
@@ -214,8 +254,11 @@ label ghost_explore_very_close_to_mc:
             hide screen countdown
             "I cautiously peeked out from the side of the table and notice a doorway at the end of the room."
             "{i}That might be the exit. If I can make it to the door, I can escape. I can do this.{/i}"
+            #sfx#
+            play sound runningLoud volume 1.0
+            #sfx#
             "I braced myself, jumping from behind the table and raced for the door on the other side of the room."
-            "{i}It's all or nothing now{i/}"
+            "{i}It's all or nothing now{/i}"
             python: ##50/50 chance of survival
                 chance_survival = (renpy.random.random()*99)+1
                 if(chance_survival > 50):
@@ -234,17 +277,24 @@ label ghost_investigates_distraction:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
-            "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{i/}"
+            "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{/i}"
             "I continued to hide behind the couch and keep very still."
             jump ghost_explore_very_close_to_mc
         "{color=#f00}run{/color}":
             hide screen countdown
             "{i}It's distracted now, I should make a break for it.{/i}"
+            #sfx#
+            play sound runningLoud volume 1.0
+            #sfx#
             "I creeped closer to the open doorway I saw earlier and then I bolted for the door."
             jump exit_warehouse
 
 label mc_gets_injured:
     "I rushed through the doorway and slammed the door shut behind me."
+    #sfx#
+    play sound doorSlam volume 1.0
+    play sound heavyBreath2 volume 1.0
+    #sfx#
     "{i}I'm safe...{/i}"
     "I wiped the sweats off my forehead before wincing. The bump on my forehead throbbed painfully."
     "{i}Dang, must have got that from when I fell...tch{/i}"
@@ -252,42 +302,70 @@ label mc_gets_injured:
 
 #endings#
 label timerout:
+    #music#
     python:
         renpy.music.stop(channel=u'music',fadeout=3.0)
+    #music#
     hide screen countdown
     "I barely had time to make a choice before I feel the chilliness of the ghost behind me."
     mc "N-no, I should have come to a decision quicker..!"
     jump death
 label death:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     hide screen countdown
     "{b}You have been killed by the ghost.{/b}"
     jump restart
 label restart:
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
     menu: 
         "{color=#f00}Try again.{/color}":
             jump begin_chase_room
 label exit_warehouse:
+    #music#
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
+    #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
     "I pushed past the doorway and close the door behind me. Suddenly I felt so exhausted."
+    #sfx#
+    play sound doorSlamClick volume 1.0
+    #sfx#
     "{i}It seems like I've made to the backyard of the house.{/i}"
+    #sfx#
+    play sound heavyBreath2 volume 1.0 fadeout 0.5
+    #sfx#
     "I backed away from the door behind me and slumping down onto the ground before calling my teammates through the walkie-talkie."
     return
 label exit_injured:
+    #music#
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
+    #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
     mc "At least I got out alive."
     "I touched the bump on my forehead again and blenched."
     mc "There's probably an icepack back at the truck."
     return
 label exit_wo_friends:
+    #music#
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
+    #music#
+    play music mainbgm fadein 5.0 fadeout 2.5
+
     "I made it through the doorway and close the door behind before fleeing a few feet away."
+    #sfx#
+    play sound doorSlam volume 1.0
+    play sound heavyBreath2 volume 1.0 fadeout 0.5
+
+    #sfx#
     "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
     "After a few moments of catching my breath, I clicked on the walkie-talkie to call my teammates."
     mc "Hello? Hey I'm in the backyard, where is everyo-"
     "I was cutted off by a loud screech followed muffled screams and static."
+    play sound radioStatic volume 1.0
     mc "H-hey where are you g-guys??"
     "The static noise quickly muffled out any voices and screams before going silent."
     mc "...No..N-no.."

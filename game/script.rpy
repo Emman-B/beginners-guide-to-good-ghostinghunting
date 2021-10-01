@@ -21,17 +21,25 @@ init python:
 
 ##MUSIC##
 define audio.mazebgm = "./music/panik@theHouseonYYYYstreet.wav"
-define audio.mainbgm = "./music/Ringin'earR.wav"
-define audio.mainbgm = "./music/Ghost techies.wav"
+define audio.mainbgm = "./music/Ringin_eaR.wav"
+define audio.setupbgm = "./music/Ghost_techies.wav"
 #########
 
 ##SFX##
-define audio.glassShatter = "./sound_edited/glass_shatter10.wav"
-define audio.doorSlam = "./sound_edited/door_slam.wav"
-define audio.doorSlamClick = "./sound_edited/door_slam_click.wav"
-define audio.heavyBreath1 = "./sound_edited/heavy_breathing01.wav"
-define audio.heavyBreath2 = "./sound_edited/heavy_breathing02.wav"
-define audio.clothRustling = "./sound_edited/cloth_rustling.wav"
+define audio.glassShatter = "./sfx/glass_shatter10.wav"
+define audio.doorSlam = "./sfx/door_slam.wav"
+define audio.doorSlamClick = "./sfx/door_slam_click.wav"
+define audio.heavyBreath1 = "./sfx/heavy_breathing01.wav"
+define audio.heavyBreath2 = "./sfx/heavy_breathing02.wav"
+define audio.clothRustling = "./sfx/cloth_rustling.wav"
+define audio.runningLight = "./sfx/footstep_running_light.wav"
+define audio.runningLoud = "./sfx/footstep_running_loud.wav"
+define audio.buzzWrong = "./sfx/buzz_wrong.wav"
+define audio.tearing02 = "./sfx/tearing02.wav"
+define audio.vaccum = "./sfx/vaccum.wav"
+define audio.electronicAmbience = "./sfx/electronic_ambience.wav"
+define audio.clickSingle = "./sfx/click_single.wav"
+define audio.windClose = "./sfx/wind_med_speed_close.wav"
 #######
 label start:
 
