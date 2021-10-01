@@ -67,7 +67,7 @@ init 5 python:
             Message("Ilse", "[mc], if you can't handle it, you can tap out with me."),
             Message("Elodie", "You look like you need a Snackersbar, [mc]."),
             Message(mc, "H-hu...I can't f-feel my legs and arms a-anymore.."),
-            Message("Vance", "Ilse!! Please stop them, I don't think they can hang on a-anymore!")
+            Message("Vance", "Ilse!! Please stop them, I don't think they can hang on a-anymore!"),
             Message(mc, "F-feel hollow and t-tired...F-feel like t-throwing up..")
         ]
 
@@ -175,7 +175,7 @@ label hangman:
             remaining_tries = max_tries - current_tries
             guess = ""
             while len(guess) == 0:
-                guess = renpy.input("You have [remaining_tries] tries left. Guess a letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
+                guess = renpy.input("I have only [remaining_tries] tries left. Guess a letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
 
 
             # exclude the guessed letter
@@ -216,8 +216,10 @@ label hangman:
         """
         renpy.show_screen("hangman", answer)
         if correct_answer_found:
-            renpy.say(None, "Congratulations! You found the correct answer: \"[answer]\"")
+            renpy.play(audio.correct, channel=u'sound')
+            renpy.say(None, "I did it. I did it!! I guessed correct and was able to communicate with the ghost! \"[answer]\", huh!? Man..this ghost sounds aggressive." )
         else:
-            renpy.say(None, "Sorry, the correct answer was: \"[answer]\"")
+            renpy.play(audio.buzzWrong, channel=u'sound')
+            renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
 
     return

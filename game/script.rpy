@@ -39,6 +39,7 @@ define audio.vaccum = "./sfx/vaccum.wav"
 define audio.electronicAmbience = "./sfx/electronic_ambience.wav"
 define audio.clickSingle = "./sfx/click_single.wav"
 define audio.windClose = "./sfx/wind_med_speed_close.wav"
+define audio.correct ="./sfx/correct.wav"
 #######
 label start:
     python:

@@ -61,7 +61,7 @@ label begin_chase_room:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
-            "I swiftly made a right and run down the dimly lit hallway."
+            "I swiftly made a right and ran down the dimly lit hallway."
             $ visited_right_deadend = True
             jump begin_chase_room
             
@@ -108,7 +108,7 @@ label room_03:
     hide screen countdown
     "I see a room up ahead and did a quick peek into the room looking for any good hiding spots."
     "{i}Another room with no decent hiding spots, huh.{\i}"
-    "My flashlight started flashing uncontrollably and I heard the familiar whispers creeping closer to me and I..."
+    "All of the sudden, my flashlight started flickering uncontrollably. I heard the familiar whispers creeping closer to me and I..."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -138,7 +138,7 @@ label warehouse:
     #sfx#
     play sound runningLight
     #sfx#
-    "After a few minutes of running in the dark, I ended up in a semi-dark room."
+    "After a few minutes of running in the dark, I ended up in a half-lit room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
     "Looking around in the dimmed lights, I noticed a few broken furniture scattered throughout the room."
@@ -155,7 +155,7 @@ label ghost_at_exit_mc_hiding:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
-            "I kept quiet and stayed behind the table."
+            "I kept quiet and hid behind the table."
             jump ghost_explore_another_part_of_room
         "{color=#f00}distract{/color}":
             hide screen countdown
@@ -163,12 +163,12 @@ label ghost_at_exit_mc_hiding:
             jump ghost_gets_close_mc_while_walking_to_distract
         "{color=#f00}run{/color}":
             hide screen countdown
-            "I peeked out from behind the table and notice something resembling an exit at the other end of the room."
+            "I peeked out from behind the table and noticed something resembling an exit at the other end of the room."
             "{i}Could that be the exit?{/i}"
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "I decided to risk it and dash across the room."
+            "I decided to risk it and dashed across the room."
             jump exit_wo_friends
 
 label ghost_explore_another_part_of_room:
@@ -216,7 +216,7 @@ label ghost_gets_close_mc_while_walking_to_distract:
         "{color=#f00}distract{/color}":
             "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
             "{i}I can try throwing my flashligh-{/i}"
-            "I felt an icy chill breathe on my neck and my visions blackened."
+            "I felt an icy chill breathe on my neck and my vision blackened."
             hide screen countdown
             jump death
         "{color=#f00}run{/color}":
@@ -243,15 +243,15 @@ label ghost_explore_very_close_to_mc:
     menu: 
         "{color=#f00}hide{/color}":
             hide screen countdown
-            "{i}I figured I should play it safe and continue to hide behind the table.{/i}"
+            "{i}I figured I should play it safe and continued to hide behind the table.{/i}"
             "{i}As long as I stay quiet, it shouldn't be able to notice me.{/i}"
             "{i}My teammates will notice me missing and look for me so I should stay put here.{/i}"
-            "I leaned toward the table and stayed quiet for a few minutes before feeling that same chill run down my back."
+            "I leaned toward the table and stayed quiet for a few minutes. But I felt that same chill run down my back."
             "I leap away from the table but all I heard was the whispers ringing louder and louder in my ears before I blacked out."
             jump death
         "{color=#f00}run{/color}":
             hide screen countdown
-            "I cautiously peeked out from the side of the table and noticed a doorway at the end of the room."
+            "Cautiously, I peeked out from the side of the table and noticed a doorway at the end of the room."
             "{i}That might be the exit. If I can make it to that door, I can escape. I can do this.{/i}"
             #sfx#
             play sound runningLoud volume 1.0
@@ -276,7 +276,7 @@ label ghost_investigates_distraction:
     menu:
         "{color=#f00}hide{/color}":
             hide screen countdown
-            "{i}It's better to play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic.{/i}"
+            "{i}It's better to play it safe. I don't know how long the distraction will last so I shouldn't do anything drastic.{/i}"
             "I continued to hide behind the couch and kept very still."
             jump ghost_explore_very_close_to_mc
         "{color=#f00}run{/color}":
@@ -285,7 +285,7 @@ label ghost_investigates_distraction:
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "I creeped closer to the open doorway I saw earlier and then I bolted for the door."
+            "I crept closer to the open doorway and then bolted for the door."
             jump exit_warehouse
 
 label mc_gets_injured:
@@ -295,7 +295,7 @@ label mc_gets_injured:
     play sound heavyBreath2 volume 1.0
     #sfx#
     "{i}I'm safe...{/i}"
-    "I wiped the sweats off my forehead before wincing. The bump on my forehead throbbed painfully."
+    "I wiped the sweat off my forehead before wincing. The bump on my forehead throbbed painfully."
     "{i}Dang, must have got that from when I fell...tch{/i}"
     jump exit_injured
 
@@ -307,7 +307,7 @@ label timerout:
     #music#
     hide screen countdown
     "I barely had time to make a choice before I felt a sudden chill behind me."
-    mc "N-no, I should have come to a decision quicker..!"
+    mc "N-no, I should have decided sooner..!"
     jump death
 label death:
     python:
@@ -343,7 +343,7 @@ label exit_injured:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
-    mc "At least I got out alive."
+    mc "At least I got out alive..."
     "I touched the bump on my forehead again and blenched."
     mc "There's probably an icepack back at the truck."
     return
@@ -354,7 +354,7 @@ label exit_wo_friends:
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
 
-    "I made it through the doorway and closed the door behind before fleeing a few feet away."
+    "I made it through the doorway and slammed the door before running away as fast as I could."
     #sfx#
     play sound doorSlam volume 1.0
     play sound heavyBreath2 volume 1.0 fadeout 0.5
