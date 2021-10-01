@@ -32,7 +32,8 @@ init:
 #active chase, qte fast"
 label begin_chase_room:
     python:
-        if renpy.music.get_playing == None or renpy.music.get_playing != audio.mazebgm:
+        currently_playing = renpy.music.get_playing(channel=u'music')
+        if currently_playing == None or currently_playing != audio.mazebgm:
             renpy.music.play(audio.mazebgm, u'music', loop=True, fadein=5.0)
         renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_deadend:
