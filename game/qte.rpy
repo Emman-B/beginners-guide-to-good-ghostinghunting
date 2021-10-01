@@ -35,7 +35,7 @@ label begin_chase_room:
         "I somehow ended up outside the same room I started in."
     $ time = 5.0
     $ timer_range_chase = 5.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu:
         "{color=#f00}Do nothing{/color}":
@@ -62,7 +62,7 @@ label room_02:
     "I heard a soft whisper from behind me and I bolted out of the room and decided to..."
     $ time = 5.0
     $ timer_range_chase = 5.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu: 
         "{color=#f00}Go left{/color}":
@@ -89,7 +89,7 @@ label room_03:
     "My flashlight started flashing uncontrollably and I heard the familiar whispers creeping closer to me and I..."
     $ time = 5.0
     $ timer_range_chase = 5.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu: 
         "{color=#f00}Go left{/color}":
@@ -115,7 +115,7 @@ label ghost_at_exit_mc_hiding:
     "{i}What should I do now...{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
-    $ timer_jump= 'death'
+    $ timer_jump= 'timerout'
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
@@ -139,7 +139,7 @@ label ghost_explore_another_part_of_room:
     "{i}It must be over there...what should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
@@ -163,7 +163,7 @@ label ghost_gets_close_mc_while_walking_to_distract:
     "I ducked down behind a couch and thought about my choices. I..."
     $ time = 7.0
     $ timer_range_chase = 7.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
@@ -194,7 +194,7 @@ label ghost_explore_very_close_to_mc:
     "{i}What should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu: 
         "{color=#f00}hide{/color}":
@@ -224,18 +224,18 @@ label ghost_investigates_distraction:
     "{i}It's not gonna stay distracted forever so I should..."
     $ time = 7.0
     $ timer_range_chase = 7.0
-    $ timer_jump = 'death'
+    $ timer_jump = 'timerout'
     show screen countdown
     menu:
         "{color=#f00}hide{/color}":
+            hide screen countdown
             "{i}Let's play it safe, I don't know how long the distraction will last so I shouldn't do anything drastic{i/}"
             "I continued to hide behind the couch and keep very still."
-            hide screen countdown
             jump ghost_explore_very_close_to_mc
         "{color=#f00}run{/color}":
+            hide screen countdown
             "{i}It's distracted now, I should make a break for it.{/i}"
             "I creeped closer to the open doorway I saw earlier and then I bolted for the door."
-            hide screen countdown
             jump exit_warehouse
 
 label mc_gets_injured:
@@ -246,6 +246,11 @@ label mc_gets_injured:
     jump exit_injured
 
 #endings#
+label timerout:
+    hide screen countdown
+    "I barely had time to make a choice before I feel the chilliness of the ghost behind me."
+    mc "N-no, I should have come to a decision quicker..!"
+    jump death
 label death:
     hide screen countdown
     "{b}You have been killed by the ghost.{/b}"
