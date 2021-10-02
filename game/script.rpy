@@ -45,6 +45,15 @@ define audio.clickSingle = "./sfx/click_single.wav"
 define audio.windClose = "./sfx/wind_med_speed_close.wav"
 define audio.correct ="./sfx/correct.wav"
 define audio.radioStatic = "./sfx/radio_static.wav"
+define audio.vroom = "./sfx/wind_med_speed_close.wav"
+define audio.vaccum = "./sfx/vaccum.wav"
+define audio.waterLight = "./sfx/waterfaucet_light_drip.wav"
+define audio.waterLoud = "./sfx/waterfaucet_loud_drip.wav"
+define audio.footstepNormal = "./sfx/footstep_normal.wav"
+define audio.camera01 = "./sfx/camera_one_click.wav"
+define audio.cameraMultiple = "./sfx/camera_fast_multiple.wav"
+define audio.clickDouble = "./sfx/click_double_quick.wav"
+define audio.doorClickOpen = "./sfx/door_click_close.wav"
 #######
 
 ##Image Character Sprites##
@@ -75,14 +84,23 @@ image bg dorm night = "./images/A01-3_HomeBase_DormRoom_Night.png"
 image bg dorm day = "./images/A01-3_HomeBase_DormRoom_daytime.png"
 image bg dorm evening = "./images/A01-3_HomeBase_DormRoom_Evening.png"
 image bg bathroom day = "./images/Bath_house_test_daytime_v3.png"
-image bg bathroom dusk = "./images/Bath_house_text_dusk_v2.png"
-image bg bathroom night = "./images/Bath_house_text_night1_v2.png"
-image bg bathroomGhostOrb night = "./images/Bath_house_text_night2_v2.png"
+image bg bathroom dusk = "./images/Bath_house_test_dusk_v2.png"
+image bg bathroom night = "./images/Bath_house_test_night1_v2.png"
+image bg bathroomGhostOrb night = "./images/Bath_house_test_night2_v2.png"
+image bg outsideHouse = "./images/outside_house.png"
+image bg livingRoom = "./images/A01-3_HomeBase_DormRoom_Night.png"
+image bg study = "./images/study.png"
+image bg diningRoom = "./images/living_room.png"
 
 ###########################
 
-##custome x coord for sprites##
-
+##custom x coord for sprites##
+transform middle:
+    xalign 0.5
+transform slightLeft:
+    xalign 0.2
+transform slightRight:
+    xalign 0.8
 ###############################
 
 label DEBUG_start_menu:
@@ -116,26 +134,27 @@ label start:
     return
 
 label ch01:
-    scene car_ride
-
+    scene black
+    play sound vroom fadein 0.1 volume 1.0
     "\"Your destination is on the right.\""
-
+    
     "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop
     makes me look up and out the van's wide window."
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
-
+    stop sound fadeout 0.3
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
-
+    play sound doorSlamClick 
+    
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
     transferring the property's ownership to new hands."
-    
+    stop sound 
     "The new owner-to-be finds the house eerie and disturbing, so uncomfortable they might refuse to inherit it."
-
+    
     "Both the lawyer and the owner-to-be believe these uncomfortable feelings originate from a
     supernatural source."
-
+    
     "There were unknown messes littering the ground, furniture moved to positions
     they weren't supposed to be in, appliances broken when they were working the last time they were
     touched."
@@ -152,14 +171,15 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
-
+    
     jump ch02
 
 label ch02:
-    scene truck
+    play music setupbgm loop volume 0.4
+    scene bg outsideHouse
 
     "\"Out!\""
-
+    
     "As per our team leader's orders, I scramble out of the van. They're already standing
     outside, waiting, signature hat secured on their head." 
 
@@ -236,13 +256,15 @@ label ch02:
     show ilse neutral at right with easeoutright
     
     "As expected of the boss! Their confidence is a steady presence that bolsters my own courage."
+
+    hide ilse
     
-    hide ilse at right
-    
+    play sound clickDouble 
+
     "I quickly find my heavy-duty flashlight and video camera. Luckily, neither were damaged during the drive." 
 
     "With the video cam, I'll be able to record my first job for prosperity!"
-
+    
     "And maybe if I'm lucky, I can get a glimpse of the ghost!"
 
     "In my excitement, I nearly miss that only three of our four member team are present."
@@ -312,27 +334,30 @@ label ch02:
     hide ilse neutral
     
     "Well, that's everyone."
-    
+    stop music fadeout 0.2
 label ch03:
+
     show ilse neutral at left
     show ilse neutral at right with easeinright
     il "Everyone ready?"
     hide ilse neutral at right
     show vance scared at left
-    show vance scared at right with easeinleft
+    show vance scared at middle with easeinleft
+        
     va "No! Can I leave? Three is more than enough people."
-    show elondie smug at left 
+    show elodie smug at left 
     el "Calm down, Vance. It's just an old house."
     
     va "Just?! Say that again when you're six feet under!"
-
+    
     menu:
         "Yes, boss!":
             show ilse neutral at right with easeinleft
             il "Alright. Looks like we're at a consensus. Let's begin."
 
             "Ilse turns the handle. Unlocked."
-
+            play sound doorClickOpen
+        
             "Ooh, things are already spooky."
             show elodie neutral at left with ease
             "Elodie follows the boss, dragging Vance along forcefully. I close in behind the group,
@@ -355,12 +380,14 @@ label ch03:
 
     "Well. Then I'll come in."
 
+    scene bg livingRoom
+
     menu:
         "Wipe my feet on the mat before entering.":
             pass
         "Enter without wiping my feet on the mat":
             pass
-
+    play music Ringin_eaR volume 0.5 loop
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
     to be affected in the same way."
     
@@ -420,14 +447,333 @@ label ch03:
     menu:
         il "Where do you want to go?"
 
-        "Kitchen with Ilse":
-            pass
+        "Study with Ilse":
+            call study_ilse
 
         "Bathroom with Vance":
-            pass
+            call bathroom_vance
 
         "Dining Room with Elodie":
-            pass
+            call diningroom_elodie
+    
+    jump ch04
+
+label study_ilse:
+    il "With me? Then let's go. I'll teach you everything you need to know."
+
+    scene bg study
+
+    "We shuffle into the study and immediately see the mess the client mentioned."
+
+    "Unlike the somewhat sparse living room, the study almost looks like someone could've been
+    living here until recently, if that person was raving mad."
+
+    "Papers, books, and a dented electric kettle of all things lie on the ground. Glass and
+    ceramic shards are also scattered across the floor."
+    
+    mc "Was this caused by the ghost?"
+    
+    il "It's likely, considering our client wants this house habitable. There's no one else who
+    would want to cause a mess."
+
+    il "Some say ghosts move objects in an attempt to communicate. But the ghosts' efforts
+    usually end up useless, because once people realize they're there, people like us
+    are hired to eliminate them."
+    
+    mc "Should we be trying to communicate with the ghost, then? Try to find out what it wants?"
+
+    il "While that sounds interesting, that's not our job. For what reason should we cater
+    to the desires of the dead?"
+
+    "They flip on the switch of their Vac-Pack. If they say anything else, I can't hear
+    it over the sound of the Ghyson."
+
+    "They direct the vacuum head over the dangerous shards.
+    With a faint clinking noise, the fragments are all sucked into the machine."
+
+    il "There! Now the ground is clear for us to work with."
+    
+    "I shove the rest of the objects to the side of the room while Ilse rummages through their
+    deep pockets. What could they be looking for?"
+
+    il "Ah ha!"
+
+    il "Salt! Listen here. Ghosts are scared of salt. It's got a history of purifying properties."
+
+    il "With this, we can protect ourselves, maybe even hurt the ghost. Like so!"
+
+    "They take the carton and pour the salt out, forming a ring of it. They step inside the circle."
+
+    il "Ta dah!"
+
+    "Choosing to follow Ilse was the right choice. I'm picking up so many tricks!"
+    
+    mc "Now what?"
+    
+    il "...Well, if the ghost were trying to hurt us, then theoretically, we'd be safe
+    inside the circle."
+
+    "Unfortunately, the circle isn't actually big enough for two people to stand inside.
+    Fortunately, the ghost isn't here at the moment."
+    
+    "Ilse beckons me closer."
+
+    il "Hold out your hands."
+
+    "I do the best I can while holding onto a video camera and a flashlight.
+    They pour the salt into my awkwardly cupped hands."
+
+    il "Now toss it around the room. Sprinkle it."
+
+    il "...{w}Hmm, nothing at all. If there were a ghost, it would probably react."
+
+    mc "It's a good thing there isn't."
+
+    il "Why is that?"
+
+    mc "Because your salt circle. The wind's already blown it away."
+    
+    il "The wind? But the doors and windows are all closed."
+    
+    "Ilse and I exchange glances. We wordlessly agree that it's time to regroup."
+
+
+    return
+
+label bathroom_vance:
+    va "Yes! Thank god I don't have to go alone."
+
+    scene bg bathroom night
+
+    "The two of us crowd into the bathroom. There's nothing out of the ordinary that I can catch."
+
+    mc "Do you see anything?"
+
+    va "Aah!"
+
+    mc "Ah!"
+
+    "Our shouts echo off the bathroom's tile floor."
+
+    va "Don't startle me like that! Please."
+
+    mc "Sorry, I didn't mean to."
+
+    mc "So what did you bring to help us find the ghost?"
+
+    va "I don't want to find the ghost. In fact, I hope there is no ghost!"
+
+    mc "What? Why not? The whole point of this job is to locate the ghost, isn't it?"
+
+    va "It pays, [mcname], it pays."
+
+    "Ah, yes. Money speaks. I guess that's another valid reason for people to apply for this job.
+    Not everyone is searching for the thrill of adrenaline like me."
+   
+    mc "We won't get paid if we don't find the ghost."
+    
+    va "Correction: We don't get paid if there is a g-ghost and we don't find it.
+    If we tell them there wasn't a ghost in the first place, on the other hand..."
+    
+    mc "You mean lying?"
+
+    va "No, of course not! This here—"
+    
+    "He waves the device in his hands around so frantically I can't tell what he's holding.
+    I can just make out an antenna sticking out of it."
+
+    va "—is a ghost phone. We can use it to talk to the ghost by changing frequencies.
+    And since the ghost isn't saying anything, then it must not be here!"
+
+    mc "Well, have you tried talking to it?"
+    
+    va "W-Why would I do that?!"
+    
+    mc "{i}ahem{/i} Hello? Is anyone here?"
+
+    va "Shh!"
+
+    mc "If someone is in this room with us, can you give us a sign?"
+
+    va "Shhhhhh!"
+    
+    mc "I don't think this frequency is working. Try another?"
+    
+    "\" - -s-six - - oint - - - thre - fff - -\""
+    
+    va "WAAAAUUGGHH!!!"
+    
+    mc "UUWAAAH!!"
+
+    "It talked back!"
+
+    mc "You heard that, too, right? A ghost! A real live ghost!"
+
+    va "W-What'd it say?"
+    
+    va "No, nevermind! We're done. We're so dead."
+
+    mc "It was saying numbers, I think."
+    
+    mc "Six? Three?"
+
+    va "Forget about it! L-Let's just leave..."
+
+    mc "Hi, could you say that again?"
+    
+    "Instead of repeating the words the ghost phone releases a brief burst of static.
+    Then it falls silent and stays that way."
+
+    mc "You know what? Let's just...go."
+    
+    "We nearly fall on top of each other scrambling to get out of the cramped bathroom."
+    
+    return
+
+
+
+
+
+
+
+label diningroom_elodie:
+
+    el "Okay. Let's go!"
+
+    scene bg diningRoom
+    
+    "We shuffle into the dining room, where a table capable of seating four and its chairs sit."
+    
+    "Instead of scanning the room for the presence of ghosts,"
+     
+    "Elodie pulls out her phone and starts taking pictures of the paintings hanging on the wall."
+
+    mc "Elodie? What are you doing?"
+    
+    el "I'm taking pics for Ginstagram. People go wild for this kind of creepy stuff."
+    
+    mc "Shouldn't we...search for the ghost?"
+    
+    el "Ha! You can't be serious! You actually fell for this crap? It's a ploy!"
+
+    "It can't be! The company has teams of ghost hunters. Ours is just one of many."
+    
+    "They all have ghost hunting equipment and hundreds of reports of completed cases."
+    
+    "It's not possible to fake all of that."
+    
+    mc "You've been here longer than me. Haven't you seen ghosts yourself?"
+    
+    el "They're fake. Probably an actor, hired by the so-called client."
+    
+    "There's probably hidden cameras recording our reactions."
+    
+    mc "And our tools?"
+    
+    el "Please, this Energy Maker Free! (edition) reacts to almost anything."
+    
+    "As if on cue, the EMF meter beeps high and long. The lights on the device flash yellow."
+    
+    mc "Signs of a ghost! It could be here in this room with us."
+    
+    el "Ugh, there's no ghost. It's just responding to my phone."
+    
+    "She moves her phone close to the device and submits whatever post she's making on her social media."
+    
+    "{i}beeeeep{/i}"
+    
+    "The EMF meter climbs another frequency, light turning orange."
+    
+    el "It's just the internet. No such thing as ghosts."
+    
+    el "And for the rest, Ilse just carries around a vacuum cleaner.
+    Vance's special ghost phone? Just an old radio."
+    
+    "As I blankly process this information, Elodie wraps an arm around my shoulder."
+    
+    el "Aww, don't be so sad. Take a selfie with me to commemorate! We can go watch 
+    Vance and Ilse run around fighting with the air after. Say 'cheese'!"
+    
+    "Elodie snaps a selfie, snickering all the while as she leaves the room."
+    
+    "Wow. She truly believes there's nothing to believe in."
+    
+    "Behind her, a lamp suddenly flickers on and off within the blink of an eye." 
+    
+    "Elodie's forgotten EMF meter ranks up yet another notch, blinking bright red."
+    
+    "{i}beeeeeeeeeeeeeep{/i}"
+    
+    "Then, nothing."
+    
+    "Ha. Haha...ha. No such things as ghosts? Yeah, right."
+    
+    "Then what the heck was that?!"
+    
+    "Eyes wide in silent terror, I follow Elodie out." 
+    
+    "It's not like she'd believe me if I told her."
+
+    return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 label ch04:
-    "Eventually, ew gather back into the living room."    
+
+    scene bg livingRoom
+    
+    "We arrive in the living room once more, gathering around a non-existent campfire."
+
+    il "Well, gang? Did you find signs of the ghost? In the study, there was a sudden draft.
+    The windows were firmly shut. Could’ve been the ghost. Didn’t see it, though."
+
+    va "The ghost phone did say things. It was creepy!"
+
+    va "I couldn’t make out the words...but I, um, ran soon after so I didn’t hear more."
+
+    el "Uhhhhhh…"
+
+    el " ...The EMF beeped?"
+
+    il "That’s plenty of signs. There’s definitely a ghost present. But if none of us saw it in these rooms,
+    it must be upstairs."
+
+    "Ilse takes the lead, wooden steps creaking under their feet."
+    
+    "Vance turns towards the front door, but Elodie grabs him before he can take a step in that direction
+    and pushes him up the stairs."
+
+    "There’s nothing to do but follow."
+
+    jump ch05
+
+
+label ch05:
+    "The air is clearly different up here. It’s thick and tense; each breath is suffocating."
+
+    "Ilse leads us towards the room at the end of the dark hall and the rest of us follow like obedient little ducklings."
+
+    "We pass by multiple rooms and I can only wonder why we’re skipping them. Were we going to split up again?"
+
+    "One door catches my eye. It looks the same as every other door in the house, but for some reason, it feels different."
+
+    "Well, unlike the rest of the rooms we’ve passed upstairs, it’s open just a crack, while the rest seem to be firmly shut."
+
+    "The long vertical black line of the open door begs for my attention."
+
+    "I reach out with my flashlight as if to prod the door wider open."
+
+    # TODO: continue this dialogue
+
