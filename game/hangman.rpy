@@ -56,19 +56,20 @@ init 5 python:
     possible_answers = [
         "leave my home",
         "get the heck out",
-        "i will kill you"
+        "i will kill you",
+        "you will die here",
+        "death awaits you"
     ]
 
     # set messages to be told per used-up try (first item = first message shown at the start)
     # player lose feelings to body parts.
     messages_per_try = [
             None,
-            Message("Vance", "Eeek, [mc] are you okay?? Ilse, we shouldn't do this, it's dangerous!"),
-            Message("Ilse", "[mc], if you can't handle it, you can tap out with me."),
-            Message("Elodie", "You look like you need a Snackersbar, [mc]."),
-            Message(mc, "H-hu...I can't f-feel my legs and arms a-anymore.."),
-            Message("Vance", "Ilse!! Please stop them, I don't think they can hang on a-anymore!"),
-            Message(mc, "F-feel hollow and t-tired...F-feel like t-throwing up..")
+            Message("", "... That's strange, my leg fell asleep."),
+            Message("", "Now my other leg fell asleep... What's going on?"),
+            Message("", "I can no longer feel my left arm. This ghost is doing something to me..."),
+            Message("", "My right arm is gone too..."),
+            Message("", "I can't feel my chest anymore... I think I'm going to faint...")
         ]
 
 
@@ -241,5 +242,11 @@ label hangman:
                 say_message_object(messages_per_try[message_index])
                 message_index += 1
             renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
+            renpy.jump("restart_hangman")
     stop music fadeout 1.0
     return
+
+label restart_hangman:
+    menu: 
+        "{color=#9b0617}Try again.{/color}":
+            jump hangman

@@ -338,8 +338,8 @@ label exit_injured:
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
     mc "At least I got out alive..."
-    "I touched the bump on my forehead again and blenched."
-    mc "There's probably an icepack back at the truck."
+    "I touched the bump on my forehead again and flinched."
+    mc "There's probably an ice pack back at the truck."
     return
 label exit_wo_friends:
     #music#
