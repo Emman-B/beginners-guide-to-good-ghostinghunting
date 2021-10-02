@@ -56,7 +56,7 @@ image ghost neutral = "./images/ghost_neutral.png"
 image elodie neutral = "./images/elodie_neutral.png"
 image elodie happy = "./images/elodie_happy.png"
 image elodie scared = "./images/elodie_scared.png"
-
+image elodie smug = "./images/elodie_smug.png"
 image vance neutral = "./images/vance_neutral.png"
 image vance scared = "./images/vance_scared.png"
 image vance happy = "./images/vance_happy.png"
@@ -209,11 +209,11 @@ label ch02:
     "Elodie rushes past me to the pile of everything and grabs her snacks, 
     stuffing whatever fits into her pockets. 
     She must've had food on her mind."
-    show elodie neutral at left
+
     el "This job is cutting into my dinner time, you know?"
 
     el "Let's get in, clean the place, prove nothing spooky's up, and get out."
-    hide elodie neutral at left
+    hide elodie neutral at right
     show mc neutral at left
 
     mc "Huh? Is it likely for it to end up being nothing? The client seemed pretty scared of going back

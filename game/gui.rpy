@@ -224,9 +224,9 @@ define gui.choice_button_text_insensitive_color = "#444444"
 define gui.slot_button_width = 276
 define gui.slot_button_height = 206
 define gui.slot_button_borders = Borders(10, 10, 10, 10)
-define gui.slot_button_text_size = 14
+define gui.slot_button_text_size = 17
 define gui.slot_button_text_xalign = 0.5
-define gui.slot_button_text_idle_color = "#00311e"
+define gui.slot_button_text_idle_color = "#5fa094"
 define gui.slot_button_text_selected_idle_color = "#e3e5e3"
 define gui.slot_button_text_selected_hover_color = "#7a857d"
 
