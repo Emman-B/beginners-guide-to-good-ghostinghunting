@@ -120,25 +120,25 @@ label ch01:
 
     "\"Your destination is on the right.\""
 
-    "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop
-    makes me look up and out the van's wide window."
+    "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop"
+    "makes me look up and out the van's wide window."
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
 
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
-    I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
+    "I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
 
-    "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
-    transferring the property's ownership to new hands."
+    "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble"
+    "transferring the property's ownership to new hands."
     
     "The new owner-to-be finds the house eerie and disturbing, so uncomfortable they might refuse to inherit it."
 
-    "Both the lawyer and the owner-to-be believe these uncomfortable feelings originate from a
-    supernatural source."
+    "Both the lawyer and the owner-to-be believe these uncomfortable feelings originate from a" 
+    "supernatural source."
 
-    "There were unknown messes littering the ground, furniture moved to positions
-    they weren't supposed to be in, appliances broken when they were working the last time they were
-    touched."
+    "There were unknown messes littering the ground, furniture moved to positions"
+    "they weren't supposed to be in, appliances broken when they were working the 
+    "last time they were touched."
 
     "Both attributed these mysteries to the presence of a ghost."
 
@@ -146,8 +146,8 @@ label ch01:
 
     "I'm a member of a team of ghost hunters, hired to eliminate threats from the afterlife."
 
-    "It's not the most dignified occupation, but I applied hoping to satisfy my need for
-    adventure."
+    "It's not the most dignified occupation, but I applied hoping to satisfy my need for"
+    "adventure."
 
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
@@ -160,8 +160,8 @@ label ch02:
 
     "\"Out!\""
 
-    "As per our team leader's orders, I scramble out of the van. They're already standing
-    outside, waiting, signature hat secured on their head." 
+    "As per our team leader's orders, I scramble out of the van. They're already standing"
+    "outside, waiting, signature hat secured on their head." 
 
     show ilse neutral at left
     ""
@@ -170,16 +170,16 @@ label ch02:
     mc "Yes, boss!" 
     hide mc neutral at left
     "Boss" "No need to call me boss. Just Ilse is fine."
-    "That's the boss for you; reliable and friendly. They know everything there is to
-    know about ghost hunting. I'm sure I'll learn a lot from watching them."
+    "That's the boss for you; reliable and friendly. They know everything there is to" 
+    "know about ghost hunting. I'm sure I'll learn a lot from watching them."
     il "I'm opening the trunk. Get your things."
     "My things? Uh..."
     
-    "While Ilse grabs the Ghyson Vac-Pack and secures it onto their back, I look at the
-    heaping pile of objects nearly spilling out of the open trunk."
+    "While Ilse grabs the Ghyson Vac-Pack and secures it onto their back, "
+    "I look at the heaping pile of objects nearly spilling out of the open trunk."
     hide ilse neutral at right
-    "Not only are all the ghost hunting gadgets dumped in this pile, but a good portion of
-    it is made of snacks."
+    "Not only are all the ghost hunting gadgets dumped in this pile, "
+    "but a good portion of it is made of snacks."
     
     "I have no doubt that the snacks were packed by Elodie."
     
@@ -206,9 +206,9 @@ label ch02:
     hide mc neutral at left
     show elodie neutral at right with easeinleft
     el "Eggs, muffins, frittata!"
-    "Elodie rushes past me to the pile of everything and grabs her snacks, 
-    stuffing whatever fits into her pockets. 
-    She must've had food on her mind."
+    "Elodie rushes past me to the pile of everything and grabs her snacks, "
+    "stuffing whatever fits into her pockets."
+    "She must've had food on her mind."
 
     el "This job is cutting into my dinner time, you know?"
 
@@ -216,11 +216,11 @@ label ch02:
     hide elodie neutral at right
     show mc neutral at left
 
-    mc "Huh? Is it likely for it to end up being nothing? The client seemed pretty scared of going back
-    to the house."
+    mc "Huh? Is it likely for it to end up being nothing? The client seemed pretty scared of going back"
+    "to the house."
 
-    mc "It doesn't look like the usual haunted house, but there must be 
-    something paranormal going on if we were called in, right?"
+    mc "It doesn't look like the usual haunted house, but there must be "
+    "something paranormal going on if we were called in, right?"
 
     hide mc neutral at left 
     show ilse neutral at left
@@ -291,8 +291,8 @@ label ch02:
     hide mc neutral at left
     show vance neutral at left
     
-    va "More like the complete opposite! What's fun about sacrificing ourselves to
-    the demons inside that house?!"
+    va "More like the complete opposite! What's fun about sacrificing ourselves to"
+    "the demons inside that house?!"
     
     show vance neutral at right with easeoutright
     
@@ -321,10 +321,10 @@ label ch03:
     show vance scared at left
     show vance scared at right with easeinleft
     va "No! Can I leave? Three is more than enough people."
-    show elondie smug at left 
+    show elodie smug at left 
     el "Calm down, Vance. It's just an old house."
-    
-    va "Just?! Say that again when you're six feet under!"
+    show vance scared at right 
+    va "Just?! Say that again when you're six feet under!" with vpunch
 
     menu:
         "Yes, boss!":
@@ -335,24 +335,30 @@ label ch03:
 
             "Ooh, things are already spooky."
             show elodie neutral at left with ease
-            "Elodie follows the boss, dragging Vance along forcefully. I close in behind the group,
-            dutifully filming everything."
+            
+            
+            "Elodie follows the boss, dragging Vance along forcefully. I close in behind the group, dutifully filming everything."
         "Maybe Vance has a point.":
+            
             el "Aw, not you, too! C'mon, it'll be a quick in and out job."
-
+            show lance neutral at left with ease
+            hide elodie neutral
+            hide lance neutral
+            show ilse neutral at right 
             il "This is your chance to get more experience. It's not as scary as Vance makes it out to be."
-
+            hide ilse neutral 
+            show mc neutral at left 
             mc "That's true… I suppose I should be brave about it."
 
             "They're right. I can't psych myself out before I've even started."
-
+            hide mc neutral 
             "Ilse opens the front door, and as the others start filing in, I take a deep calming breath."
     
-    "The open doorway looms over me menacingly, like it's trying to scare me away and dare me to enter at the same time.
-    A scuffed old doormat lies in front of it."
+    "The open doorway looms over me menacingly, like it's trying to scare me away and dare me to enter at the same time."
+    "A scuffed old doormat lies in front of it."
 
     "{i}Wel{/i}, it reads. The rest has faded away."
-
+    show mc neutral at left 
     "Well. Then I'll come in."
 
     menu:
@@ -361,42 +367,47 @@ label ch03:
         "Enter without wiping my feet on the mat":
             pass
 
-    "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
-    to be affected in the same way."
+    "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem"
+    "to be affected in the same way."
     
-    "Well, except for Vance, but he was already shivering in fright before entering the house.
-    But he isn't any more frightened than before. Is this what it means to be a professional?"
-
-    "The entranceway is connected to the living room. The place isn't empty; there's still some furniture left
-    over from the previous tenant."
+    show lance neutral at middle 
+    "Well, except for Vance, but he was already shivering in fright before entering the house."
+    "But he isn't any more frightened than before. Is this what it means to be a professional?"
+    hide lance neutral at middle 
+    "The entranceway is connected to the living room. The place isn't empty; there's still some furniture left"
+    "over from the previous tenant."
 
     "A visible layer of dust coats everything, so thick our footsteps could probably kick clumps of it into the air."
-
-    "Elodie waves her EMF meter in a wide arc over her head. It creates a lagging streak of green across the screen
-    of the camera."
-
+    show elodie neutral at right with easeinleft
+    "Elodie waves her EMF meter in a wide arc over her head. "
+    "It creates a lagging streak of green across the screen of the camera."
+    show elodie happy at right 
     el "This room's clear!"
-
-    "What? Bull!"
+    hide elodie happy 
+    "What? Bull!" 
 
     "That should only check Elodie's immediate vicinity, not the whole room. Unless...?"
 
-    "It's possible that the company's tech R&D team upgraded the EMF to cover a wider area, isn't it? That amazing
-    tech just hasn't reached my newly employed hands."
+    "It's possible that the company's tech R&D team upgraded the EMF to cover a wider area, isn't it? 
+    "That amazing tech just hasn't reached my newly employed hands."
 
-    va "T-The lights...They're not working!"
+    show lance scared at left 
+    va "T-The lights...They're not working!" with vpunch 
 
     va "Have the ghosts already short circuited the electricity? I thought the client said the appliances worked!"
     
+    show ilse shocked at middle with ease 
     il "Actually, the client said the appliances didn't work."
     
     va "But they're supposed to!"
 
-    el "No worries. They probably just stopped the electricity service while no one's living here.
-    That's how you save on bills."
+    show elodie neutral at right with ease
+    el "No worries. They probably just stopped the electricity service while no one's living here."
+    el "That's how you save on bills."
 
+    show ilse neutral 
     il "It's fine. We all have flashlights for a reason. Are we all done with this room?"
-
+    
     "Everyone nods."
     
     il "Alright, gang. Let's split up."
@@ -411,10 +422,11 @@ label ch03:
 
     il "Then again, it is your first job. How about this?"
 
-    il "According to the floorplan that was given to us, there are three other rooms downstairs. We'll
-    split up and cover one room each on the ground floor."
+    il "According to the floorplan that was given to us, there are three other rooms downstairs." 
+    il "We'll split up and cover one room each on the ground floor."
 
-    il "After that, we'll all go upstairs and divvy up the area again. That way, we can stick close. Ish."
+    il "After that, we'll all go upstairs and divvy up the area again." 
+    il  "That way, we can stick close. Ish."
 
     # TODO: Update the dialogue where you are one-and-one with another character
     menu:
@@ -430,4 +442,5 @@ label ch03:
             pass
 
 label ch04:
-    "Eventually, ew gather back into the living room."    
+    "Eventually, ew gather back into the living room."  
+    #jump credits  
