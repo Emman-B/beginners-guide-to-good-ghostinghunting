@@ -19,6 +19,9 @@ Level Designer, Programmer: leftshu22
 
 Art: chronoblossom
 
+## Installation/Usage
+Please download our game through our itch.io page: <https://chronoblossom.itch.io/beginners-guide-to-good-ghost-hunting>.
+
 ## Screenshots
 ![Screenshot of Characters](https://img.itch.zone/aW1hZ2UvMTIxODM5My83MTA4NDQ1LnBuZw==/original/KLsEd7.png)
 ![Screenshot of Main Character](https://img.itch.zone/aW1hZ2UvMTIxODM5My83MTA4NTEzLnBuZw==/original/rVSg%2BY.png)
