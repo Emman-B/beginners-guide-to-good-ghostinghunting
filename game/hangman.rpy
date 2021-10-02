@@ -10,7 +10,7 @@ init 0 python:
             self.message = message
 
     # Functions
-    def request_hangman_answer():
+    def request_input_for_hangman_answer():
         """
         Debug function requesting user input for hangman answers
 
@@ -24,6 +24,17 @@ init 0 python:
         
         renpy.say(None, "Answer retrieved!")
         return answer
+    
+    def randomly_select_hangman_answer(possible_answers):
+        """
+        Randomly selects an answer for hangman from a list of possible answers.
+
+        Parameters:
+            possible_answers (array of strings): array of possible answers
+
+        Returns: the selected answer
+        """
+        return renpy.random.choice(possible_answers)
 
     def say_message_object(message):
         """
@@ -32,19 +43,33 @@ init 0 python:
         Parameters:
             message (Message): the message object containing the character and message
         """
-        renpy.say(message.character, message.message)
+        if (message != None):
+            renpy.say(message.character, message.message)
     
 
 # init python priority 5: place to setup variables
 init 5 python:
     # set max number of tries
-    max_tries = 3
+    max_tries = 6
 
-    # set messages to be told per try (first item = first message shown at the start)
+    DEBUG_force_request_answer = False # For debugging, forcibly requests an answer
+    possible_answers = [
+        "leave my home",
+        "get the heck out",
+        "i will kill you",
+        "you will die here",
+        "death awaits you"
+    ]
+
+    # set messages to be told per used-up try (first item = first message shown at the start)
+    # player lose feelings to body parts.
     messages_per_try = [
-            Message("Bob", "Hello world!"),
-            Message("Steve", "Oh no, you don't have many tries"),
-            Message("Mike", "It's your last try!")
+            None,
+            Message("", "... That's strange, my leg fell asleep."),
+            Message("", "Now my other leg fell asleep... What's going on?"),
+            Message("", "I can no longer feel my left arm. This ghost is doing something to me..."),
+            Message("", "My right arm is gone too..."),
+            Message("", "I can't feel my chest anymore... I think I'm going to faint...")
         ]
 
 
@@ -57,9 +82,20 @@ screen hangman(message):
     style_prefix "black"
     frame:
         xalign 0.5
-        ypos 0.5
+        ypos 0.45
         vbox:
             text "[message]"
+
+style black_frame:
+    background "#000000d9"
+
+screen hangman_used(used_letters):
+    style_prefix "black"
+    frame:
+        xalign 0.5
+        ypos 0.60
+        vbox:
+            text "Letters Used: \"[used_letters]\""
 
 style black_frame:
     background "#000000d9"
@@ -73,11 +109,19 @@ style black_frame:
 """
 # Hangman starts here
 label hangman:
+    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.2 loop
+
     python:
         """
         1) Retrieve an answer
         """
-        answer = request_hangman_answer()
+        answer = ""
+        if (DEBUG_force_request_answer):
+            # DEBUG: Retrieves answer from standard input
+            answer = request_input_for_hangman_answer()
+        else:
+            # This retrieves an answer from a list of possible answers
+            answer = randomly_select_hangman_answer(possible_answers)
 
 
         """
@@ -126,6 +170,7 @@ label hangman:
                     print_current += " _ "
             # renpy.say(None, print_current)
             renpy.show_screen("hangman", print_current)
+            renpy.show_screen("hangman_used", excluded_letters)
 
             """
             4.15) Print a message (if able to)
@@ -145,7 +190,7 @@ label hangman:
             remaining_tries = max_tries - current_tries
             guess = ""
             while len(guess) == 0:
-                guess = renpy.input("You have [remaining_tries] tries left. Guess a letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
+                guess = renpy.input("I have only [remaining_tries] tries left, h-huh?. I s-should pick a different letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
 
 
             # exclude the guessed letter
@@ -167,7 +212,7 @@ label hangman:
                         current[i] = True
             else:
                 # Failure case: decrement number of tries
-                renpy.say(None, "The letter [guess] was not found")
+                renpy.say(None, "I-it's not the letter [guess] h-huh? M-man...what is this ghost trying to say..")
                 current_tries += 1
             
             """
@@ -185,9 +230,23 @@ label hangman:
         on whether they won or not.
         """
         renpy.show_screen("hangman", answer)
+        renpy.hide_screen("hangman_used")
         if correct_answer_found:
-            renpy.say(None, "Congratulations! You found the correct answer: \"[answer]\"")
+            renpy.play(audio.correct, channel=u'sound')
+            renpy.music.set_volume(0.5, delay=0, channel=u'sound')
+            renpy.say(None, "I did it. I did it!! I guessed correct and was able to communicate with the ghost! \"[answer]\", huh!? Man..this ghost sounds aggressive." )
         else:
-            renpy.say(None, "Sorry, the correct answer was: \"[answer]\"")
-
+            renpy.play(audio.buzzWrong, channel=u'sound')
+            # Possibly print the last message
+            if message_index == current_tries and message_index < len(messages_per_try):
+                say_message_object(messages_per_try[message_index])
+                message_index += 1
+            renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
+            renpy.jump("restart_hangman")
+    stop music fadeout 1.0
     return
+
+label restart_hangman:
+    menu: 
+        "{color=#9b0617}Try again.{/color}":
+            jump hangman
