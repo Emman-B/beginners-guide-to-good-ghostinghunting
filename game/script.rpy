@@ -30,12 +30,12 @@ define audio.setupbgm = "./music/Ghost_techies.wav"
 #########
 
 ##SFX##
-define audio.glassShatter = "./sfx/glass_shatter10.wav"
+define audio.glassShatter = "./sfx/glass_shatter.wav"
 define audio.doorSlam = "./sfx/door_slam.wav"
 define audio.doorSlamClick = "./sfx/door_slam_click.wav"
 define audio.heavyBreathFast = "./sfx/heavy_breathing_fast.wav"
 define audio.heavyBreathSlow = "./sfx/heavy_breathing_slow.wav"
-define audio.clothRustling = "./sfx/cloth_rustling.wav"
+define audio.rustling = "./sfx/rustling.wav"
 define audio.runningLight = "./sfx/footstep_running_light.wav"
 define audio.runningLoud = "./sfx/footstep_running_loud.wav"
 define audio.buzzWrong = "./sfx/buzz_wrong.wav"
@@ -520,7 +520,7 @@ label study_ilse:
 
     "They flip on the switch of their Vac-Pack. If they say anything else, I can't hear
     it over the sound of the Ghyson."
-    play sound "./sfx/click_single_on.wav" 
+    play sound clickSingle 
     play sound vaccum volume 0.5 loop
     "They direct the vacuum head over the dangerous shards.
     With a faint clinking noise, the fragments are all sucked into the machine."
@@ -531,8 +531,8 @@ label study_ilse:
     "I shove the rest of the objects to the side of the room while Ilse rummages through their
     deep pockets. What could they be looking for?"
 
-    play sound "./sfx/glass_shatter5.wav" volume 0.2
-    play sound "./sfx/cloth_rustling.wav" volume 0.2
+    play sound glassShatter volume 0.2
+    play sound rustling volume 0.2
     
     show ilse shocked at middle 
     il "Ah ha!" with vpunch 
@@ -828,7 +828,7 @@ label ch04:
 
 
 label ch05:
-    play music "Ringin_eaR_ost_ver.wav" volume 0.5 loop
+    play music mainbgm volume 0.5 loop
     "The air is clearly different up here. It’s thick and tense; each breath is suffocating."
 
     "Ilse leads us towards the room at the end of the dark hall and the rest of us follow like obedient little ducklings."
