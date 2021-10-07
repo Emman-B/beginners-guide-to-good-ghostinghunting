@@ -30,31 +30,29 @@ define audio.setupbgm = "./music/Ghost_techies.wav"
 #########
 
 ##SFX##
-define audio.glassShatter = "./sfx/glass_shatter.wav"
-define audio.doorSlam = "./sfx/door_slam.wav"
-define audio.doorSlamClick = "./sfx/door_slam_click.wav"
-define audio.heavyBreathFast = "./sfx/heavy_breathing_fast.wav"
-define audio.heavyBreathSlow = "./sfx/heavy_breathing_slow.wav"
-define audio.rustling = "./sfx/rustling.wav"
-define audio.runningLight = "./sfx/footstep_running_light.wav"
-define audio.runningLoud = "./sfx/footstep_running_loud.wav"
+define audio.electronicAmbience = "./sfx/ambience.wav"
+define audio.heavyBreathSlow = "./sfx/breathing_slow.wav"
+define audio.heavyBreathFast = "./sfx/breathing.wav"
 define audio.buzzWrong = "./sfx/buzz_wrong.wav"
-define audio.tearing02 = "./sfx/tearing02.wav"
-define audio.vaccum = "./sfx/vaccum.wav"
-define audio.electronicAmbience = "./sfx/electronic_ambience.wav"
+define audio.camera01 = "./sfx/camera_click.wav"
+define audio.cameraMultiple = "./sfx/camera_multiple_slow.wav"
+define audio.cameraMultiple02 = "./sfx/camera_multiple.wav"
+define audio.clickDouble = "./sfx/click_double.wav"
 define audio.clickSingle = "./sfx/click_single.wav"
-define audio.windClose = "./sfx/wind_med_speed_close.wav"
-define audio.correct ="./sfx/correct.wav"
-define audio.radioStatic = "./sfx/radio_static.wav"
-define audio.vroom = "./sfx/wind_med_speed_close.wav"
-define audio.vaccum = "./sfx/vaccum.wav"
-define audio.waterLight = "./sfx/waterfaucet_light_drip.wav"
-define audio.waterLoud = "./sfx/waterfaucet_loud_drip.wav"
-define audio.footstepNormal = "./sfx/footstep_normal.wav"
-define audio.camera01 = "./sfx/camera_one_click.wav"
-define audio.cameraMultiple = "./sfx/camera_fast_multiple.wav"
-define audio.clickDouble = "./sfx/click_double_quick.wav"
-define audio.doorClickOpen = "./sfx/door_click_open_gentle.wav"
+define audio.correct ="./sfx/correctans.wav"
+define audio.creak_long ="./sfx/creaking_long.wav"
+define audio.creak_short ="./sfx/creaking_short.wav"
+define audio.doorSlamClick = "./sfx/door_click.wav"
+define audio.doorSlam = "./sfx/door_close.wav"
+define audio.glassShatter = "./sfx/glass_shatter.wav"
+define audio.runningLoud = "./sfx/running_closer.wav"
+define audio.runningLight = "./sfx/running.wav"
+define audio.rustling = "./sfx/rustling.wav"
+define audio.saltScatter = "./sfx/salt.wav"
+define audio.radioStatic = "./sfx/static.wav"
+define audio.vacuum = "./sfx/vacuum.wav"
+define audio.footsteps = "./sfx/walking.wav"
+define audio.vroom = "./sfx/wind_ambience.wav"
 #######
 
 ##Image Character Sprites##
@@ -147,7 +145,7 @@ label ch01:
     stop sound fadeout 0.3
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
-    play sound doorSlamClick 
+    play sound doorSlam 
     
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
     transferring the property's ownership to new hands."
@@ -359,7 +357,7 @@ label ch03:
             il "Alright. Looks like we're at a consensus. Let's begin."
 
             "Ilse turns the handle. Unlocked."
-            play sound doorClickOpen
+            play sound doorSlamClick
         
             "Ooh, things are already spooky."
             
@@ -650,13 +648,13 @@ label bathroom_vance:
     hide mc happy 
     show vance scared 
     va "Shhhhhh!"
-    hide lance scared 
+    hide vance scared 
     show mc neutral at left 
     mc "I don't think this frequency is working. Try another?"
     hide mc neutral 
     play sound radioStatic 
     "\" - -s-six - - oint - - - thre - fff - -\""
-    show lance scared 
+    show vance scared 
     va "WAAAAUUGGHH!!!" with vpunch 
     show mc neutral at left 
     mc "UUWAAAH!!" with vpunch 
@@ -794,9 +792,9 @@ label ch04:
         if renpy.music.is_playing(channel=u'music') == True:
             renpy.music.stop(channel=u'music', fadeout=None)
     "We arrive in the living room once more, gathering around a non-existent campfire."
-    show ilse happy at middle with ease
     show elodie neutral at left with ease
     show vance neutral at right with ease 
+    show ilse happy at middle with ease
     
     il "Well, gang? Did you find signs of the ghost? In the study, there was a sudden draft.
     The windows were firmly shut. Could’ve been the ghost. Didn’t see it, though."
@@ -831,8 +829,9 @@ label ch05:
     play music mainbgm volume 0.5 loop
     "The air is clearly different up here. It’s thick and tense; each breath is suffocating."
 
+    show ilse neutral at right with easeinleft
     "Ilse leads us towards the room at the end of the dark hall and the rest of us follow like obedient little ducklings."
-    
+    hide ilse neutral with dissolve 
     "We pass by multiple rooms and I can only wonder why we’re skipping them. Were we going to split up again?"
     
     "One door catches my eye. It looks the same as every other door in the house, but for some reason, it feels different."
@@ -854,34 +853,61 @@ label catchUpWithTeam:
     "I look up to find the hallway empty. Have the others already reached the last room?"
     "I scurry forward into the room. They must be waiting for me…"
     "Inside the room is my team, alright. But they’ve all collapsed on the ground!"
-    mc "Everyone?"
+    show mc scared at left with ease 
+    mc "Everyone?" 
     mc "Elodie?"
     mc "Vance?"
     mc "Boss?"
+    hide mc scared 
     "\"Aaauuuueeeeuuuoooogghhh...\""
     "And I’m not alone either..."
     "I turn around to see —"
+
     #enter ghost    
+    show ghost mad with dissolve 
     "The Ghost!"
-    mc "Aah!"
+    hide ghost mad 
+    show mc scared at left 
+    mc "Aah!" with vpunch 
+    hide mc scared 
+    show ghost mad 
     g "AhhH - Hhh - - hh"
+    hide ghost mad 
+    show mc scared at left 
     mc "What...did you do to my team?"
+    hide mc scared 
+    show ghost mad 
     g "OOoo - - ouuu - u - UUUuu - - - - - tttt"
+    hide ghost mad 
+    show mc scared at left 
     mc "That...sounds like words. Kind of sounded like ‘out’. Are you...talking to me?"
+    hide mc scared 
+    show ghost mad with dissolve 
     "The ghost hisses again."
+    hide ghost mad with dissolve 
+    show mc neutral at left 
     "I’ve got to figure out what it’s trying to say to find out what happened to the others."
+    hide mc scared at left with dissolve 
     jump hangman
 
 label littlePeek:
     "I push the door open and nearly run headfirst into another person."
     "Wait. Another person?!"
+    show ghost mad with dissolve 
     "\"WwwhhhhooOOO\""
     "The Ghost!"
-    mc "AAHH!!"
+    hide ghost mad 
+    show mc scared at left 
+    mc "AAHH!!" with vpunch 
     "I didn’t just nearly run headfirst into it, I did run headfirst straight through it! And it’s angry!"
-    "The ghost looms over me as I stumble backwards."
+    "The ghost looms over me as I stumble backwards." 
+    hide mc scared 
+    show vance scared at right with moveinright 
     va "Oh no, now you’ve done it!"
+    show ilse scared at left with moveinleft 
     il "Run! Before it gets you! We’ll do our best to catch up!"
+    hide vance scared 
+    hide ilse scared 
 
-    jump qte
+    jump begin_chase_room
 
