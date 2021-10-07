@@ -65,11 +65,11 @@ init 5 python:
     # player lose feelings to body parts.
     messages_per_try = [
             None,
-            Message("", "... That's strange, my leg fell asleep."),
-            Message("", "Now my other leg fell asleep... What's going on?"),
-            Message("", "I can no longer feel my left arm. This ghost is doing something to me..."),
-            Message("", "My right arm is gone too..."),
-            Message("", "I can't feel my chest anymore... I think I'm going to faint...")
+            Message("", "... That's strange, I can't feel my leg! What's going on?"),
+            Message("", "Now I've suddenly lost feeling in my other leg... I can't even walk like this. The ghost, it's doing something to me."),
+            Message("", "I can no longer feel my left arm. I've got to find out what the ghost is saying!"),
+            Message("", "My right arm...That's the last of my limbs. I can't move! At this rate..."),
+            Message("", "I can hear my pulse slowing down in my chest. I think... this is my last chance to get it right before I pass out...")
         ]
 
 

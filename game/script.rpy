@@ -274,6 +274,7 @@ label ch02:
     "\"Shh, not so loud!\"" # vance
 
     "I look around."
+    hide mc neutral at left 
     
     $ looking_for_vance_left = False
     $ looking_for_vance_right = False
