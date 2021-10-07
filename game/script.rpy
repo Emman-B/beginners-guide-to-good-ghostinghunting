@@ -883,5 +883,5 @@ label littlePeek:
     va "Oh no, now you’ve done it!"
     il "Run! Before it gets you! We’ll do our best to catch up!"
 
-    jump qte
+    jump begin_chase_room
 
