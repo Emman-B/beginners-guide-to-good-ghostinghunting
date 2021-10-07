@@ -227,9 +227,9 @@ define gui.slot_button_borders = Borders(10, 10, 10, 10)
 define gui.slot_button_text_size = 17
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = "#5fa094"
-define gui.slot_button_text_selected_idle_color = "#ffffff"
+define gui.slot_button_text_selected_idle_color = "#000000"
 define gui.slot_button_text_selected_hover_color = "#ffffff"
-
+define gui.slot_button_text_hover_color = "#ffffff"
 ## The width and height of thumbnails used by the save slots.
 define config.thumbnail_width = 256
 define config.thumbnail_height = 144

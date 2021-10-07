@@ -109,7 +109,7 @@ style black_frame:
 """
 # Hangman starts here
 label hangman:
-    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.2 loop
+    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.4 loop
 
     python:
         """

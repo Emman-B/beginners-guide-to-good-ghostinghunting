@@ -146,7 +146,7 @@ label ch01:
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
     play sound doorSlam 
-    
+    play music electronicAmbience
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
     transferring the property's ownership to new hands."
     stop sound 
@@ -171,7 +171,7 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
-    
+    stop music fadeout 0.3
     jump ch02
 
 label ch02:
@@ -259,7 +259,7 @@ label ch02:
 
     hide ilse
     
-    play sound clickDouble 
+    play sound clickDouble volume 0.9
 
     "I quickly find my heavy-duty flashlight and video camera. Luckily, neither were damaged during the drive." 
 
@@ -395,7 +395,7 @@ label ch03:
             pass
         "Enter without wiping my feet on the mat":
             pass
-    play music enteringHouse volume 0.4
+    play music enteringHouse volume 0.6
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
     to be affected in the same way."
     show vance neutral at middle 
@@ -541,7 +541,7 @@ label study_ilse:
     il "With this, we can protect ourselves, maybe even hurt the ghost. Like so!"
     
     "They take the carton and pour the salt out, forming a ring of it. They step inside the circle."
-    
+    play sound saltScatter volume 0.5
     show ilse neutral 
     il "Ta dah!"
     
@@ -676,20 +676,18 @@ label bathroom_vance:
     mc "Hi, could you say that again?"
     hide mc happy 
     hide vance neutral 
-    #play sound "<from 1 to 3>radio.static.wav" 
+    play sound "<from 1 to 3>./sfx/static.wav" 
     "Instead of repeating the words the ghost phone releases a brief burst of static.
     Then it falls silent and stays that way."
     show mc scared at left 
     show vance scared at right 
     mc "You know what? Let's just...go."
-    #play sound "footstep_running_loud.wav"
+    play sound runningLoud
     "We nearly fall on top of each other scrambling to get out of the cramped bathroom."
     hide mc scared 
     hide vance scared 
     
     return
-
-
 
 
 
@@ -763,7 +761,7 @@ label diningroom_elodie:
     show mc neutral at left 
     "Wow. She truly believes there's nothing to believe in."
     hide mc neutral at left 
-    #play sound "click_soft_quick.wav"
+    
     "Behind her, a lamp suddenly flickers on and off within the blink of an eye." 
     
     "Elodie's forgotten EMF meter ranks up yet another notch, blinking bright red."
@@ -809,9 +807,10 @@ label ch04:
     show ilse neutral with ease 
     il "That’s plenty of signs. There’s definitely a ghost present. But if none of us saw it in these rooms,
     it must be upstairs."
-    #play sound "footstep_creak.wav"
+    play sound creak_short
     "Ilse takes the lead, wooden steps creaking under their feet."
     hide ilse neutral with dissolve 
+    play sound footsteps
     "Vance turns towards the front door, but Elodie grabs him before he can take a step in that direction
     and pushes him up the stairs."
     hide vance neutral with dissolve 

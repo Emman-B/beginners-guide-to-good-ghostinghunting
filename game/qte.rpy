@@ -40,7 +40,7 @@ label begin_chase_room:
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
-        "{color=##9b0617}Do nothing{/color}":
+        "{color=#9b0617}Do nothing{/color}":
             hide screen countdown
             "{i}If I stay still maybe it will leave me alone.{/i}"
             "I felt a chill down my shoulder blades."
