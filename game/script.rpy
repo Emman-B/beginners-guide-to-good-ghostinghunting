@@ -30,31 +30,29 @@ define audio.setupbgm = "./music/Ghost_techies.wav"
 #########
 
 ##SFX##
-define audio.glassShatter = "./sfx/glass_shatter.wav"
-define audio.doorSlam = "./sfx/door_slam.wav"
-define audio.doorSlamClick = "./sfx/door_slam_click.wav"
-define audio.heavyBreathFast = "./sfx/heavy_breathing_fast.wav"
-define audio.heavyBreathSlow = "./sfx/heavy_breathing_slow.wav"
-define audio.rustling = "./sfx/rustling.wav"
-define audio.runningLight = "./sfx/footstep_running_light.wav"
-define audio.runningLoud = "./sfx/footstep_running_loud.wav"
+define audio.electronicAmbience = "./sfx/ambience.wav"
+define audio.heavyBreathSlow = "./sfx/breathing_slow.wav"
+define audio.heavyBreathFast = "./sfx/breathing.wav"
 define audio.buzzWrong = "./sfx/buzz_wrong.wav"
-define audio.tearing02 = "./sfx/tearing02.wav"
-define audio.vaccum = "./sfx/vaccum.wav"
-define audio.electronicAmbience = "./sfx/electronic_ambience.wav"
+define audio.camera01 = "./sfx/camera_click.wav"
+define audio.cameraMultiple = "./sfx/camera_multiple_slow.wav"
+define audio.cameraMultiple02 = "./sfx/camera_multiple.wav"
+define audio.clickDouble = "./sfx/click_double.wav"
 define audio.clickSingle = "./sfx/click_single.wav"
-define audio.windClose = "./sfx/wind_med_speed_close.wav"
-define audio.correct ="./sfx/correct.wav"
-define audio.radioStatic = "./sfx/radio_static.wav"
-define audio.vroom = "./sfx/wind_med_speed_close.wav"
-define audio.vaccum = "./sfx/vaccum.wav"
-define audio.waterLight = "./sfx/waterfaucet_light_drip.wav"
-define audio.waterLoud = "./sfx/waterfaucet_loud_drip.wav"
-define audio.footstepNormal = "./sfx/footstep_normal.wav"
-define audio.camera01 = "./sfx/camera_one_click.wav"
-define audio.cameraMultiple = "./sfx/camera_fast_multiple.wav"
-define audio.clickDouble = "./sfx/click_double_quick.wav"
-define audio.doorClickOpen = "./sfx/door_click_open_gentle.wav"
+define audio.correct ="./sfx/correctans.wav"
+define audio.creak_long ="./sfx/creaking_long.wav"
+define audio.creak_short ="./sfx/creaking_short.wav"
+define audio.doorSlamClick = "./sfx/door_click.wav"
+define audio.doorSlam = "./sfx/door_close.wav"
+define audio.glassShatter = "./sfx/glass_shatter.wav"
+define audio.runningLoud = "./sfx/running_closer.wav"
+define audio.runningLight = "./sfx/running.wav"
+define audio.rustling = "./sfx/rustling.wav"
+define audio.saltScatter = "./sfx/salt.wav"
+define audio.radioStatic = "./sfx/static.wav"
+define audio.vacuum = "./sfx/vacuum.wav"
+define audio.footsteps = "./sfx/walking.wav"
+define audio.vroom = "./sfx/wind_ambience.wav"
 #######
 
 ##Image Character Sprites##
@@ -147,7 +145,7 @@ label ch01:
     stop sound fadeout 0.3
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
-    play sound doorSlamClick 
+    play sound doorSlam 
     
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
     transferring the property's ownership to new hands."
@@ -359,7 +357,7 @@ label ch03:
             il "Alright. Looks like we're at a consensus. Let's begin."
 
             "Ilse turns the handle. Unlocked."
-            play sound doorClickOpen
+            play sound doorSlamClick
         
             "Ooh, things are already spooky."
             
