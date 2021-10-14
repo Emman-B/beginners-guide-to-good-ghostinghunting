@@ -141,7 +141,7 @@ label start:
 
 label ch01:
     scene black
-    play music vroom volume 1.0
+    play sound "<from 1 to 3>./sfx/wind_ambience.wav" volume 0.7 loop
     "\"Your destination is on the right.\""
     
     "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop
@@ -180,8 +180,8 @@ label ch01:
     jump ch02
 
 label ch02:
-    play sound door_car_slam 
-    play music setupbgm fadein 0.5 loop volume 0.4
+    play sound door_car_slam volume 0.9
+    play music setupbgm fadein 0.5 loop volume 0.3
     scene bg outsideHouse
 
     "\"Out!\""
@@ -405,7 +405,8 @@ label ch03:
         "Enter without wiping my feet on the mat":
             pass
     stop music fadeout 0.2
-    play music enteringHouse volume 0.6
+    play sound "<from 1 to 7>./sfx/Ringin_eaR.wav" volume 0.7 fadeout 0.2
+    play music "<from 7 to 20>./sfx/Ringin_eaR.wav" volume 0.7 fadein 0.2 loop
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
     to be affected in the same way."
     show vance neutral at middle 
@@ -823,7 +824,7 @@ label ch04:
     play sound creak_short
     "Ilse takes the lead, wooden steps creaking under their feet."
     hide ilse neutral with dissolve 
-    play sound footsteps
+    play sound footsteps ##fix slow creepy footstep, 
     "Vance turns towards the front door, but Elodie grabs him before he can take a step in that direction
     and pushes him up the stairs."
     hide vance neutral with dissolve 
