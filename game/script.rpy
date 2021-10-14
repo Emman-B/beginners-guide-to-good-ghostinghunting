@@ -19,6 +19,7 @@ define g = Character("Ghost")
 init python:
     DEBUG_start_menu_testing = False # Set to true to enable the debug menu at the start
     config.preload_fonts = ['NovaSlim-Regular.ttf','PoorStory-Regular.ttf','Lacquer-Regular.ttf','Inconsolata-Regular.ttf']
+    config.menu_include_disabled = True
     
 # The game starts here.
 
@@ -289,11 +290,13 @@ label ch02:
             "Look left" if not looking_for_vance_left:
                 $ looking_for_vance_left = True
                 "I looked over to my left. Nothing."
-                jump looking_for_vance_section
+                if not looking_for_vance_right:
+                    jump looking_for_vance_section
             "Look right" if not looking_for_vance_right:
                 $ looking_for_vance_right = True
                 "I looked over to my right. Nothing."
-                jump looking_for_vance_section
+                if not looking_for_vance_left:
+                    jump looking_for_vance_section
         
     "I peer around the car but I can't see the source of the voice."
 

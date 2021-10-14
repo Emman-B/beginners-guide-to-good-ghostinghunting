@@ -20,8 +20,8 @@ init:
     $ timer_jump = 'timer_jump_default_label';
     $ timer_jump_warehouse = 'timer_jump_warehouse_default_label'
     $ timer_range_warehouse = 0; #length of time to chase in 2nd part of qte
-    $ visited_right_deadend = False;
-    $ visited_left_deadend = False;
+    $ visited_right_return_to_start = False;
+    $ visited_left_return_to_start = False;
     
 
 ##every decision is a label menu##
@@ -33,34 +33,34 @@ label begin_chase_room:
         if currently_playing == None or currently_playing != audio.mazebgm:
             renpy.music.play(audio.mazebgm, u'music', loop=True, fadein=5.0)
         renpy.music.set_volume(0.3, delay=0, channel =u'music')
-    if visited_right_deadend:
+    if visited_right_return_to_start:
         "I somehow ended up outside the same room I started in."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
-        "{color=#9b0617}Do nothing{/color}":
+        "Do nothing":
             hide screen countdown
             "{i}If I stay still maybe it will leave me alone.{/i}"
             "I felt a chill down my shoulder blades."
             "{i}What was that?{/i}"
             mc "A-"
             jump death
-        "{color=#9b0617}Go left{/color}":
+        "Go left":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
             "I turned left and sped down the hall, shining my flashlight ahead for visibility."
             jump room_02
-        "{color=#9b0617}Go right{/color}":
+        "Go right" if not visited_right_return_to_start:
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
             "I swiftly made a right and ran down the dimly lit hallway."
-            $ visited_right_deadend = True
+            $ visited_right_return_to_start = True
             jump begin_chase_room
             
 label room_02:
@@ -76,7 +76,7 @@ label room_02:
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
-        "{color=#9b0617}Go left{/color}":
+        "Go left":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
@@ -85,7 +85,7 @@ label room_02:
             "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
-        "{color=#9b0617}Head straight{/color}":
+        "Head straight":
             hide screen countdown
             #sfx#
             play sound runningLoud volume 1.0
@@ -93,7 +93,7 @@ label room_02:
             "I dashed down the hallway."
             jump room_03
             
-        "{color=#9b0617}Go down stair{/color}":
+        "Go down stair":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
@@ -112,16 +112,16 @@ label room_03:
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
-        "{color=#9b0617}Go left{/color}":
+        "Go left" if not visited_left_return_to_start:
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
             "I take a sharp left and continued sprinting down the hall."
-            $ visited_left_deadend = True
+            $ visited_left_return_to_start = True
             jump begin_chase_room
             
-        "{color=#9b0617}Go right{/color}":
+        "Go right":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
@@ -151,15 +151,15 @@ label ghost_at_exit_mc_hiding:
     #music#
     show screen countdown
     menu:
-        "{color=#9b0617}hide{/color}":
+        "hide":
             hide screen countdown
             "I kept quiet and hid behind the table."
             jump ghost_explore_another_part_of_room
-        "{color=#9b0617}distract{/color}":
+        "distract":
             hide screen countdown
             "{i}Maybe I can distract it with this glass bottle.{\i}"
             jump ghost_gets_close_mc_while_walking_to_distract
-        "{color=#9b0617}run{/color}":
+        "run":
             hide screen countdown
             "I peeked out from behind the table and noticed something resembling an exit at the other end of the room."
             "{i}Could that be the exit?{/i}"
@@ -178,15 +178,15 @@ label ghost_explore_another_part_of_room:
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
-        "{color=#9b0617}hide{/color}":
+        "hide":
             hide screen countdown
             "I chose to continue hiding behind the table."
             jump ghost_explore_very_close_to_mc
-        "{color=#9b0617}distract{/color}":
+        "distract":
             hide screen countdown
             "I threw the glass bottle I found near my feet to the opposite corner of the room."
             jump ghost_investigates_distraction
-        "{color=#9b0617}run{/color}":
+        "run":
             hide screen countdown
             "I craned my neck around the leg of the table and noticed something looking like an exit on the other side of the room."
             "{i}If I can run fast enough and make it there, I can probably make it out.{/i}"
@@ -205,19 +205,19 @@ label ghost_gets_close_mc_while_walking_to_distract:
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
-        "{color=#9b0617}hide{/color}":
+        "hide":
             hide screen countdown
             "I clamped both of my hands over my mouth, inched closer to the couch and hid myself."
             "I can hear faint whispering coming closer to me."
             "I dug my fingers into my cheeks to prevent myself from making even a single breath."
             jump ghost_investigates_distraction
-        "{color=#9b0617}distract{/color}":
+        "distract":
             "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
             "{i}I can try throwing my flashligh-{/i}"
             "I felt an icy chill breathe on my neck and my vision blackened."
             hide screen countdown
             jump death
-        "{color=#9b0617}run{/color}":
+        "run":
             hide screen countdown
             "I crawled to the other side of the couch and peeked out. Glancing around, I see a wide opened door close by."
             "{i}Could that be the exit? Should I risk it?{/i}"
@@ -239,7 +239,7 @@ label ghost_explore_very_close_to_mc:
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
-        "{color=#9b0617}hide{/color}":
+        "hide":
             hide screen countdown
             "{i}I figured I should play it safe and continued to hide behind the table.{/i}"
             "{i}As long as I stay quiet, it shouldn't be able to notice me.{/i}"
@@ -247,7 +247,7 @@ label ghost_explore_very_close_to_mc:
             "I leaned toward the table and stayed quiet for a few minutes. But I felt that same chill run down my back."
             "I leap away from the table but all I heard was the whispers ringing louder and louder in my ears before I blacked out."
             jump death
-        "{color=#9b0617}run{/color}":
+        "run":
             hide screen countdown
             "Cautiously, I peeked out from the side of the table and noticed a doorway at the end of the room."
             "{i}That might be the exit. If I can make it to that door, I can escape. I can do this.{/i}"
@@ -272,12 +272,12 @@ label ghost_investigates_distraction:
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
-        "{color=#9b0617}hide{/color}":
+        "hide":
             hide screen countdown
             "{i}It's better to play it safe. I don't know how long the distraction will last so I shouldn't do anything drastic.{/i}"
             "I continued to hide behind the couch and kept very still."
             jump ghost_explore_very_close_to_mc
-        "{color=#9b0617}run{/color}":
+        "run":
             hide screen countdown
             "{i}It's distracted now, I should make a break for it.{/i}"
             #sfx#
@@ -317,7 +317,7 @@ label restart:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     menu: 
-        "{color=#9b0617}Try again.{/color}":
+        "Try again.":
             jump begin_chase_room
 label exit_warehouse:
     #music#
