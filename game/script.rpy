@@ -180,7 +180,7 @@ label ch01:
 
 label ch02:
     play sound door_car_slam volume 0.9
-    play music setupbgm fadein 0.5 loop volume 0.3
+    play music setupbgm fadein 0.5 loop volume 0.2
     scene bg outsideHouse
 
     "\"Out!\""
@@ -402,8 +402,8 @@ label ch03:
         "Enter without wiping my feet on the mat":
             pass
     stop music fadeout 0.2
-    play sound "<from 1 to 7>./sfx/Ringin_eaR.wav" volume 0.7 fadeout 0.2
-    play music "<from 7 to 20>./sfx/Ringin_eaR.wav" volume 0.7 fadein 0.2 loop
+    play music "<from 1 to 7>./music/Ringin_eaR.wav" volume 0.7 fadeout 0.2
+    play music "<from 11 to 20>./music/Ringin_eaR.wav" volume 0.7 fadein 0.2 loop
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
     to be affected in the same way."
     show vance neutral at middle 
