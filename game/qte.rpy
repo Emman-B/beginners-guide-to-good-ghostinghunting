@@ -309,6 +309,7 @@ label timerout:
 label death:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
+        renpy.play(audio.buzzWrong, channel=u'sound')
     hide screen countdown
     "{b}You have been killed by the ghost.{/b}"
     jump restart

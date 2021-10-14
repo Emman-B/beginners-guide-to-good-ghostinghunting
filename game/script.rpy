@@ -45,6 +45,9 @@ define audio.creak_short ="./sfx/creaking_short.wav"
 define audio.door_car_slam = "./sfx/door_car_slam.wav"
 define audio.doorSlamClick = "./sfx/door_click.wav"
 define audio.doorSlam = "./sfx/door_close.wav"
+define audio.emf3 = "./sfx/emf3.wav"
+define audio.emf4 = "./sfx/emf4.wav"
+define audio.emf5 = "./sfx/emf5.wav"
 define audio.glassShatter = "./sfx/glass_shatter.wav"
 define audio.runningLoud = "./sfx/running_closer.wav"
 define audio.runningLight = "./sfx/running.wav"
@@ -137,7 +140,7 @@ label start:
 
 label ch01:
     scene black
-    play music vroom fadein 0.1 volume 1.0
+    play music vroom volume 1.0
     "\"Your destination is on the right.\""
     
     "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop
@@ -172,12 +175,12 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
-    stop music fadeout 0.3
+    stop music
     jump ch02
 
 label ch02:
     play sound door_car_slam 
-    play music setupbgm loop volume 0.4
+    play music setupbgm fadein 0.5 loop volume 0.4
     scene bg outsideHouse
 
     "\"Out!\""
@@ -339,7 +342,7 @@ label ch02:
     "Well, that's everyone."
     stop music fadeout 0.2
 label ch03:
-    play music electronicAmbience volume 0.5
+    play music electronicAmbience 
     show ilse neutral at left
     show ilse neutral at right with easeinright
     il "Everyone ready?"
@@ -658,7 +661,7 @@ label bathroom_vance:
     show mc neutral at left 
     mc "I don't think this frequency is working. Try another?"
     hide mc neutral 
-    play sound radioStatic 
+    play sound radioStatic volume 0.7
     "\" - -s-six - - oint - - - thre - fff - -\""
     show vance scared 
     va "WAAAAUUGGHH!!!" with vpunch 
@@ -682,7 +685,7 @@ label bathroom_vance:
     mc "Hi, could you say that again?"
     hide mc happy 
     hide vance neutral 
-    play sound "<from 1 to 3>./sfx/static.wav" 
+    play sound "<from 1 to 3>./sfx/static.wav" volume 0.7
     "Instead of repeating the words the ghost phone releases a brief burst of static.
     Then it falls silent and stays that way."
     show mc scared at left 
@@ -738,16 +741,17 @@ label diningroom_elodie:
     mc "And our tools?"
     show elodie smug at right 
     el "Please, this Energy Maker Free! (edition) reacts to almost anything."
-    play sound electronicAmbience
+    play sound emf3
     "As if on cue, the EMF meter beeps high and long. The lights on the device flash yellow."
     show mc scared at left 
+
     mc "Signs of a ghost! It could be here in this room with us." with vpunch 
     
     show elodie neutral at right 
     el "Ugh, there's no ghost. It's just responding to my phone."
     
     "She moves her phone close to the device and submits whatever post she's making on her social media."
-
+    play sound emf4
     "{i}beeeeep{/i}"
     
     "The EMF meter climbs another frequency, light turning orange."
@@ -771,7 +775,7 @@ label diningroom_elodie:
     "Behind her, a lamp suddenly flickers on and off within the blink of an eye." 
     
     "Elodie's forgotten EMF meter ranks up yet another notch, blinking bright red."
-    
+    play sound emf5
     "{i}beeeeeeeeeeeeeep{/i}"
     
     "Then, nothing."
