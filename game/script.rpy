@@ -91,6 +91,12 @@ image bg outsideHouse = "./images/outside_house.png"
 image bg livingRoom = "./images/A01-3_HomeBase_DormRoom_Night.png"
 image bg study = "./images/study.png"
 image bg diningRoom = "./images/living_room.png"
+image bg door = "./images/door.png"
+image bg hallway = "./images/hallway.png"
+image bg bedroom1 = "./images/bedroom_1.png"
+image bg bedroom2 = "./images/bedroom_2.png"
+
+
 
 ###########################
 
@@ -143,8 +149,8 @@ label ch01:
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
     stop sound fadeout 0.3
-    "The client had said it wasn't an old or decrepit house, and yet looking at it now,
-    I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
+    "The client had said it wasn't an old or decrepit house, and yet looking at it now,"
+    "I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
     play sound doorSlam 
     play music electronicAmbience
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
@@ -155,9 +161,8 @@ label ch01:
     "Both the lawyer and the owner-to-be believe these uncomfortable feelings originate from a
     supernatural source."
     
-    "There were unknown messes littering the ground, furniture moved to positions
-    they weren't supposed to be in, appliances broken when they were working the last time they were
-    touched."
+    "There were unknown messes littering the ground, furniture moved to positions they weren't supposed to be in," 
+    "appliances broken when they were working the last time they were touched."
 
     "Both attributed these mysteries to the presence of a ghost."
 
@@ -165,8 +170,7 @@ label ch01:
 
     "I'm a member of a team of ghost hunters, hired to eliminate threats from the afterlife."
 
-    "It's not the most dignified occupation, but I applied hoping to satisfy my need for"
-    "adventure."
+    "It's not the most dignified occupation, but I applied hoping to satisfy my need for adventure."
 
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
@@ -190,16 +194,16 @@ label ch02:
     mc "Yes, boss!" 
     hide mc neutral at left
     "Boss" "No need to call me boss. Just Ilse is fine."
-    "That's the boss for you; reliable and friendly. They know everything there is to" 
-    "know about ghost hunting. I'm sure I'll learn a lot from watching them."
+    "That's the boss for you; reliable and friendly. They know everything there is to
+    know about ghost hunting. I'm sure I'll learn a lot from watching them."
     il "I'm opening the trunk. Get your things."
     "My things? Uh..."
     
-    "While Ilse grabs the Ghyson Vac-Pack and secures it onto their back, "
-    "I look at the heaping pile of objects nearly spilling out of the open trunk."
+    "While Ilse grabs the Ghyson Vac-Pack and secures it onto their back, 
+    I look at the heaping pile of objects nearly spilling out of the open trunk."
     hide ilse neutral at right
-    "Not only are all the ghost hunting gadgets dumped in this pile, "
-    "but a good portion of it is made of snacks."
+    "Not only are all the ghost hunting gadgets dumped in this pile, 
+    but a good portion of it is made of snacks."
     
     "I have no doubt that the snacks were packed by Elodie."
     
@@ -226,8 +230,7 @@ label ch02:
     hide mc neutral at left
     show elodie neutral at right with easeinleft
     el "Eggs, muffins, frittata!"
-    "Elodie rushes past me to the pile of everything and grabs her snacks, "
-    "stuffing whatever fits into her pockets."
+    "Elodie rushes past me to the pile of everything and grabs her snacks, stuffing whatever fits into her pockets."
     "She must've had food on her mind."
 
     el "This job is cutting into my dinner time, you know?"
@@ -236,11 +239,9 @@ label ch02:
     hide elodie neutral at right
     show mc neutral at left
 
-    mc "Huh? Is it likely for it to end up being nothing? The client seemed pretty scared of going back"
-    "to the house."
+    mc "Huh? Is it likely for it to end up being nothing? The client seemed pretty scared of going back to the house."
 
-    mc "It doesn't look like the usual haunted house, but there must be "
-    "something paranormal going on if we were called in, right?"
+    mc "It doesn't look like the usual haunted house, but there must be something paranormal going on if we were called in, right?"
 
     hide mc neutral at left 
     show ilse neutral at left
@@ -314,8 +315,7 @@ label ch02:
     hide mc neutral at left
     show vance neutral at left
     
-    va "More like the complete opposite! What's fun about sacrificing ourselves to"
-    "the demons inside that house?!"
+    va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
     
     show vance neutral at right with easeoutright
     
@@ -369,6 +369,7 @@ label ch03:
             
         "Maybe Vance has a point.":
             
+            show elodie neutral at left 
             el "Aw, not you, too! C'mon, it'll be a quick in and out job."
             hide elodie neutral
             hide vance neutral
@@ -382,14 +383,14 @@ label ch03:
             hide mc neutral 
             "Ilse opens the front door, and as the others start filing in, I take a deep calming breath."
     
-    "The open doorway looms over me menacingly, like it's trying to scare me away and dare me to enter at the same time."
+    scene bg door with dissolve 
+    "The open doorway looms over me menacingly, as if it's trying to scare me away and dare me to enter at the same time."
     "A scuffed old doormat lies in front of it."
 
     "{i}Wel{/i}, it reads. The rest has faded away."
     show mc neutral at left 
     "Well. Then I'll come in."
-
-    scene bg livingRoom
+    hide mc neutral 
 
     menu:
         "Wipe my feet on the mat before entering.":
@@ -397,17 +398,18 @@ label ch03:
         "Enter without wiping my feet on the mat":
             pass
     play music enteringHouse volume 0.6
+    scene bg livingRoom with dissolve 
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
     to be affected in the same way."
     show vance neutral at middle 
     "Well, except for Vance, but he was already shivering in fright before entering the house."
     "But he isn't any more frightened than before. Is this what it means to be a professional?"
     hide vance neutral at middle 
-    "The entranceway is connected to the living room. The place isn't empty; there's still some furniture left"
-    "over from the previous tenant."
+    "The entranceway is connected to the living room. "
+    "The place isn't empty; there's still some furniture left over from the previous tenant."
 
     "A visible layer of dust coats everything, so thick our footsteps could probably kick clumps of it into the air."
-    show elodie neutral at right with easeinleft
+    show elodie neutral at right 
     "Elodie waves her EMF meter in a wide arc over her head. "
     "It creates a lagging streak of green across the screen of the camera."
     show elodie happy at right 
@@ -444,14 +446,14 @@ label ch03:
     hide ilse happy with dissolve
     hide vance neutral with dissolve 
     hide elodie neutral with dissolve 
-    show mc neutral at left 
+    show mc neutral at left with ease 
     mc "I thought the first rule of horror movies was to not split up."
     
-    show vance scared at middle 
+    show vance scared at right
     hide mc neutral 
     va "I agree! How about we don't?" with vpunch 
     hide vance scared 
-    show elodie neutral at middle 
+    show elodie neutral at left
     el "But that'll take more time. Didn't you want to get out of here fast? I know I do."
     hide elodie neutral 
     show ilse neutral at middle 
@@ -464,12 +466,12 @@ label ch03:
     il "We'll split up and cover one room each on the ground floor."
 
     il "After that, we'll all go upstairs and divvy up the area again." 
-    il  "That way, we can stick close. Ish."
+    il  "That way, we can stick close... {w}ish."
     hide ilse neutral with dissolve 
 
     # TODO: Update the dialogue where you are one-and-one with another character
     menu:
-        il "Where do you want to go?"
+        "Where do you want to go?"
 
         "Study with Ilse":
             call study_ilse
@@ -486,7 +488,7 @@ label study_ilse:
     show ilse happy at middle 
     il "With me? Then let's go. I'll teach you everything you need to know."
 
-    scene bg study
+    scene bg study with dissolve 
     hide ilse happy 
     "We shuffle into the study and immediately see the mess the client mentioned."
 
@@ -505,8 +507,8 @@ label study_ilse:
     would want to cause a mess."
     
     
-    il "Some say ghosts move objects in an attempt to communicate. But the ghosts' efforts
-    usually end up useless, because once people realize they're there, people like us
+    il "Some say ghosts move objects in an attempt to communicate. "
+    il "But the ghosts' efforts usually end up useless, because once people realize they're there, people like us
     are hired to eliminate them."
     
     hide ilse neutral
@@ -520,7 +522,7 @@ label study_ilse:
     "They flip on the switch of their Vac-Pack. If they say anything else, I can't hear
     it over the sound of the Ghyson."
     play sound clickSingle 
-    play sound vaccum volume 0.5 loop
+    play sound vacuum volume 0.5 loop
     "They direct the vacuum head over the dangerous shards.
     With a faint clinking noise, the fragments are all sucked into the machine."
     
@@ -528,7 +530,8 @@ label study_ilse:
     il "There! Now the ground is clear for us to work with."
     
     "I shove the rest of the objects to the side of the room while Ilse rummages through their
-    deep pockets. What could they be looking for?"
+    deep pockets. "
+    "What could they be looking for?"
 
     play sound glassShatter volume 0.2
     play sound rustling volume 0.2
@@ -609,15 +612,15 @@ label bathroom_vance:
     mc "Sorry, I didn't mean to."
     
     mc "So what did you bring to help us find the ghost?"
-    show vance scared t right
+    show vance scared at right
     va "I don't want to find the ghost. In fact, I hope there is no ghost!"
     show mc neutral at left 
     mc "What? Why not? The whole point of this job is to locate the ghost, isn't it?"
     show vance neutral at right 
     va "It pays, [mcname], it pays."
     show mc happy at left 
-    "Ah, yes. Money speaks. I guess that's another valid reason for people to apply for this job.
-    Not everyone is searching for the thrill of adrenaline like me."
+    "Ah, yes. Money speaks. I guess that's another valid reason for people to apply for this job."
+    "Not everyone is searching for the thrill of adrenaline like me."
     show mc neutral at left 
     mc "We won't get paid if we don't find the ghost."
     show vance neutral at right 
@@ -631,8 +634,8 @@ label bathroom_vance:
     "He waves the device in his hands around so frantically I can't tell what he's holding.
     I can just make out an antenna sticking out of it."
     show vance neutral at right 
-    va "—is a ghost phone. We can use it to talk to the ghost by changing frequencies.
-    And since the ghost isn't saying anything, then it must not be here!"
+    va "—is a ghost phone. We can use it to talk to the ghost by changing frequencies."
+    va "And since the ghost isn't saying anything, then it must not be here!"
     show mc neutral at left 
     mc "Well, have you tried talking to it?"
     
@@ -641,12 +644,12 @@ label bathroom_vance:
     mc "{i}ahem{/i} Hello? Is anyone here?"
     
     show vance neutral at right 
-    hide mc neutral at left 
+    #hide mc neutral at left 
     va "Shh!"
-    hide vance neutral at right 
+    #hide vance neutral at right 
     show mc happy at left 
     mc "If someone is in this room with us, can you give us a sign?"
-    hide mc happy 
+    #hide mc happy 
     show vance scared 
     va "Shhhhhh!"
     hide vance scared 
@@ -655,15 +658,15 @@ label bathroom_vance:
     hide mc neutral 
     play sound radioStatic 
     "\" - -s-six - - oint - - - thre - fff - -\""
-    show vance scared 
+    show vance scared at right 
     va "WAAAAUUGGHH!!!" with vpunch 
-    show mc neutral at left 
+    show mc scared at left 
     mc "UUWAAAH!!" with vpunch 
 
     "It talked back!"
 
     mc "You heard that, too, right? A ghost! A real live ghost!"
-    show vance neutral 
+    show vance scared
     va "W-What'd it say?"
     
     va "No, nevermind! We're done. We're so dead."
@@ -716,7 +719,8 @@ label diningroom_elodie:
     mc "Shouldn't we...search for the ghost?"
     show elodie smug at right 
     el "Ha! You can't be serious! You actually fell for this crap? It's a ploy!"
-    
+    hide mc scared 
+    hide elodie smug 
     "It can't be! The company has teams of ghost hunters. Ours is just one of many."
     
     "They all have ghost hunting equipment and hundreds of reports of completed cases."
@@ -727,11 +731,13 @@ label diningroom_elodie:
     
     show elodie neutral at right 
     el "They're fake. Probably an actor, hired by the so-called client."
-    
+    hide mc neutral at left
+    hide elodie neutral 
     "There's probably hidden cameras recording our reactions."
-    
-    mc "And our tools?"
+    show mc neutral at left 
     show elodie smug at right 
+    mc "And our tools?"
+    
     el "Please, this Energy Maker Free! (edition) reacts to almost anything."
     play sound electronicAmbience
     "As if on cue, the EMF meter beeps high and long. The lights on the device flash yellow."
@@ -740,20 +746,21 @@ label diningroom_elodie:
     
     show elodie neutral at right 
     el "Ugh, there's no ghost. It's just responding to my phone."
-    
+    hide mc scared at left 
+    show elodie neutral at middle with ease 
     "She moves her phone close to the device and submits whatever post she's making on her social media."
-
+    hide elodie neutral 
     "{i}beeeeep{/i}"
     
     "The EMF meter climbs another frequency, light turning orange."
-    
+    show elodie neutral
     el "It's just the internet. No such thing as ghosts."
     
     el "And for the rest, Ilse just carries around a vacuum cleaner.
     Vance's special ghost phone? Just an old radio."
-    
+    hide elodie neutral 
     "As I blankly process this information, Elodie wraps an arm around my shoulder."
-    show elodie smug at right 
+    show elodie smug 
     el "Aww, don't be so sad. Take a selfie with me to commemorate! We can go watch 
     Vance and Ilse run around fighting with the air after. Say 'cheese'!"
     play sound camera01
@@ -771,9 +778,9 @@ label diningroom_elodie:
     
     "Then, nothing."
     show mc scared at left 
-    "Ha. Haha...ha. No such things as ghosts? Yeah, right."
+    mc "Ha. Haha...ha. No such things as ghosts? Yeah, right."
     
-    "Then what the heck was that?!" with vpunch 
+    mc "Then what the heck was that?!" with vpunch 
     
     "Eyes wide in silent terror, I follow Elodie out." 
     
@@ -795,8 +802,8 @@ label ch04:
     show vance neutral at right with ease 
     show ilse happy at middle with ease
     
-    il "Well, gang? Did you find signs of the ghost? In the study, there was a sudden draft.
-    The windows were firmly shut. Could’ve been the ghost. Didn’t see it, though."
+    il "Well, gang? Did you find signs of the ghost? In the study, there was a sudden draft."
+    il "The windows were firmly shut. Could’ve been the ghost. Didn’t see it, though."
     show vance scared at right 
     va "The ghost phone did say things. It was creepy!"
     show vance neutral at right 
@@ -814,9 +821,11 @@ label ch04:
     play sound footsteps
     "Vance turns towards the front door, but Elodie grabs him before he can take a step in that direction
     and pushes him up the stairs."
-    hide vance neutral with dissolve 
+    #show elodie neutral at right with easeinleft  
     hide elodie neutral with dissolve
-    show mc neutral at left with ease 
+    hide vance neutral  with dissolve 
+    
+    #show mc neutral at left with ease 
 
     "There’s nothing to do but follow."
     hide mc neutral with dissolve 
@@ -826,14 +835,15 @@ label ch04:
 
 
 label ch05:
+    scene bg hallway with dissolve 
     play music mainbgm volume 0.5 loop
     "The air is clearly different up here. It’s thick and tense; each breath is suffocating."
 
-    show ilse neutral at right with easeinleft
+    show ilse neutral with ease
     "Ilse leads us towards the room at the end of the dark hall and the rest of us follow like obedient little ducklings."
     hide ilse neutral with dissolve 
     "We pass by multiple rooms and I can only wonder why we’re skipping them. Were we going to split up again?"
-    
+    scene bg door with dissolve 
     "One door catches my eye. It looks the same as every other door in the house, but for some reason, it feels different."
 
     "Well, unlike the rest of the rooms we’ve passed upstairs, it’s open just a crack, while the rest seem to be firmly shut."
@@ -852,6 +862,8 @@ label catchUpWithTeam:
     "No. I should catch up with the rest of the team."
     "I look up to find the hallway empty. Have the others already reached the last room?"
     "I scurry forward into the room. They must be waiting for me…"
+    scene bg bedroom2 with dissolve 
+    #insert cg here? 
     "Inside the room is my team, alright. But they’ve all collapsed on the ground!"
     show mc scared at left with ease 
     mc "Everyone?" 
@@ -859,7 +871,7 @@ label catchUpWithTeam:
     mc "Vance?"
     mc "Boss?"
     hide mc scared 
-    "\"Aaauuuueeeeuuuoooogghhh...\""
+    "{i}Aaauuuueeeeuuuoooogghhh...{/i}"
     "And I’m not alone either..."
     "I turn around to see —"
 
@@ -891,6 +903,7 @@ label catchUpWithTeam:
     jump hangman
 
 label littlePeek:
+    scene bg bedroom1 with dissolve 
     "I push the door open and nearly run headfirst into another person."
     "Wait. Another person?!"
     show ghost mad with dissolve 
@@ -902,9 +915,9 @@ label littlePeek:
     "I didn’t just nearly run headfirst into it, I did run headfirst straight through it! And it’s angry!"
     "The ghost looms over me as I stumble backwards." 
     hide mc scared 
-    show vance scared at right with moveinright 
+    show vance scared at right 
     va "Oh no, now you’ve done it!"
-    show ilse scared at left with moveinleft 
+    show ilse scared at left  
     il "Run! Before it gets you! We’ll do our best to catch up!"
     hide vance scared 
     hide ilse scared 

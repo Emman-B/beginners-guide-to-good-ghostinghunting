@@ -34,6 +34,7 @@ label begin_chase_room:
             renpy.music.play(audio.mazebgm, u'music', loop=True, fadein=5.0)
         renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_deadend:
+        scene bg bedroom1 with dissolve 
         "I somehow ended up outside the same room I started in."
     $ time = 5.0
     $ timer_range_chase = 5.0
@@ -52,6 +53,7 @@ label begin_chase_room:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
+            scene bg hallway with dissolve 
             "I turned left and sped down the hall, shining my flashlight ahead for visibility."
             jump room_02
         "{color=#9b0617}Go right{/color}":
@@ -59,12 +61,14 @@ label begin_chase_room:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
+            scene bg hallway with dissolve
             "I swiftly made a right and ran down the dimly lit hallway."
             $ visited_right_deadend = True
             jump begin_chase_room
             
 label room_02:
     hide screen countdown
+    scene bg bedroom2 with dissolve 
     "I came upon another room."
     "After a quick glance around the room, I found no good hiding spots."
     #sfx#
@@ -81,6 +85,7 @@ label room_02:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
+            scene bg hallway with dissolve 
             "I took another left and continued running forward."
             "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
@@ -90,20 +95,22 @@ label room_02:
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
+            scene bg hallway with dissolve
             "I dashed down the hallway."
             jump room_03
             
-        "{color=#9b0617}Go down stair{/color}":
+        "{color=#9b0617}Go downstairs{/color}":
             hide screen countdown
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
+            scene bg hallway with dissolve 
             "I turned right and shine the lights down the hallway. I notice the staircase."
             "{i}This looks like it may leads to a way out.{\i}"
             jump warehouse
 
 label room_03:
-    hide screen countdown
+    hide screen countdown 
     "I see a room up ahead and did a quick peek into the room looking for any good hiding spots."
     "{i}Another room with no decent hiding spots, huh.{\i}"
     "All of the sudden, my flashlight started flickering uncontrollably. I heard the familiar whispers creeping closer to me and I..."
@@ -131,6 +138,18 @@ label room_03:
 
 #choices are lowercase bc mc is panicking, qte slower#
 label warehouse:
+    scene hallway with Dissolve(0.2)
+    #pause .3
+    scene black with Dissolve(0.2)
+    #pause .25
+    scene hallway with Dissolve(0.2)
+    #pause .2
+    scene black with Dissolve(0.2)
+    #pause .2
+    scene hallway with Dissolve(0.2)
+    #pause .1
+    scene black with Dissolve(0.2)
+
     "My flashlight flickered before completely turning off."
     "I couldn't do anything except run blindly straight ahead."
     #sfx#
@@ -139,6 +158,7 @@ label warehouse:
     "After a few minutes of running in the dark, I ended up in a half-lit room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
+    scene bg diningRoom with Dissolve(1)
     "Looking around in the dimmed lights, I noticed a few broken furniture scattered throughout the room."
     "I snuck behind a fallen table closest to me and crouched down."
     "{i}What should I do now...{/i}"
@@ -215,6 +235,7 @@ label ghost_gets_close_mc_while_walking_to_distract:
             "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
             "{i}I can try throwing my flashligh-{/i}"
             "I felt an icy chill breathe on my neck and my vision blackened."
+            scene black with dissolve 
             hide screen countdown
             jump death
         "{color=#9b0617}run{/color}":
@@ -223,6 +244,7 @@ label ghost_gets_close_mc_while_walking_to_distract:
             "{i}Could that be the exit? Should I risk it?{/i}"
             "I decided to risk it."
             "Sucking in a deep breath, I leaped out from behind the couch and ran straight for the exit."
+            scene bg door with dissolve 
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
@@ -287,7 +309,10 @@ label ghost_investigates_distraction:
             jump exit_warehouse
 
 label mc_gets_injured:
+    #scene bg door with dissolve 
+    #(prev choice already has this bg)
     "I rushed through the doorway and slammed the door shut behind me."
+    scene bg outsideHouse with fade 
     #sfx#
     play sound doorSlam volume 1.0
     #sfx#
@@ -304,7 +329,9 @@ label timerout:
     #music#
     hide screen countdown
     "I barely had time to make a choice before I felt a sudden chill behind me."
+    show mc scared at left 
     mc "N-no, I should have decided sooner..!"
+    hide mc scared 
     jump death
 label death:
     python:
@@ -324,6 +351,7 @@ label exit_warehouse:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
+    scene bg door with fade 
     "I pushed past the doorway and closed the door behind me. Suddenly I felt so exhausted."
     #sfx#
     play sound doorSlamClick volume 1.0
@@ -337,8 +365,11 @@ label exit_injured:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
+    show mc neutral at left 
     mc "At least I got out alive..."
+    hide mc neutral 
     "I touched the bump on my forehead again and flinched."
+    show mc neutral at left 
     mc "There's probably an ice pack back at the truck."
     return
 label exit_wo_friends:
@@ -347,18 +378,27 @@ label exit_wo_friends:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
-
+    scene bg door with dissolve 
     "I made it through the doorway and slammed the door before running away as fast as I could."
     #sfx#
     play sound doorSlam volume 1.0
     #sfx#
+    #show mc happy at left 
+    scene bg outsideHouse with dissolve 
     "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
+    hide mc scared at left 
     "After a few moments of catching my breath, I clicked the walkie-talkie button to call my teammates."
+    show mc happy at left 
     mc "Hello? Hey I'm in the backyard, where is everyo-"
+    hide mc happy 
     "I was cut off by a loud screech followed muffled screams and static."
     play sound radioStatic volume 1.0
-    mc "H-hey where are you g-guys??"
+    show mc scared at left 
+    mc "H-hey where are you g-guys??" with vpunch 
+    hide mc scared at left 
     "The static noise quickly muffled out any voices and screams before going silent."
+    show mc scared at left 
     mc "...No..N-no.."
+    hide mc scared 
     stop sound 
     return
