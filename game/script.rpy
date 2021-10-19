@@ -42,11 +42,16 @@ define audio.clickSingle = "./sfx/click_single.wav"
 define audio.correct ="./sfx/correctans.wav"
 define audio.creak_long ="./sfx/creaking_long.wav"
 define audio.creak_short ="./sfx/creaking_short.wav"
+define audio.door_car_slam = "./sfx/door_car_slam.wav"
 define audio.doorSlamClick = "./sfx/door_click.wav"
 define audio.doorSlam = "./sfx/door_close.wav"
+define audio.emf3 = "./sfx/emf3.wav"
+define audio.emf4 = "./sfx/emf4.wav"
+define audio.emf5 = "./sfx/emf5.wav"
 define audio.glassShatter = "./sfx/glass_shatter.wav"
 define audio.runningLoud = "./sfx/running_closer.wav"
 define audio.runningLight = "./sfx/running.wav"
+define audio.runningMultiple = "./sfx/running_multiple.wav"
 define audio.rustling = "./sfx/rustling.wav"
 define audio.saltScatter = "./sfx/salt.wav"
 define audio.radioStatic = "./sfx/static.wav"
@@ -141,21 +146,20 @@ label start:
 
 label ch01:
     scene black
-    play sound vroom fadein 0.1 volume 1.0
+    play music vroom volume 1.0
     "\"Your destination is on the right.\""
     
     "While the monotone voice of the GPS barely catches my attention, the car rolling into a slow stop
     makes me look up and out the van's wide window."
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
-    stop sound fadeout 0.3
-    "The client had said it wasn't an old or decrepit house, and yet looking at it now,"
-    "I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
-    play sound doorSlam 
-    play music electronicAmbience
+ 
+    "The client had said it wasn't an old or decrepit house, and yet looking at it now,
+    I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
+    
     "The client, a rather skittish lawyer, insisted on our services. Supposedly, they're having trouble
     transferring the property's ownership to new hands."
-    stop sound 
+     
     "The new owner-to-be finds the house eerie and disturbing, so uncomfortable they might refuse to inherit it."
     
     "Both the lawyer and the owner-to-be believe these uncomfortable feelings originate from a
@@ -175,11 +179,12 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
-    stop music fadeout 0.3
+    stop music
     jump ch02
 
 label ch02:
-    play music setupbgm loop volume 0.4
+    play sound door_car_slam 
+    play music setupbgm fadein 0.5 loop volume 0.4
     scene bg outsideHouse
 
     "\"Out!\""
@@ -260,7 +265,7 @@ label ch02:
 
     hide ilse
     
-    play sound clickDouble volume 0.9
+    play sound clickSingle volume 0.7
 
     "I quickly find my heavy-duty flashlight and video camera. Luckily, neither were damaged during the drive." 
 
@@ -315,7 +320,8 @@ label ch02:
     hide mc neutral at left
     show vance neutral at left
     
-    va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
+    va "More like the complete opposite! What's fun about sacrificing ourselves"
+    "to the demons inside that house?!"
     
     show vance neutral at right with easeoutright
     
@@ -337,7 +343,7 @@ label ch02:
     "Well, that's everyone."
     stop music fadeout 0.2
 label ch03:
-
+    play music electronicAmbience 
     show ilse neutral at left
     show ilse neutral at right with easeinright
     il "Everyone ready?"
@@ -358,7 +364,7 @@ label ch03:
             il "Alright. Looks like we're at a consensus. Let's begin."
 
             "Ilse turns the handle. Unlocked."
-            play sound doorSlamClick
+            play sound doorSlam
         
             "Ooh, things are already spooky."
             
@@ -397,6 +403,7 @@ label ch03:
             pass
         "Enter without wiping my feet on the mat":
             pass
+    stop music fadeout 0.2
     play music enteringHouse volume 0.6
     scene bg livingRoom with dissolve 
     "The moment I step past the threshold, I feel an immediate chill wash over me and shiver. The others don't seem
@@ -423,6 +430,7 @@ label ch03:
     "That amazing tech just hasn't reached my newly employed hands."
 
     show vance scared at right
+    play sound clickDouble 
     va "T-The lights...They're not working!" with vpunch 
 
     va "Have the ghosts already short circuited the electricity? I thought the client said the appliances worked!"
@@ -522,7 +530,7 @@ label study_ilse:
     "They flip on the switch of their Vac-Pack. If they say anything else, I can't hear
     it over the sound of the Ghyson."
     play sound clickSingle 
-    play sound vacuum volume 0.5 loop
+    play sound vacuum volume 0.5 
     "They direct the vacuum head over the dangerous shards.
     With a faint clinking noise, the fragments are all sucked into the machine."
     
@@ -570,6 +578,7 @@ label study_ilse:
     They pour the salt into my awkwardly cupped hands."
     hide mc neutral 
     il "Now toss it around the room. Sprinkle it."
+    play sound saltScatter volume 0.5
     show ilse shocked 
     il "...{w}Hmm, nothing at all. If there were a ghost, it would probably react."
     show mc happy at left 
@@ -656,7 +665,7 @@ label bathroom_vance:
     show mc neutral at left 
     mc "I don't think this frequency is working. Try another?"
     hide mc neutral 
-    play sound radioStatic 
+    play sound radioStatic volume 0.7
     "\" - -s-six - - oint - - - thre - fff - -\""
     show vance scared at right 
     va "WAAAAUUGGHH!!!" with vpunch 
@@ -680,13 +689,13 @@ label bathroom_vance:
     mc "Hi, could you say that again?"
     hide mc happy 
     hide vance neutral 
-    play sound "<from 1 to 3>./sfx/static.wav" 
+    play sound "<from 1 to 3>./sfx/static.wav" volume 0.7
     "Instead of repeating the words the ghost phone releases a brief burst of static.
     Then it falls silent and stays that way."
     show mc scared at left 
     show vance scared at right 
     mc "You know what? Let's just...go."
-    play sound runningLoud
+    play sound runningMultiple
     "We nearly fall on top of each other scrambling to get out of the cramped bathroom."
     hide mc scared 
     hide vance scared 
@@ -739,9 +748,10 @@ label diningroom_elodie:
     mc "And our tools?"
     
     el "Please, this Energy Maker Free! (edition) reacts to almost anything."
-    play sound electronicAmbience
+    play sound emf3
     "As if on cue, the EMF meter beeps high and long. The lights on the device flash yellow."
     show mc scared at left 
+
     mc "Signs of a ghost! It could be here in this room with us." with vpunch 
     
     show elodie neutral at right 
@@ -749,7 +759,7 @@ label diningroom_elodie:
     hide mc scared at left 
     show elodie neutral at middle with ease 
     "She moves her phone close to the device and submits whatever post she's making on her social media."
-    hide elodie neutral 
+    play sound emf4
     "{i}beeeeep{/i}"
     
     "The EMF meter climbs another frequency, light turning orange."
@@ -773,7 +783,7 @@ label diningroom_elodie:
     "Behind her, a lamp suddenly flickers on and off within the blink of an eye." 
     
     "Elodie's forgotten EMF meter ranks up yet another notch, blinking bright red."
-    
+    play sound emf5
     "{i}beeeeeeeeeeeeeep{/i}"
     
     "Then, nothing."
