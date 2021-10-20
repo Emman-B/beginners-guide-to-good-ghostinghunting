@@ -58,7 +58,8 @@ init 5 python:
         "get the heck out",
         "i will kill you",
         "you will die here",
-        "death awaits you"
+        "death awaits you",
+        "tresspassers will be persecuted"
     ]
 
     # set messages to be told per used-up try (first item = first message shown at the start)
@@ -67,7 +68,7 @@ init 5 python:
             None,
             Message("", "... That's strange, I can't feel my leg! What's going on?"),
             Message("", "Now I've suddenly lost feeling in my other leg... I can't even walk like this. The ghost, it's doing something to me."),
-            Message("", "I can no longer feel my left arm. I've got to find out what the ghost is saying!"),
+            Message("", "I can no longer feel my left arm. I'm running out of limbs... I've got to find out what the ghost is saying!"),
             Message("", "My right arm...That's the last of my limbs. I can't move! At this rate..."),
             Message("", "I can hear my pulse slowing down in my chest. I think... this is my last chance to get it right before I pass out...")
         ]
@@ -190,7 +191,7 @@ label hangman:
             remaining_tries = max_tries - current_tries
             guess = ""
             while len(guess) == 0:
-                guess = renpy.input("I have only [remaining_tries] tries left, h-huh?. I s-should pick a different letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
+                guess = renpy.input("Guess a letter:", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
 
 
             # exclude the guessed letter
@@ -212,7 +213,7 @@ label hangman:
                         current[i] = True
             else:
                 # Failure case: decrement number of tries
-                renpy.say(None, "I-it's not the letter [guess] h-huh? M-man...what is this ghost trying to say..")
+                renpy.say(None, "Looks like the letter [guess] isn't part of the message. Just what is it trying to say...?")
                 current_tries += 1
             
             """
@@ -234,14 +235,14 @@ label hangman:
         if correct_answer_found:
             renpy.play(audio.correct, channel=u'sound')
             renpy.music.set_volume(0.5, delay=0, channel=u'sound')
-            renpy.say(None, "I did it. I did it!! I guessed correct and was able to communicate with the ghost! \"[answer]\", huh!? Man..this ghost sounds aggressive." )
+            renpy.say(None, "I did it! This must be the correct answer! The ghost is saying \"[answer]\" ...? That's... really aggressive." )
         else:
             renpy.play(audio.buzzWrong, channel=u'sound')
             # Possibly print the last message
             if message_index == current_tries and message_index < len(messages_per_try):
                 say_message_object(messages_per_try[message_index])
                 message_index += 1
-            renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
+            renpy.say(None, "I've...failed. This is it. I can feel... the last of my focus fading... away. I'll... do better in my... next life...")
             renpy.jump("restart_hangman")
     stop music fadeout 1.0
     return
