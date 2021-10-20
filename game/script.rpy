@@ -57,6 +57,7 @@ define audio.rustling = "./sfx/rustling.wav"
 define audio.saltScatter = "./sfx/salt.wav"
 define audio.radioStatic = "./sfx/static.wav"
 define audio.vacuum = "./sfx/vacuum.wav"
+define audio.walking = "./sfx/walking_footsteps.wav"
 define audio.footsteps = "./sfx/walking.wav"
 define audio.vroom = "./sfx/wind_ambience.wav"
 #######
@@ -824,7 +825,7 @@ label ch04:
     play sound creak_short
     "Ilse takes the lead, wooden steps creaking under their feet."
     hide ilse neutral with dissolve 
-    play sound footsteps ##fix slow creepy footstep, 
+    play sound walking ##fix slow creepy footstep, 
     "Vance turns towards the front door, but Elodie grabs him before he can take a step in that direction
     and pushes him up the stairs."
     hide vance neutral with dissolve 
@@ -864,6 +865,7 @@ label ch05:
 label catchUpWithTeam:
     "No. I should catch up with the rest of the team."
     "I look up to find the hallway empty. Have the others already reached the last room?"
+    play sound footsteps
     "I scurry forward into the room. They must be waiting for me…"
     "Inside the room is my team, alright. But they’ve all collapsed on the ground!"
     show mc scared at left with ease 
