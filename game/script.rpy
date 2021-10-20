@@ -324,8 +324,7 @@ label ch02:
     hide mc neutral at left
     show vance neutral at left
     
-    va "More like the complete opposite! What's fun about sacrificing ourselves"
-    "to the demons inside that house?!"
+    va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
     
     show vance neutral at right with easeoutright
     
@@ -931,9 +930,9 @@ label littlePeek:
     "I didn’t just nearly run headfirst into it, I did run headfirst straight through it! And it’s angry!"
     "The ghost looms over me as I stumble backwards." 
     hide mc scared 
-    show vance scared at right 
+    show vance scared at right with easeinleft
     va "Oh no, now you’ve done it!"
-    show ilse scared at left  
+    show ilse scared at left  with easeinleft
     il "Run! Before it gets you! We’ll do our best to catch up!"
     hide vance scared 
     hide ilse scared 
