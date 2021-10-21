@@ -308,7 +308,7 @@ define gui.frame_tile = False
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 25
 define gui.scrollbar_size = 12
-define gui.slider_size = 25
+define gui.slider_size = 30
 
 ## True if bar images should be tiled. False if they should be linearly scaled.
 define gui.bar_tile = False
@@ -318,7 +318,7 @@ define gui.slider_tile = False
 ## Horizontal borders.
 define gui.bar_borders = Borders(4, 4, 4, 4)
 define gui.scrollbar_borders = Borders(4, 4, 4, 4)
-define gui.slider_borders = Borders(4, 4, 4, 4)
+define gui.slider_borders = Borders(6, 6, 6, 6)
 
 ## Vertical borders.
 define gui.vbar_borders = Borders(4, 4, 4, 4)
@@ -335,24 +335,24 @@ define gui.unscrollable = "hide"
 ## The history screen displays dialogue that the player has already dismissed.
 
 ## The number of blocks of dialogue history Ren'Py will keep.
-define config.history_length = 250
+define config.history_length = 150
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
-define gui.history_height = 140
+define gui.history_height = None
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 155
+define gui.history_name_xpos = 0
 define gui.history_name_ypos = 0
-define gui.history_name_width = 155
-define gui.history_name_xalign = 1.0
+define gui.history_name_width = 255
+define gui.history_name_xalign = 0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.history_text_xpos = 170
-define gui.history_text_ypos = 2
-define gui.history_text_width = 740
-define gui.history_text_xalign = 0.0
+define gui.history_text_xpos = 70
+define gui.history_text_ypos = 60
+define gui.history_text_width = 800
+define gui.history_text_xalign = 0
 
 
 ## NVL-Mode ####################################################################
