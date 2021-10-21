@@ -126,6 +126,9 @@ label DEBUG_start_menu:
         "Debug hangman game":
             call hangman
 
+        "Debug credits":
+            call credits
+
         "Exit debug menu":
             return
 
