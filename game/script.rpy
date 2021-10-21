@@ -130,23 +130,7 @@ label DEBUG_start_menu:
             return
 
 label start:
-    scene bg dorm night with fade
-
-    python:
-        mcname = renpy.input("Your name?", length=32)
-        mcname = mcname.strip()
-        if not mcname: 
-            mcname = "Emm Cee"
-    mc "The name is [mc]."
-    
-    if DEBUG_start_menu_testing:
-        call DEBUG_start_menu
-
-    jump ch01
-
-    return
-
-label ch01:
+    #scene bg dorm night with fade
     scene black
     play sound "<from 1 to 3>./sfx/wind_ambience.wav" volume 0.7 loop
     "\"Your destination is on the right.\""
@@ -155,7 +139,7 @@ label ch01:
     makes me look up and out the van's wide window."
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
- 
+    scene bg outsideHouse with dissolve 
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
     
@@ -169,11 +153,32 @@ label ch01:
     
     "There were unknown messes littering the ground, furniture moved to positions they weren't supposed to be in," 
     "appliances broken when they were working the last time they were touched."
-
+    scene black with dissolve 
+    #here the ghost is BARELY VISible, suppose to be VERY subtle and not noticable 
+    show ghost mad at middle with dissolve:
+        alpha 0.08
     "Both attributed these mysteries to the presence of a ghost."
+    hide ghost mad with dissolve 
 
     "That's where we come in."
 
+    python:
+        mcname = renpy.input("My name is?", length=32)
+        mcname = mcname.strip()
+        if not mcname: 
+            mcname = "Emm Cee"
+    show mc neutral at middle with dissolve 
+    mc "The name is [mc]."
+    
+    if DEBUG_start_menu_testing:
+        call DEBUG_start_menu
+
+    jump ch01
+
+    return
+
+label ch01:
+    hide mc neutral with dissolve 
     "I'm a member of a team of ghost hunters, hired to eliminate threats from the afterlife."
 
     "It's not the most dignified occupation, but I applied hoping to satisfy my need for adventure."
@@ -181,6 +186,7 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
+    
     stop music
     jump ch02
 
@@ -317,11 +323,11 @@ label ch02:
     va "If Ilse forgets about me, I won't need to go in."
     
     hide vance neutral at left
-    show mc neutral at left
+    show mc happy at left
    
     mc "What, why not? Isn't this exciting?"
    
-    hide mc neutral at left
+    hide mc happy at left
     show vance neutral at left
     
     va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
@@ -355,7 +361,7 @@ label ch03:
     show vance scared at middle with easeinleft
         
     va "No! Can I leave? Three is more than enough people."
-    show elodie smug at left 
+    show elodie smug at left with easeinleft
     el "Calm down, Vance. It's just an old house."
     show vance scared at right 
     va "Just?! Say that again when you're six feet under!" with vpunch
@@ -670,7 +676,7 @@ label bathroom_vance:
     mc "I don't think this frequency is working. Try another?"
     hide mc neutral 
     play sound radioStatic volume 0.7
-    "\" - -s-six - - oint - - - thre - fff - -\""
+    "{i}\" - -s-six - - oint - - - thre - fff - -\"{/i}"
     show vance scared at right 
     va "WAAAAUUGGHH!!!" with vpunch 
     show mc scared at left 
@@ -879,50 +885,67 @@ label catchUpWithTeam:
     "I scurry forward into the room. They must be waiting for me…"
     scene bg bedroom2 with dissolve 
     #insert cg here? 
-    "Inside the room is my team, alright. But they’ve all collapsed on the ground!"
+    "Inside the room is my team, alright. But they’ve all collapsed!"
     show mc scared at left with ease 
     mc "Everyone?" 
-    mc "Elodie?"
-    mc "Vance?"
-    mc "Boss?"
     hide mc scared 
+    "No one responds."
+    show mc scared at left with dissolve 
+    mc "Elodie? Vance?"
+    mc "...Boss?"
+    hide mc scared 
+    "They groan weakly. What a relief! At least they’re not dead. {w}Yet."
     "{i}Aaauuuueeeeuuuoooogghhh...{/i}"
-    "And I’m not alone either..."
+    "Huh? That groan didn’t sound like any of my teammates."
+    "It’s all echo-y and it came from behind me, not in front of me."
+    "Waaaait a moment..."
     "I turn around to see —"
 
     #enter ghost    
-    show ghost mad with dissolve 
+    show ghost mad at middle with dissolve:
+        alpha .25 
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
     mc "Aah!" with vpunch 
     hide mc scared 
-    show ghost mad 
-    g "AhhH - Hhh - - hh"
+    show ghost mad at middle with dissolve:
+        alpha .25 
+    g "{i}AhhH - Hhh - - hh{/i}"
     hide ghost mad 
     show mc scared at left 
+    mc "The Ghost! We’ve finally found you… {w}but the team is completely out of it! What did you do to them?”"
     mc "What...did you do to my team?"
     hide mc scared 
-    show ghost mad 
-    g "OOoo - - ouuu - u - UUUuu - - - - - tttt"
+    show ghost mad at middle with dissolve:
+        alpha .25
+    g "{i}OOoo - - ouuu - u - UUUuu - - - - - tttt{/i}"
     hide ghost mad 
     show mc scared at left 
-    mc "That...sounds like words. Kind of sounded like ‘out’. Are you...talking to me?"
+    mc "It kind of sounds like it’s saying something. I can’t understand it, though."
+    mc "It hasn’t attacked me just yet. Why is that?"
     hide mc scared 
-    show ghost mad with dissolve 
-    "The ghost hisses again."
+    "The ghost draws slightly nearer."
+    show ghost mad at middle with dissolve: 
+        zoom 1.5 alpha .25 
+    g "{i}Gh - heEE - - hhHee - - - et - T{/i}"
     hide ghost mad with dissolve 
     show mc neutral at left 
-    "I’ve got to figure out what it’s trying to say to find out what happened to the others."
+    "If I can figure out what the ghost is trying to say to me, perhaps I’ll be able to find out what it did to the others to make them pass out." 
+    "That is, if I can guess it without passing out myself."
+    "I’ll save them, even if it takes one letter at a time!"
     hide mc scared at left with dissolve 
+    show ghost mad with dissolve:
+        alpha 0.1
     jump hangman
 
 label littlePeek:
     scene bg bedroom1 with dissolve 
     "I push the door open and nearly run headfirst into another person."
     "Wait. Another person?!"
-    show ghost mad with dissolve 
-    "\"WwwhhhhooOOO\""
+    show ghost mad at middle with dissolve: 
+        alpha .5
+    "{i}\"WwwhhhhooOOO\"{/i}"
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
