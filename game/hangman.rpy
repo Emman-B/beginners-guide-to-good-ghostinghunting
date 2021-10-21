@@ -308,6 +308,7 @@ label hangman_end:
     "Boss, come baaaackkk!!!"
     show mc scared at offscreenright with move 
     hide mc scared 
+    jump credits 
 
 
 

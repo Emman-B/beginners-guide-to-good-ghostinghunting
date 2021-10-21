@@ -418,7 +418,8 @@ label exit_warehouse:
     mc "Was that...something I should’ve been more worried about?"
     "Maybe I should reconsider this ghost hunting job..."
     hide mc scared 
-    return
+    jump credits 
+    #return
 
 label exit_injured:
     #music#
@@ -454,6 +455,7 @@ label exit_injured:
     show mc neutral at left 
     mc "Surely, I can do better..." 
     hide mc neutral 
+    jump credits 
     return
 label exit_wo_friends:
     #music#
@@ -484,4 +486,5 @@ label exit_wo_friends:
     mc "...No..N-no.."
     hide mc scared 
     stop sound 
-    return
+    jump credits 
+    #return

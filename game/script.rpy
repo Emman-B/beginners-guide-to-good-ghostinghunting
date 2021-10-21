@@ -86,6 +86,8 @@ image mc happy = "./images/mc_happy.png"
 image mc neutral = "./images/mc_neutral.png"
 image mc scared = "./images/mc_scared.png"
 
+image logo = "./images/logo.png"
+
 ##Image Backgrounds##
 image bg dorm night = "./images/A01-3_HomeBase_DormRoom_Night.png"
 image bg dorm day = "./images/A01-3_HomeBase_DormRoom_daytime.png"

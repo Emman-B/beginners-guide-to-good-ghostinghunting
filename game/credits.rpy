@@ -24,7 +24,7 @@ label credits:
     return
 
 init python:
-    credits = ('Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer', 'Kendra'), ('Artist', 'Linda'), ('Special Thanks', 'Backgrounds '), (' Dark Room, Bathroom', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room', ' by annako'), ('Thanks for Playing!', '')
+    credits = ('Lead Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer, Programmer', 'Kendra'), ('Artist', 'Linda'), ('Programmer, Sound Designer', 'XQ'), ('Special Thanks', 'Backgrounds '), (' Dark Room, Bathroom', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room', ' by annako'), ('Thanks for Playing!', '')
     credits_s = "{size=80}Credits\n\n"
     c1 = ''
     for c in credits:
@@ -32,7 +32,7 @@ init python:
             credits_s += "\n{size=40}" + c[0] + "\n"
         credits_s += "{size=60}" + c[1] + "\n"
         c1=c[0]
-    credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n6.99.13" #Don't forget to set this to your Ren'py version
+    credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n7.4.8.1895" #Don't forget to set this to your Ren'py version
     
 init:
 #    image cred = Text(credits_s, font="myfont.ttf", text_align=0.5) #use this if you want to use special fonts
@@ -43,9 +43,9 @@ init:
 
 label ending:
     
-    "..."
-    ".........." 
-    ".:. To be continued." 
+    #"..."
+    #".........." 
+    #".:. To be continued." 
     
     
     return 
