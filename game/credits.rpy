@@ -24,7 +24,7 @@ label credits:
     return
 
 init python:
-    credits = ('Lead Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer, Programmer', 'Kendra'), ('Artist', 'Linda'), ('Programmer, Sound Designer', 'XQ'), ('Special Thanks', 'Backgrounds '), (' Dark Room, Bathroom', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room', ' by annako'), ('Thanks for Playing!', '')
+    credits = ('Lead Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer, Programmer', 'Kendra'), ('Artist', 'Linda'), ('Programmer, Sound Designer', 'XQ'), ('Special Thanks', 'Backgrounds '), (' Dark Room, Bathroom', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room', ' by annako')
     credits_s = "{size=80}Credits\n\n"
     c1 = ''
     for c in credits:

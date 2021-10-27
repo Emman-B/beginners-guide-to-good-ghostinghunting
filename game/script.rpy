@@ -6,11 +6,11 @@
 # name of the character.
 
 #mc input name
-define mc = Character("[mcname]") # purple
-define il = Character("Ilse") # beekeeper
-define el = Character("Elodie") # blue
-define va = Character("Vance") # red
-define g = Character("Ghost")
+define mc = Character("[mcname]", what_prefix='"', what_suffix='"') # purple
+define il = Character("Ilse", what_prefix='"', what_suffix='"') # beekeeper
+define el = Character("Elodie", what_prefix='"', what_suffix='"') # blue
+define va = Character("Vance", what_prefix='"', what_suffix='"') # red
+define g = Character("Ghost", what_prefix='"', what_suffix='"')
 ##configure fonts ##
 #name: Nova Slim
 #text: Inconsolata
@@ -163,13 +163,14 @@ label start:
     hide ghost mad with dissolve 
 
     "That's where we come in."
+    show mc neutral at middle with dissolve 
 
     python:
         mcname = renpy.input("My name is?", length=32)
         mcname = mcname.strip()
         if not mcname: 
             mcname = "Emm Cee"
-    show mc neutral at middle with dissolve 
+    #show mc neutral at middle with dissolve 
     mc "The name is [mc]."
     
     if DEBUG_start_menu_testing:
@@ -206,7 +207,8 @@ label ch02:
     ""
     show ilse neutral at right with easeinleft 
     show mc neutral at left
-    mc "Yes, boss!" 
+    #mc "\"Yes, boss!\"" 
+    mc "Yes, boss!"
     hide mc neutral at left
     "Boss" "No need to call me boss. Just Ilse is fine."
     "That's the boss for you; reliable and friendly. They know everything there is to
@@ -344,11 +346,11 @@ label ch02:
     va "No. Please, don't make me go in there."
 
     il "It'll be over soon."
-
+    show vance scared 
     va "Nooooo!"
 
-    # Exit Ilse, Vance
-    hide vance neutral
+    # Exit Ilse, Vanced
+    hide vance scared
     hide ilse neutral
     
     "Well, that's everyone."
@@ -543,12 +545,16 @@ label study_ilse:
     it over the sound of the Ghyson."
     play sound clickSingle 
     play sound vacuum volume 0.5 
+    hide mc neutral 
+    #show ilse mad at right with ease
     "They direct the vacuum head over the dangerous shards.
     With a faint clinking noise, the fragments are all sucked into the machine."
     
-    show ilse neutral at middle 
+    show ilse neutral 
     il "There! Now the ground is clear for us to work with."
-    
+    #hide ilse neutral 
+    show mc neutral at left 
+    show ilse neutral at right with ease
     "I shove the rest of the objects to the side of the room while Ilse rummages through their
     deep pockets. "
     "What could they be looking for?"
@@ -556,6 +562,7 @@ label study_ilse:
     play sound glassShatter volume 0.2
     play sound rustling volume 0.2
     
+    show mc scared at left
     show ilse shocked at middle 
     il "Ah ha!" with vpunch 
     
@@ -564,9 +571,10 @@ label study_ilse:
     show ilse happy at middle 
     il "With this, we can protect ourselves, maybe even hurt the ghost. Like so!"
     
+    show mc neutral 
     "They take the carton and pour the salt out, forming a ring of it. They step inside the circle."
     play sound saltScatter volume 0.5
-    show ilse neutral 
+    show ilse neutral at right with ease 
     il "Ta dah!"
     
     show mc happy at left 
@@ -585,23 +593,27 @@ label study_ilse:
     "Ilse beckons me closer."
 
     il "Hold out your hands."
+    hide ilse neutral 
     show mc neutral at left 
+    #show mc neutral at middle with moveinleft
     "I do the best I can while holding onto a video camera and a flashlight.
     They pour the salt into my awkwardly cupped hands."
     hide mc neutral 
+    show ilse neutral at middle 
     il "Now toss it around the room. Sprinkle it."
     play sound saltScatter volume 0.5
     show ilse shocked 
     il "...{w}Hmm, nothing at all. If there were a ghost, it would probably react."
     show mc happy at left 
+    #show ilse shocked at right
     mc "It's a good thing there isn't."
-    show ilse neutral at middle 
+    show ilse neutral at right with ease 
     il "Why is that?"
-    show mc neutral at left 
+    #show mc neutral at left 
     mc "Because your salt circle. The wind's already blown it away."
-    show ilse shocked at middle 
+    show ilse shocked at right
     il "The wind? But the doors and windows are all closed."
-    show ilse scared at middle 
+    show ilse scared at right 
     show mc scared at left 
     "Ilse and I exchange glances. We wordlessly agree that it's time to regroup."
     hide ilse scared 
@@ -631,13 +643,13 @@ label bathroom_vance:
     va "Don't startle me like that! Please."
     show mc scared at left 
     mc "Sorry, I didn't mean to."
-    
+    show mc neutral 
     mc "So what did you bring to help us find the ghost?"
     show vance scared at right
     va "I don't want to find the ghost. In fact, I hope there is no ghost!"
     show mc neutral at left 
     mc "What? Why not? The whole point of this job is to locate the ghost, isn't it?"
-    show vance neutral at right 
+    show vance happy at right 
     va "It pays, [mcname], it pays."
     show mc happy at left 
     "Ah, yes. Money speaks. I guess that's another valid reason for people to apply for this job."
@@ -647,11 +659,11 @@ label bathroom_vance:
     show vance neutral at right 
     va "Correction: We don't get paid if there is a g-ghost and we don't find it.
     If we tell them there wasn't a ghost in the first place, on the other hand..."
-    
+    show mc scared
     mc "You mean lying?"
     show vance scared at right 
     va "No, of course not! This here—"
-    
+    #show mc neutral 
     "He waves the device in his hands around so frantically I can't tell what he's holding.
     I can just make out an antenna sticking out of it."
     show vance neutral at right 
@@ -719,7 +731,7 @@ label bathroom_vance:
 
 
 label diningroom_elodie:
-    show elodie happy 
+    show elodie happy at middle 
     el "Okay. Let's go!"
     hide elodie happy 
 
@@ -727,7 +739,7 @@ label diningroom_elodie:
     
     "We shuffle into the dining room, where a table capable of seating four and its chairs sit."
     
-    show elodie neutral 
+    show elodie neutral at middle
     "Instead of scanning the room for the presence of ghosts,"
     play sound cameraMultiple
     "Elodie pulls out her phone and starts taking pictures of the paintings hanging on the wall."
@@ -847,7 +859,7 @@ label ch04:
     hide elodie neutral with dissolve
     hide vance neutral  with dissolve 
     
-    #show mc neutral at left with ease 
+    show mc neutral at left 
 
     "There’s nothing to do but follow."
     hide mc neutral with dissolve 
@@ -905,14 +917,14 @@ label catchUpWithTeam:
 
     #enter ghost    
     show ghost mad at middle with dissolve:
-        alpha .25 
+        alpha .15 
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
     mc "Aah!" with vpunch 
     hide mc scared 
     show ghost mad at middle with dissolve:
-        alpha .25 
+        alpha .15
     g "{i}AhhH - Hhh - - hh{/i}"
     hide ghost mad 
     show mc scared at left 
