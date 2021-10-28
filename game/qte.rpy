@@ -35,7 +35,7 @@ label begin_chase_room:
         renpy.music.set_volume(0.3, delay=0, channel =u'music')
     if visited_right_return_to_start:
         scene bg bedroom1 with dissolve 
-        "I somehow ended up outside the same room I started in."
+        "Somehow, I've ended up outside the same room I started in."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -43,8 +43,8 @@ label begin_chase_room:
     menu:
         "Do nothing":
             hide screen countdown
-            "{i}If I stay still maybe it will leave me alone.{/i}"
-            "I felt a chill down my shoulder blades."
+            "{i}If I stay still maybe it will leave me alone?{/i}"
+            "I feel a chill roll down my shoulder blades."
             "{i}What was that?{/i}"
             mc "A-"
             jump death
@@ -54,7 +54,7 @@ label begin_chase_room:
             play sound runningLight volume 1.0
             #sfx#
             scene bg hallway with dissolve 
-            "I turned left and sped down the hall, shining my flashlight ahead for visibility."
+            "I turn left and speed down the hall, shining my flashlight ahead for visibility."
             jump room_02
         "Go right" if not visited_right_return_to_start:
             hide screen countdown
@@ -62,19 +62,19 @@ label begin_chase_room:
             play sound runningLight volume 1.0
             #sfx#
             scene bg hallway with dissolve
-            "I swiftly made a right and ran down the dimly lit hallway."
+            "I swiftly make a right and run down the dimly lit hallway."
             $ visited_right_return_to_start = True
             jump begin_chase_room
             
 label room_02:
     hide screen countdown
     scene bg bedroom2 with dissolve 
-    "I came upon another room."
-    "After a quick glance around the room, I found no good hiding spots."
+    "I come upon another room."
+    "Glancing quickly around the room, I can't find any good hiding spots."
     #sfx#
     play sound runningLight
     #sfx#
-    "I heard a soft whisper from behind me and I bolted out of the room and decided to..."
+    "I hear a soft whisper come from behind me. I bolt out of the room and decide to..."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -86,7 +86,7 @@ label room_02:
             play sound runningLight volume 1.0
             #sfx#
             scene bg hallway with dissolve 
-            "I took another left and continued running forward."
+            "I take another left and continue running forward."
             "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
@@ -96,7 +96,7 @@ label room_02:
             play sound runningLoud volume 1.0
             #sfx#
             scene bg hallway with dissolve
-            "I dashed down the hallway."
+            "I dash down the hallway."
             jump room_03
             
         "Go downstairs":
@@ -105,15 +105,15 @@ label room_02:
             play sound runningLight volume 1.0
             #sfx#
             scene bg hallway with dissolve 
-            "I turned right and shine the lights down the hallway. I notice the staircase."
-            "{i}This looks like it may leads to a way out.{\i}"
+            "I turn right and shine my light down the hallway. In the corner of my eye, I catch sight of the staircase."
+            "{i}This could be it. I've got a feeling this is the path to my way out.{\i}"
             jump warehouse
 
 label room_03:
     hide screen countdown 
-    "I see a room up ahead and did a quick peek into the room looking for any good hiding spots."
-    "{i}Another room with no decent hiding spots, huh.{\i}"
-    "All of the sudden, my flashlight started flickering uncontrollably. I heard the familiar whispers creeping closer to me and I..."
+    "I see a room up ahead and quickly peek into the it, looking for hiding spots."
+    "This room is a bust as well."
+    "All of a sudden, my flashlight starts flickering uncontrollably. That familiar ghostly whisper is creeping closer behind me, so I..."
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -124,7 +124,7 @@ label room_03:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
-            "I take a sharp left and continued sprinting down the hall."
+            "I take a sharp left and continue sprinting down the hall."
             $ visited_left_return_to_start = True
             jump begin_chase_room
             
@@ -133,7 +133,7 @@ label room_03:
             #sfx#
             play sound runningLight volume 1.0
             #sfx#
-            "I decided to go right."
+            "I decide to go right."
             jump warehouse
 
 #choices are lowercase bc mc is panicking, qte slower#
@@ -150,12 +150,13 @@ label warehouse:
     #pause .1
     scene black with Dissolve(0.2)
 
-    "My flashlight flickered before completely turning off."
-    "I couldn't do anything except run blindly straight ahead."
+    "My flashlight flickers slowly, dimmer than ever, before suddenly shutting off."
+    "There's no time to I couldn't do anything except run blindly straight ahead."
     #sfx#
     play sound runningLight
     #sfx#
-    "After a few minutes of running in the dark, I ended up in a half-lit room."
+    "After a few minutes of running in the dark, I see a light up ahead!"
+    "I arrive in a half-lit room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
     scene bg diningRoom with Dissolve(1)
