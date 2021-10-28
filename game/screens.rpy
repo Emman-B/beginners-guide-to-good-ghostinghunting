@@ -535,6 +535,131 @@ style return_button:
     yalign 1.0
     yoffset -30
 
+## Customized History Screen ###################################################
+## Copied and edited the game_menu, and then passed into actually history screen
+## removed the side bar except for the return button, centered the title label
+## centered history text
+screen customhistory_menu(title, scroll=None, yinitial=0.0):
+
+    style_prefix "chistory_menu"
+
+    if main_menu:
+        add gui.main_menu_background
+    else:
+        add gui.game_menu_background
+
+    frame:
+        style "game_menu_outer_frame"
+
+        hbox:
+
+            ## Reserve space for the navigation section.
+            frame:
+                style "game_menu_navigation_frame"
+
+            frame:
+                style "game_menu_content_frame"
+
+                if scroll == "viewport":
+
+                    viewport:
+            
+                        yinitial yinitial
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        vbox:
+                            transclude
+
+                elif scroll == "vpgrid":
+
+                    vpgrid:
+                        cols 1
+                        yinitial yinitial
+
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        transclude
+
+                else:
+
+                    transclude
+
+    #use navigation
+
+    textbutton _("Return"):
+        style "return_button"
+
+        action Return()
+    #screen size 1280 x 720
+    label title xpos 550 text_size 70
+
+    #if main_menu:
+        #key "game_menu" action ShowMenu("main_menu")
+
+
+style game_menu_outer_frame is empty
+style game_menu_navigation_frame is empty
+style game_menu_content_frame is empty
+style game_menu_viewport is gui_viewport
+style game_menu_side is gui_side
+style game_menu_scrollbar is gui_vscrollbar
+
+style game_menu_label is gui_label
+style game_menu_label_text is gui_label_text
+
+style return_button is navigation_button
+style return_button_text is navigation_button_text
+
+style game_menu_outer_frame:
+    bottom_padding 30
+    top_padding 120
+
+    background "gui/nvl.png"
+
+style game_menu_navigation_frame:
+    xsize 180
+    #yfill True
+
+style game_menu_content_frame:
+    left_margin 40
+    right_margin 20
+    top_margin 10
+
+style game_menu_viewport:
+    xsize 920
+
+style game_menu_vscrollbar:
+    unscrollable gui.unscrollable
+
+style game_menu_side:
+    spacing 10
+
+style game_menu_label:
+    xpos 50
+    ysize 120
+
+style game_menu_label_text:
+    size gui.title_text_size
+    color gui.accent_color
+    yalign 0.5
+
+style return_button:
+    color "#fff"
+    selected_color "#ff0"
+    xpos gui.navigation_xpos
+    yalign 1.0
+    yoffset -30
+    
 
 ## About screen ################################################################
 ##
@@ -572,7 +697,6 @@ style about_text is gui_text
 
 style about_label_text:
     size gui.label_text_size
-
 
 ## Load and Save screens #######################################################
 ##
@@ -886,51 +1010,39 @@ screen history():
 
     ## Avoid predicting this screen, as it can be very large.
     predict False
-    add "gui/nvl.png"
-    ##use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
-        ##style_prefix "history"
+   
+    use customhistory_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+       
+        style_prefix "ch_history"
 
-    frame:
-        xysize(200,200)
-        xalign 0.5
-        yalign 0.5
-        vbox:
+        for h in _history_list:
 
-            text "History" size 40 xpos -30 ypos -200
-            null height 200 
-            textbutton "Return" xpos -30 action Return()
-        vpgrid:
-            cols 1
-            spacing 5
-            draggable True
-            mousewheel True
-            scrollbars "vertical"
+            window:
 
-            for h in _history_list:
+                ## This lays things out properly if history_height is None.
+                has fixed:
+                    yfit True
+               
+                if h.who:
 
-                window:
-
-                    ## This lays things out properly if history_height is None.
-                    has fixed:
-                        yfit True
-
-                    if h.who:
-
-                        label h.who:
-                            style "history_name"
-                            substitute False
-
-                            ## Take the color of the who text from the Character, if
-                            ## set.
-                            if "color" in h.who_args:
-                                text_color h.who_args["color"]
-
-                    $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                    text what:
+                    label h.who:
+                        style "history_name"
                         substitute False
+                        text_size 30
+                        
+                        ## Take the color of the who text from the Character, if
+                        ## set.
+                        if "color" in h.who_args:
+                            text_color h.who_args["color"]
+            
+                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+                text what:
+                    substitute False
+                    size 25
 
-            if not _history_list:
-                label _("The dialogue history is empty.")
+
+        if not _history_list:
+            label _("The dialogue history is empty.")
 
 
 ## This determines what tags are allowed to be displayed on the history screen.

@@ -6,11 +6,11 @@
 # name of the character.
 
 #mc input name
-define mc = Character("[mcname]") # purple
-define il = Character("Ilse") # beekeeper
-define el = Character("Elodie") # blue
-define va = Character("Vance") # red
-define g = Character("Ghost")
+define mc = Character("[mcname]", color="#8e4eb1") # purple
+define il = Character("Ilse", color= "#c8b237" ) # beekeeper
+define el = Character("Elodie", color = "#48a7b7") # blue
+define va = Character("Vance", color= "#c23d5b") # red
+define g = Character("Ghost", color = "#a6c2b0")
 ##configure fonts ##
 #name: Nova Slim
 #text: Inconsolata
