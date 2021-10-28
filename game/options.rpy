@@ -30,6 +30,19 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+We're Team Tower of Creampuffs!
+
+Writing: Kai
+
+Lead Programmer: Emmanuel
+
+Programmer, Sound Designer: XQ
+
+Level Designer, Programmer: leftshu22
+
+Art: chronoblossom
+
+This game was created for the 3rd Annual Spooktober VN Game Jam.
 """)
 
 
