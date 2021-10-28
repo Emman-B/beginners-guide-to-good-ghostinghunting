@@ -1,8 +1,14 @@
+image credits_overlay = './gui/nvl.png'
+image credits_bg = './gui/Background.jpg'
 label credits:
     play music ('./music/Ghost_techies.wav')
     $ credits_speed = 15 #scrolling speed in seconds
-    scene black #replace this with a fancy background
-    with dissolve
+
+    # Background setting ===
+    scene credits_bg #replace this with a fancy background
+    #with dissolve
+    show credits_overlay
+    # ===
     show theend:
         yanchor 0.5 ypos 0.5
         xanchor 0.5 xpos 0.5
@@ -21,10 +27,10 @@ label credits:
     show logo with dissolve
     with Pause(2)
     
-    return
+    jump ending
 
 init python:
-    credits = ('Lead Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer, Programmer', 'Kendra'), ('Artist', 'Linda'), ('Programmer, Sound Designer', 'XQ'), ('Special Thanks', 'Backgrounds '), (' Dark Room, Bathroom', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room', ' by annako')
+    credits = ('Lead Programmer', 'Emmanuel'), ('Narrative Writer', 'Kaizena'), ('Level Designer, Programmer', 'Kendra'), ('Artist', 'Linda'), ('Programmer, Sound Designer', 'XQ'), ('Special Thanks to the following:', ''), ('Dark Room Background, Bathroom Background', 'by Nekomakino Dev'), ('House Backgrounds', ' by _hope_ow'), ('Interior Room Background', ' by annako')
     credits_s = "{size=80}Credits\n\n"
     c1 = ''
     for c in credits:
@@ -42,10 +48,15 @@ init:
 
 
 label ending:
+    # hide everything shown in credits
+    hide theend
+    hide cred
+    hide thanks
+    hide logo
     
-    #"..."
-    #".........." 
-    #".:. To be continued." 
+    "..."
+    ".........." 
+    "To be continued...{w}..?"
     
     
     return 
