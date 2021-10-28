@@ -236,6 +236,8 @@ label hangman:
             renpy.play(audio.correct, channel=u'sound')
             renpy.music.set_volume(0.5, delay=0, channel=u'sound')
             renpy.say(None, "I did it! This must be the correct answer! The ghost is saying \"[answer]\" ...? That's... really aggressive." )
+            renpy.hide_screen("hangman")
+            renpy.jump("hangman_end")
         else:
             renpy.play(audio.buzzWrong, channel=u'sound')
             # Possibly print the last message
@@ -251,3 +253,63 @@ label restart_hangman:
     menu: 
         "{color=#9b0617}Try again.{/color}":
             jump hangman
+
+label hangman_end: 
+    hide ghost mad
+    "My limbs feel heavy, but slowly, I regain feeling in them."
+    "The ghost must have also inflicted this sensation onto my teammates."
+    "I watch as everyone else also struggles to get up."
+    show ilse shocked at right with easeinleft
+    "With a surge of energy, Ilse stands in the blink of an eye, even with the heft of the Ghyson Vac-Pack weighing them down."
+    "In a single swift motion, the Ghyson is switched on. The loud {i}‘vwwoooooom’{/i} of the vacuum overtakes all other noises in the room."
+    hide ilse shocked 
+    show ghost mad at middle with dissolve:
+        alpha 0.25
+        xzoom 1.0 yzoom 1.0
+        linear 1.0 xzoom 1.20 yzoom .80
+        linear 1.0 xzoom .80 yzoom 1.20
+        linear 1.0 xzoom 1.0 yzoom 1.0
+        repeat 1
+    g "{i}OOooooOooouuuuUuAAHhh{/i}"
+    hide ghost mad with dissolve 
+    "The ghost’s shrieks are drowned out as it’s sucked into the Vac-Pack."
+    "As expected of the boss, forever reliable!"
+    show ilse happy at middle with dissolve 
+    il "Good job, team."
+    show vance neutral at right with moveinright
+    va "Whew, what a relief now that it’s gone. My legs are still shaking..."
+    show elodie scared at left with moveinleft
+    el "Now that what’s gone? By the way, I think there’s a leaky gas pipe somewhere."
+    el "The carbon monoxide poisoning really got us bad." 
+    #show vance scared at offscreenleft with move 
+    hide vance scared with dissolve 
+    #show elodie scared at offscreenleft with move
+    hide elodie scared with dissolve 
+    show ilse neutral 
+    il "That was good work you did back there."
+    show ilse happy 
+    il "Keep it up and before you know it, you’ll be the leader of your own ghost hunting team!"
+    show ilse shocked 
+    il "In fact, you’ll be the leader of this team starting tomorrow!"
+    hide ilse shocked 
+    show mc scared at left with dissolve 
+    mc "Huh?"
+    show ilse neutral at right with dissolve 
+    il "This was my last job. I’m retiring."
+    "B-But I was looking forward to learning from the boss!"
+    show ilse happy 
+    il "I’m sure you can make use of the team’s individual strengths."
+    "What strengths?!"
+    show ilse neutral 
+    il "You’ve proven yourself capable of being a professional ghost hunter."
+    show ilse neutral at offscreenright with move
+    hide ilse neutral with dissolve 
+    "This was only my first job. I’m still just a beginner!"
+    "Boss, come baaaackkk!!!"
+    show mc scared at offscreenright with move 
+    hide mc scared 
+    jump credits 
+
+
+
+

@@ -28,6 +28,7 @@ init:
 
 #active chase, qte fast"
 label begin_chase_room:
+    scene bg bedroom1 with dissolve 
     python:
         currently_playing = renpy.music.get_playing(channel=u'music')
         if currently_playing == None or currently_playing != audio.mazebgm:
@@ -74,7 +75,10 @@ label room_02:
     #sfx#
     play sound runningLight
     #sfx#
+    show ghost mad with dissolve:
+        alpha 0.1
     "I heard a soft whisper from behind me and I bolted out of the room and decided to..."
+    hide ghost mad 
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -87,6 +91,8 @@ label room_02:
             #sfx#
             scene bg hallway with dissolve 
             "I took another left and continued running forward."
+            show ghost mad with dissolve:
+                alpha 0.1
             "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
             jump death
 
@@ -113,7 +119,10 @@ label room_03:
     hide screen countdown 
     "I see a room up ahead and did a quick peek into the room looking for any good hiding spots."
     "{i}Another room with no decent hiding spots, huh.{\i}"
+    show ghost mad with dissolve:
+        alpha 0.1
     "All of the sudden, my flashlight started flickering uncontrollably. I heard the familiar whispers creeping closer to me and I..."
+    hide ghost mad 
     $ time = 5.0
     $ timer_range_chase = 5.0
     $ timer_jump = 'timerout'
@@ -191,7 +200,10 @@ label ghost_at_exit_mc_hiding:
 
 label ghost_explore_another_part_of_room:
     hide screen countdown
+    show ghost mad with dissolve: 
+        alpha .1
     "I can hear the distant whispers and objects hitting the floor."
+    hide ghost mad with dissolve 
     "{i}It must be over there...what should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
@@ -228,10 +240,15 @@ label ghost_gets_close_mc_while_walking_to_distract:
         "hide":
             hide screen countdown
             "I clamped both of my hands over my mouth, inched closer to the couch and hid myself."
+            show ghost mad with dissolve: 
+                alpha 0.1 
             "I can hear faint whispering coming closer to me."
+            hide ghost mad with dissolve 
             "I dug my fingers into my cheeks to prevent myself from making even a single breath."
             jump ghost_investigates_distraction
         "distract":
+            show ghost mad at middle with dissolve:
+                alpha .1 zoom 1.2
             "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
             "{i}I can try throwing my flashligh-{/i}"
             "I felt an icy chill breathe on my neck and my vision blackened."
@@ -249,12 +266,18 @@ label ghost_gets_close_mc_while_walking_to_distract:
             play sound runningLoud volume 1.0
             #sfx#
             "However in the middle of my dash, my foot snagged a loose floorboard and I fell right in front of the door."
+            show ghost mad with dissolve:
+                alpha 0.1
             "I could feel the whispers coming closer. I have to hurry. Ignoring the throbbing pain in my head, I quickly pushed myself up from the ground."
+            hide ghost mad with dissolve 
             jump mc_gets_injured
 
 label ghost_explore_very_close_to_mc:
+    show ghost mad with dissolve:
+        alpha 0.1 
     hide screen countdown
     "I held my breath, trying to make myself as small as possible. I could feel the ghost approaching. It's near by."
+    hide ghost mad with dissolve 
     "{i}What should I do now?{/i}"
     $ time = 7.0
     $ timer_range_chase = 7.0
@@ -267,6 +290,8 @@ label ghost_explore_very_close_to_mc:
             "{i}As long as I stay quiet, it shouldn't be able to notice me.{/i}"
             "{i}My teammates will notice me missing and look for me so I should stay put here.{/i}"
             "I leaned toward the table and stayed quiet for a few minutes. But I felt that same chill run down my back."
+            show ghost mad with dissolve:
+                alpha 0.25
             "I leap away from the table but all I heard was the whispers ringing louder and louder in my ears before I blacked out."
             jump death
         "run":
@@ -328,6 +353,8 @@ label timerout:
         renpy.music.stop(channel=u'music',fadeout=3.0)
     #music#
     hide screen countdown
+    show ghost mad with dissolve:
+        alpha 0.05
     "I barely had time to make a choice before I felt a sudden chill behind me."
     show mc scared at left 
     mc "N-no, I should have decided sooner..!"
@@ -338,7 +365,10 @@ label death:
         renpy.music.stop(channel=u'music')
         renpy.play(audio.buzzWrong, channel=u'sound')
     hide screen countdown
+    show ghost mad at middle with dissolve:
+        alpha .5 zoom 1.3
     "{b}You have been killed by the ghost.{/b}"
+    hide ghost with dissolve 
     jump restart
 label restart:
     python:
@@ -359,19 +389,73 @@ label exit_warehouse:
     #sfx#
     "{i}It seems like I've made to the backyard.{/i}"
     "I backed away from the door behind me and slumped down onto the ground before calling my teammates through the walkie-talkie."
-    return
+    scene bg outsideHouse with dissolve 
+    show mc neutral at left 
+    mc "Boss? I made it out."
+    hide mc neutral with dissolve 
+    va "{i}You’re alive! I thought for sure you were dead!{/i}"
+    el "{i}What were you even running from?{/i}"
+    il "{i}That’s good. What happened to the ghost?{/i}"
+    show mc neutral at left 
+    mc "It’s still inside. It left me alone after I got outside."
+    hide mc neutral with dissolve 
+    il "{i}Ah, I see it!{/i}"
+    "I only hear static through the walkie-talkie as what I assume is the Ghyson Vac-Pack is turned on."
+    "Oh, and Vance’s screaming. I also hear that in the background."
+    "The team soon makes their way outside."
+    show elodie neutral at left with moveinright
+    show ilse neutral at middle with moveinright
+    show vance neutral at right with moveinright
+    show ilse neutral 
+    il "Job well done, team."
+    show elodie happy at left 
+    show vance happy at right 
+    hide elodie happy with dissolve 
+    hide vance happy with dissolve 
+    show ilse happy 
+    il "And good job to you, as well, for making it out alive."
+    show mc scared at left with dissolve 
+    mc "Was that...something I should’ve been more worried about?"
+    "Maybe I should reconsider this ghost hunting job..."
+    hide mc scared 
+    jump credits 
+    #return
+
 label exit_injured:
     #music#
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
+    scene bg outsideHouse with dissolve
+    show vance neutral at left with moveinright
+    show ilse neutral at middle with moveinright
+    show elodie neutral at right with moveinright
+    "The rest of the team return sooner than expected."
+    hide ilse neutral 
+    hide vance neutral 
+    show mc scared at left with dissolve 
+    mc "You’re back already?"
+    el "It’s better we regroup and recuperate."
+    hide elodie neutral 
+    show vance scared at right with dissolve 
+    va "You’re {i}hurt{/i}?!"
+    show mc neutral 
+    mc "Nothing that can’t be fixed with a little rest."
+    mc "What about the ghost?"
+    hide vance scared 
+    show ilse neutral at right with dissolve 
+    il "We can always come back. It’s not like the anyone will move in while the ghost is still here."
+    mc "If you say so, boss."
+    show ilse happy
+    il "No need to be disappointed. That’s just the danger of this job."
+    show mc happy at left 
+    mc "I won’t let you down next time, boss."
+    hide ilse neutral with dissolve 
     show mc neutral at left 
-    mc "At least I got out alive..."
+    mc "Surely, I can do better..." 
     hide mc neutral 
-    "I touched the bump on my forehead again and flinched."
-    show mc neutral at left 
-    mc "There's probably an ice pack back at the truck."
+    jump credits 
     return
 label exit_wo_friends:
     #music#
@@ -402,4 +486,5 @@ label exit_wo_friends:
     mc "...No..N-no.."
     hide mc scared 
     stop sound 
-    return
+    jump credits 
+    #return
