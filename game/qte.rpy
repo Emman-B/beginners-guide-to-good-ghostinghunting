@@ -43,7 +43,7 @@ label begin_chase_room:
     menu:
         "Do nothing":
             hide screen countdown
-            "{i}If I stay still maybe it will leave me alone?{/i}"
+            "If I stay still maybe it will leave me alone?"
             "I feel a chill roll down my shoulder blades."
             "{i}What was that?{/i}"
             mc "A-"
@@ -87,7 +87,7 @@ label room_02:
             #sfx#
             scene bg hallway with dissolve 
             "I take another left and continue running forward."
-            "{i}I can hear the whispers right behind me. I need to get out of here befo-{/i}"
+            "I can hear the whispers right behind me. I need to get out of here befo-"
             jump death
 
         "Head straight":
@@ -106,7 +106,7 @@ label room_02:
             #sfx#
             scene bg hallway with dissolve 
             "I turn right and shine my light down the hallway. In the corner of my eye, I catch sight of the staircase."
-            "{i}This could be it. I've got a feeling this is the path to my way out.{\i}"
+            "This could be it. I've got a feeling this is the path to my way out."
             jump warehouse
 
 label room_03:
@@ -151,18 +151,18 @@ label warehouse:
     scene black with Dissolve(0.2)
 
     "My flashlight flickers slowly, dimmer than ever, before suddenly shutting off."
-    "There's no time to I couldn't do anything except run blindly straight ahead."
+    "There's no more time to think. All I can do is blindly run straight ahead."
     #sfx#
     play sound runningLight
     #sfx#
-    "After a few minutes of running in the dark, I see a light up ahead!"
+    "After a couple minutes of running in the dark, I can see a faint light up ahead!"
     "I arrive in a half-lit room."
 label ghost_at_exit_mc_hiding:
     hide screen countdown
     scene bg diningRoom with Dissolve(1)
-    "Looking around in the dimmed lights, I noticed a few broken furniture scattered throughout the room."
-    "I snuck behind a fallen table closest to me and crouched down."
-    "{i}What should I do now...{/i}"
+    "Looking around in the dimmed lights, I notice a few pieces of furniture scattered throughout the room."
+    "I crouch down behind a fallen table close by."
+    "What should I do now...?"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump= 'timerout'
@@ -174,26 +174,26 @@ label ghost_at_exit_mc_hiding:
     menu:
         "hide":
             hide screen countdown
-            "I kept quiet and hid behind the table."
+            "I keep quiet and stay hidden behind the table."
             jump ghost_explore_another_part_of_room
         "distract":
             hide screen countdown
-            "{i}Maybe I can distract it with this glass bottle.{\i}"
+            "Maybe I can distract it by throwing this convenient glass bottle."
             jump ghost_gets_close_mc_while_walking_to_distract
         "run":
             hide screen countdown
-            "I peeked out from behind the table and noticed something resembling an exit at the other end of the room."
-            "{i}Could that be the exit?{/i}"
+            "Peeking out from behind the table, I notice something resembling an exit at the other end of the room."
+            "Should I go for it? I'm stuck here otherwise. There's really no other choice."
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "I decided to risk it and dashed across the room."
+            "I make a mad dash across the room."
             jump exit_wo_friends
 
 label ghost_explore_another_part_of_room:
     hide screen countdown
-    "I can hear the distant whispers and objects hitting the floor."
-    "{i}It must be over there...what should I do now?{/i}"
+    "Distantly, I can hear the ghost's odd noises. Thumping noises and crashing sounds follow it as objects hit the floor."
+    "The ghost... it's over there somewhere. What should I do?"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'timerout'
@@ -201,26 +201,28 @@ label ghost_explore_another_part_of_room:
     menu:
         "hide":
             hide screen countdown
-            "I chose to continue hiding behind the table."
+            "If I'm lucky, the ghost won't come this way. I continue hiding behind the table."
             jump ghost_explore_very_close_to_mc
         "distract":
             hide screen countdown
-            "I threw the glass bottle I found near my feet to the opposite corner of the room."
+            "There's a stray glass bottle lying near my feet. I can distract it!"
+            "Gripping the cold bottle neck tight, I throw it towards the opposite corner of the room with all my might."
             jump ghost_investigates_distraction
         "run":
             hide screen countdown
-            "I craned my neck around the leg of the table and noticed something looking like an exit on the other side of the room."
-            "{i}If I can run fast enough and make it there, I can probably make it out.{/i}"
-            "I made a mad dash for the exit."
+            "Craning my head around one of the table legs, I notice something looking like an exit on the other side of the room."
+            "If I can run fast enough, I can probably make it out... I better be fast enough."
+            "Taking a deep breath, I make a break for it."
+            "I can make it! I'm so close to the exit, I can taste i-"
             jump death
 label ghost_gets_close_mc_while_walking_to_distract:
     hide screen countdown
     #sfx#
     play sound glassShatter volume 1.0
     #sfx#
-    "The bottle hit the ground few feet away from me and made a huge shattering sound."
-    "The shatter echoed through the room for a few seconds."
-    "I ducked down behind a couch and thought about my choices. I..."
+    "The bottle hits the ground a few feet away from me. The bottle shatters, the noise echoing throughout the room."
+    "Crap. I thought my throwing arm was stronger than that."
+    "Knowing I can't stay in the same spot, I duck behind a nearby couch and think about my available options. I..."
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'timerout'
@@ -228,35 +230,34 @@ label ghost_gets_close_mc_while_walking_to_distract:
     menu:
         "hide":
             hide screen countdown
-            "I clamped both of my hands over my mouth, inched closer to the couch and hid myself."
-            "I can hear faint whispering coming closer to me."
-            "I dug my fingers into my cheeks to prevent myself from making even a single breath."
+            "I clamp both my hands over my mouth and do my best to shrink down even smaller."
+            "The whispy noise I associate with the ghost moving approaches."
+            "I dig my nails into my cheeks, hoping to prevent any noise from escaping past my fingers."
             jump ghost_investigates_distraction
         "distract":
-            "{i}It seems like it's working but...I feel like it is closer to me than ever before.{/i}"
-            "{i}I can try throwing my flashligh-{/i}"
-            "I felt an icy chill breathe on my neck and my vision blackened."
+            "It... seems like it worked? But at the same time... Is it just me, or is the ghost even closer to me than before?"
+            "I can always try making another distraction by throwing my flashli-"
+            "All I feel is a chill fluttering on the back of my neck as my vision starts to blacken."
             scene black with dissolve 
             hide screen countdown
             jump death
         "run":
             hide screen countdown
-            "I crawled to the other side of the couch and peeked out. Glancing around, I see a wide opened door close by."
-            "{i}Could that be the exit? Should I risk it?{/i}"
-            "I decided to risk it."
-            "Sucking in a deep breath, I leaped out from behind the couch and ran straight for the exit."
+            "I crawl to the far side of the couch and try to get a glimpse of the place. Glancing around, I see a door left wide open."
+            "Surely, I can make it?"
+            "I take off towards the door."
             scene bg door with dissolve 
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "However in the middle of my dash, my foot snagged a loose floorboard and I fell right in front of the door."
-            "I could feel the whispers coming closer. I have to hurry. Ignoring the throbbing pain in my head, I quickly pushed myself up from the ground."
+            "However in my mad scramble, a loose floorboard catches my foot and I tumble to the ground right in front of the door."
+            "But I can't afford to lay about and whine; I can hear the ghost coming closer. Ignoring the throbbing pain in my head I got from tumble, I force myself to stand."
             jump mc_gets_injured
 
 label ghost_explore_very_close_to_mc:
     hide screen countdown
-    "I held my breath, trying to make myself as small as possible. I could feel the ghost approaching. It's near by."
-    "{i}What should I do now?{/i}"
+    "I hold my breath, trying to make myself as silent as possible. It's so close I can feel it moving."
+    "What now?"
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'timerout'
@@ -264,21 +265,22 @@ label ghost_explore_very_close_to_mc:
     menu: 
         "hide":
             hide screen countdown
-            "{i}I figured I should play it safe and continued to hide behind the table.{/i}"
-            "{i}As long as I stay quiet, it shouldn't be able to notice me.{/i}"
-            "{i}My teammates will notice me missing and look for me so I should stay put here.{/i}"
-            "I leaned toward the table and stayed quiet for a few minutes. But I felt that same chill run down my back."
-            "I leap away from the table but all I heard was the whispers ringing louder and louder in my ears before I blacked out."
+            "I play it safe and continue hiding behind the table."
+            "As long as I stay quiet, it shouldn't be able to notice me... right?"
+            "Sooner or later, my teammates will locate me if I stay put."
+            "I relax against the table silently and wait. Only a few minutes pass when I feel a chill run down my back."
+            "It's found me! I leap away from the table, but it's too late."
+            "All I hear is the ghost's ominous voice screeching at me louder and louder in my ears until I blacked out."
             jump death
         "run":
             hide screen countdown
-            "Cautiously, I peeked out from the side of the table and noticed a doorway at the end of the room."
-            "{i}That might be the exit. If I can make it to that door, I can escape. I can do this.{/i}"
+            "Cautiously, I peek out from around the table and notice a doorway at the end of the room."
+            "It's possible that could be the exit. If I can make it to that door, I can escape!"
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "I braced myself, jumping from behind the table and raced for the door on the other side of the room."
-            "{i}It's all or nothing now.{/i}"
+            "I brace myself, jumping out from my hiding place and race for the door."
+            "There's no going back now."
             python: ##50/50 chance of survival
                 chance_survival = (renpy.random.random()*99)+1
                 if(chance_survival > 50):
@@ -288,8 +290,8 @@ label ghost_explore_very_close_to_mc:
                 
 label ghost_investigates_distraction:
     hide screen countdown
-    "I heard the sound of glass crunching in the distance."
-    "{i}It's not gonna stay distracted forever so I should..."
+    "I hear the sound of glass crunching in the distance."
+    "It's not gonna stay distracted forever so I should..."
     $ time = 7.0
     $ timer_range_chase = 7.0
     $ timer_jump = 'timerout'
@@ -297,29 +299,29 @@ label ghost_investigates_distraction:
     menu:
         "hide":
             hide screen countdown
-            "{i}It's better to play it safe. I don't know how long the distraction will last so I shouldn't do anything drastic.{/i}"
-            "I continued to hide behind the couch and kept very still."
+            "It's better to play it safe. I don't know how long the distraction will last so I shouldn't do anything drastic."
+            "I continue hiding behind the couch and keep very still."
             jump ghost_explore_very_close_to_mc
         "run":
             hide screen countdown
-            "{i}It's distracted now, I should make a break for it.{/i}"
+            "It's distracted now. I should make a break for it."
             #sfx#
             play sound runningLoud volume 1.0
             #sfx#
-            "I crept closer to the open doorway and then bolted for the door."
+            "I creep closer to the open doorway. When I see my chance, I bolt for the door."
             jump exit_warehouse
 
 label mc_gets_injured:
     #scene bg door with dissolve 
     #(prev choice already has this bg)
-    "I rushed through the doorway and slammed the door shut behind me."
+    "Stumbling through the doorway, I slam the door shut behind me."
     scene bg outsideHouse with fade 
     #sfx#
     play sound doorSlam volume 1.0
     #sfx#
-    "{i}I'm safe...{/i}"
-    "I wiped the sweat off my forehead before wincing. The bump on my forehead throbbed painfully."
-    "{i}Dang, must have got that from when I fell...tch{/i}"
+    "Finally, I'm safe..."
+    "I wipe the sweat off my forehead and wince. There's a bump on my head where I hit my head when I fell."
+    "Ow."
     jump exit_injured
 
 #endings#
@@ -329,7 +331,7 @@ label timerout:
         renpy.music.stop(channel=u'music',fadeout=3.0)
     #music#
     hide screen countdown
-    "I barely had time to make a choice before I felt a sudden chill behind me."
+    "I spent too long making a decision, the ghost has already caught up to me!"
     show mc scared at left 
     mc "N-no, I should have decided sooner..!"
     hide mc scared 
@@ -354,12 +356,13 @@ label exit_warehouse:
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
     scene bg door with fade 
-    "I pushed past the doorway and closed the door behind me. Suddenly I felt so exhausted."
+    "I push past the doorway and close the door behind me. I made it out!"
+    "All at once, the adrenaline fades and all I feel is exhaustion."
     #sfx#
     play sound doorSlamClick volume 1.0
     #sfx#
-    "{i}It seems like I've made to the backyard.{/i}"
-    "I backed away from the door behind me and slumped down onto the ground before calling my teammates through the walkie-talkie."
+    "When I finally look up, I see that I've made to the backyard."
+    "I slump to the ground. Now that I have the time to rest, I pull out my walkie-talkie and call my teammates."
     return
 label exit_injured:
     #music#
@@ -370,9 +373,10 @@ label exit_injured:
     show mc neutral at left 
     mc "At least I got out alive..."
     hide mc neutral 
-    "I touched the bump on my forehead again and flinched."
+    "I flinch when I touch the bump on my head again."
     show mc neutral at left 
-    mc "There's probably an ice pack back at the truck."
+    mc "The van. There must be an ice pack back at the van."
+    "Slowly, I make my way around the house to the car. Slapping an ice pack against my head, I wait for the others to make it out."
     return
 label exit_wo_friends:
     #music#
@@ -381,26 +385,28 @@ label exit_wo_friends:
     #music#
     play music mainbgm fadein 5.0 fadeout 2.5
     scene bg door with dissolve 
-    "I made it through the doorway and slammed the door before running away as fast as I could."
+    "I make it through the doorway and slam the door shut behind me. I don't bother slowing down until I'm a good distance away from the exit."
     #sfx#
     play sound doorSlam volume 1.0
     #sfx#
     #show mc happy at left 
     scene bg outsideHouse with dissolve 
-    "{i}Looks like haa.. Aa.. Haa.. I.. Haa.. Made it to the backyard.{/i}"
+    "It takes me a few long moments to catch my breath, but when I finally look around, I see that I made it to the backyard."
     hide mc scared at left 
-    "After a few moments of catching my breath, I clicked the walkie-talkie button to call my teammates."
+    "Now that I'm no longer running for my life, I have the time to pull out my walkie-talkie to contact my teammates."
     show mc happy at left 
-    mc "Hello? Hey I'm in the backyard, where is everyo-"
+    mc "Hello? I made it out to the backyard. Where is everyo-"
     hide mc happy 
-    "I was cut off by a loud screech followed muffled screams and static."
+    "I'm cut off by a loud screech of static. The walkie-talkie drops to the ground when I let go, startled."
+    "When the static noises finally fades, it's followed by muffled screaming."
     play sound radioStatic volume 1.0
     show mc scared at left 
-    mc "H-hey where are you g-guys??" with vpunch 
+    mc "H-Hey, what's going on? Are you all okay?" with vpunch 
     hide mc scared at left 
-    "The static noise quickly muffled out any voices and screams before going silent."
+    "The screams are overtaken when the static noise starts once more."
+    "Then suddenly, it stops."
     show mc scared at left 
-    mc "...No..N-no.."
+    mc "...No... N-no..."
     hide mc scared 
     stop sound 
     return
