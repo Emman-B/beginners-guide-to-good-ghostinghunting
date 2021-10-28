@@ -62,31 +62,95 @@ define audio.footsteps = "./sfx/walking.wav"
 define audio.vroom = "./sfx/wind_ambience.wav"
 #######
 
-##Image Character Sprites##
-image bp sad = "./images/bp_rock_d.png"
-
-image ghost mad = "./images/ghost_mad.png"
+##CONDITION SWITCH-Image Character Sprites## 
+#Highlight Speaker Sprites and Dim non-speaking sprites 
+#image ghost mad = ConditionSwitch(
+            #"_last_say_who == 'g'", "./images/ghost_mad.png",
+            #"not _last_say_who == 'g'", im.MatrixColor("./images/ghost_mad.png", im.matrix.brightness(-0.3)))
+#image ghost neutral = ConditionSwitch(
+            #"_last_say_who == 'g'", "./images/ghost_neutral.png",
+            #"not _last_say_who == 'g'", im.MatrixColor("./images/ghost_neutral.png", im.matrix.brightness(-0.3)))
 image ghost neutral = "./images/ghost_neutral.png"
+image ghost mad = "./images/ghost_mad.png"
 
-image elodie neutral = "./images/elodie_neutral.png"
-image elodie happy = "./images/elodie_happy.png"
-image elodie scared = "./images/elodie_scared.png"
-image elodie smug = "./images/elodie_smug.png"
-image vance neutral = "./images/vance_neutral.png"
-image vance scared = "./images/vance_scared.png"
-image vance happy = "./images/vance_happy.png"
+image elodie neutral = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_neutral.png",
+            "not _last_say_who == 'el'", "./images/elodie _neutral_quiet.png")
+image elodie happy = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_happy.png",
+            "not _last_say_who == 'el'", "./images/elodie _happy_quiet.png")
+image elodie scared = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_scared.png",
+            "not _last_say_who == 'el'", "./images/elodie _scared_quiet.png")
+image elodie smug = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_smug.png",
+            "not _last_say_who == 'el'", "./images/elodie _smug_quiet.png")
+image vance neutral = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_neutral.png",
+            "not _last_say_who == 'va'", "./images/vance_neutral_quiet.png")
+image vance scared = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_scared.png",
+            "not _last_say_who == 'va'", "./images/vance_scared_quiet.png")
+image vance happy = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_happy.png",
+            "not _last_say_who == 'va'", "./images/vance_happy_quiet.png")
 
-image ilse happy = "./images/ilse_happy.png"
-image ilse mad = "./images/ilse_mad.png"
-image ilse neutral = "./images/ilse_neutral.png"
-image ilse scared = "./images/ilse_scared.png"
-image ilse shocked = "./images/ilse_shocked.png"
 
-image mc happy = "./images/mc_happy.png"
-image mc neutral = "./images/mc_neutral.png"
-image mc scared = "./images/mc_scared.png"
+image ilse happy = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_happy.png",
+            "not _last_say_who == 'il'", "./images/ilse_happy_quiet.png")
+image ilse mad = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_mad.png",
+            "not _last_say_who == 'il'", "./images/ilse_mad_quiet.png")
+image ilse neutral = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_neutral.png",
+            "not _last_say_who == 'il'", "./images/ilse_neutral_quiet.png")
+image ilse scared = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_scared.png",
+            "not _last_say_who == 'il'", "./images/ilse_scared_quiet.png")
+image ilse shocked = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_shocked.png",
+            "not _last_say_who == 'il'", "./images/ilse_shocked_quiet.png")
+
+
+image mc happy =  ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_happy.png",
+            "not _last_say_who == 'mc'", "./images/mc_happy_quiet.png")
+image mc neutral = ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_neutral.png",
+            "not _last_say_who == 'mc'", "./images/mc_neutral_quiet.png")
+
+image mc scared = ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_scared.png",
+            "not _last_say_who == 'mc'", "./images/mc_scared_quiet.png")
 
 image logo = "./images/logo.png"
+
+
+
+##OLD Image Character Sprites##
+#image bp sad = "./images/bp_rock_d.png"
+
+#image ghost mad = "./images/ghost_mad.png"
+#image ghost neutral = "./images/ghost_neutral.png"
+
+#image elodie neutral = "./images/elodie_neutral.png"
+#image elodie happy = "./images/elodie_happy.png"
+#image elodie scared = "./images/elodie_scared.png"
+#image elodie smug = "./images/elodie_smug.png"
+#image vance neutral = "./images/vance_neutral.png"
+#image vance scared = "./images/vance_scared.png"
+#image vance happy = "./images/vance_happy.png"
+
+#image ilse happy = "./images/ilse_happy.png"
+#image ilse mad = "./images/ilse_mad.png"
+#image ilse neutral = "./images/ilse_neutral.png"
+#image ilse scared = "./images/ilse_scared.png"
+#image ilse shocked = "./images/ilse_shocked.png"
+
+#image mc happy = "./images/mc_happy.png"
+#image mc neutral = "./images/mc_neutral.png"
+#image mc scared = "./images/mc_scared.png"
 
 ##Image Backgrounds##
 image bg dorm night = "./images/A01-3_HomeBase_DormRoom_Night.png"
@@ -104,7 +168,6 @@ image bg door = "./images/door.png"
 image bg hallway = "./images/hallway.png"
 image bg bedroom1 = "./images/bedroom_1.png"
 image bg bedroom2 = "./images/bedroom_2.png"
-
 
 
 ###########################
@@ -158,7 +221,7 @@ label start:
     scene black with dissolve 
     #here the ghost is BARELY VISible, suppose to be VERY subtle and not noticable 
     show ghost mad at middle with dissolve:
-        alpha 0.08
+        alpha 0.085
     "Both attributed these mysteries to the presence of a ghost."
     hide ghost mad with dissolve 
 
@@ -369,9 +432,12 @@ label ch03:
     el "Calm down, Vance. It's just an old house."
     show vance scared at right 
     va "Just?! Say that again when you're six feet under!" with vpunch
+    hide elodie smug
+    hide vance scared
 
     menu:
         "Yes, boss!":
+            show elodie neutral at left 
             hide vance scared
             show ilse neutral at right with easeinleft
             il "Alright. Looks like we're at a consensus. Let's begin."
@@ -389,9 +455,10 @@ label ch03:
         "Maybe Vance has a point.":
             
             show elodie neutral at left 
+            show vance scared at right 
             el "Aw, not you, too! C'mon, it'll be a quick in and out job."
             hide elodie neutral
-            hide vance neutral
+            hide vance scared
             show ilse neutral at right 
             il "This is your chance to get more experience. It's not as scary as Vance makes it out to be."
             hide ilse neutral 
