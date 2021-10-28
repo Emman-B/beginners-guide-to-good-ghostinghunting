@@ -344,7 +344,8 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
-
+    #xalign 0.0
+    #xpos 170
 
 ## Main Menu screen ############################################################
 ##
@@ -535,13 +536,12 @@ style return_button:
     yalign 1.0
     yoffset -30
 
+
 ## Customized History Screen ###################################################
 ## Copied and edited the game_menu, and then passed into actually history screen
 ## removed the side bar except for the return button, centered the title label
 ## centered history text
-screen customhistory_menu(title, scroll=None, yinitial=0.0):
-
-    style_prefix "chistory_menu"
+screen custom_menu(title, scroll=None, yinitial=0.0):
 
     if main_menu:
         add gui.main_menu_background
@@ -601,7 +601,7 @@ screen customhistory_menu(title, scroll=None, yinitial=0.0):
 
         action Return()
     #screen size 1280 x 720
-    label title xpos 550 text_size 70
+    label title xalign 0.5 text_size 70
 
     #if main_menu:
         #key "game_menu" action ShowMenu("main_menu")
@@ -628,7 +628,7 @@ style game_menu_outer_frame:
 
 style game_menu_navigation_frame:
     xsize 180
-    #yfill True
+    yfill True
 
 style game_menu_content_frame:
     left_margin 40
@@ -654,12 +654,10 @@ style game_menu_label_text:
     yalign 0.5
 
 style return_button:
-    color "#fff"
-    selected_color "#ff0"
     xpos gui.navigation_xpos
     yalign 1.0
     yoffset -30
-    
+
 
 ## About screen ################################################################
 ##
@@ -675,7 +673,7 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use custom_menu(_("About"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -840,10 +838,10 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use custom_menu(_("Preferences"), scroll="viewport"):
 
         vbox:
-
+            
             hbox:
                 box_wrap True
 
@@ -1011,7 +1009,7 @@ screen history():
     ## Avoid predicting this screen, as it can be very large.
     predict False
    
-    use customhistory_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use custom_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
        
         style_prefix "ch_history"
 
@@ -1103,7 +1101,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("Help"), scroll="viewport"):
+    use custom_menu(_("Help"), scroll="viewport"):
 
         style_prefix "help"
 
