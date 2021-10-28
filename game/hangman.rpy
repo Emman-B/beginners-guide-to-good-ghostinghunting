@@ -261,6 +261,8 @@ label hangman_end:
     "I watch as everyone else also struggles to get up."
     show ilse shocked at right with easeinleft
     "With a surge of energy, Ilse stands in the blink of an eye, even with the heft of the Ghyson Vac-Pack weighing them down."
+    play sound clickSingle
+    play sound vacuum
     "In a single swift motion, the Ghyson is switched on. The loud {i}‘vwwoooooom’{/i} of the vacuum overtakes all other noises in the room."
     hide ilse shocked 
     show ghost mad at middle with dissolve:
@@ -290,12 +292,14 @@ label hangman_end:
     show ilse happy 
     il "Keep it up and before you know it, you’ll be the leader of your own ghost hunting team!"
     show ilse shocked 
+    stop music fadeout 0.2
     il "In fact, you’ll be the leader of this team starting tomorrow!"
     hide ilse shocked 
     show mc scared at left with dissolve 
     mc "Huh?"
     show ilse neutral at right with dissolve 
     il "This was my last job. I’m retiring."
+    play music setupbgm 
     "B-But I was looking forward to learning from the boss!"
     show ilse happy 
     il "I’m sure you can make use of the team’s individual strengths."
@@ -308,6 +312,7 @@ label hangman_end:
     "Boss, come baaaackkk!!!"
     show mc scared at offscreenright with move 
     hide mc scared 
+    stop music
     jump credits 
 
 

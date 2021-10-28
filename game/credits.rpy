@@ -13,7 +13,7 @@ label credits:
         yanchor 0.5 ypos 0.5
         xanchor 0.5 xpos 0.5
     with dissolve
-    with Pause(2)
+    #with Pause(0.5)
     hide theend
     show cred at Move((0.5, 5.0), (0.5, 0.0), credits_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
     with Pause(credits_speed)
@@ -21,11 +21,11 @@ label credits:
         yanchor 0.5 ypos 0.5
         xanchor 0.5 xpos 0.5
     with dissolve
-    with Pause(2)
+    with Pause(0.5)
     hide thanks
     stop music fadeout 1.0
     show logo with dissolve
-    with Pause(2)
+    with Pause(0.5)
     
     jump ending
 
