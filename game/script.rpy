@@ -398,11 +398,11 @@ label ch02:
     mc "What, why not? Isn't this exciting?"
    
     hide mc happy at left
-    show vance neutral at left
+    show vance scared at left
     
     va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
     
-    show vance neutral at right with easeoutright
+    show vance scared at right with easeoutright
     
     # Enter Ilse
     show ilse neutral at left
