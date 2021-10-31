@@ -23,13 +23,26 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.1."
 
 
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+We're Team Tower of Creampuffs!
+
+Writing: Kai
+
+Lead Programmer: Emmanuel
+
+Programmer, Sound Designer: XQ
+
+Level Designer, Programmer: leftshu22
+
+Art: chronoblossom
+
+This game was created for the 3rd Annual Spooktober VN Game Jam.
 """)
 
 

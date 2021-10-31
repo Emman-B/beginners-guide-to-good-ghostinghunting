@@ -295,7 +295,10 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        if main_menu:
+            yalign 0.65
+        else:
+            yalign 0.5
 
         spacing gui.navigation_spacing
 
@@ -344,7 +347,8 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
-
+    #xalign 0.0
+    #xpos 170
 
 ## Main Menu screen ############################################################
 ##
@@ -374,7 +378,8 @@ screen main_menu():
 
             text "[config.name!t]":
                 style "main_menu_title"
-
+        vbox:
+            style "main_menu_vbox"
             text "[config.version]":
                 style "main_menu_version"
 
@@ -389,18 +394,25 @@ style main_menu_frame:
     xsize 280
     yfill True
 
-    background "gui/overlay/main_menu4.png"
+    background "gui/main_menu.png"
 
 style main_menu_vbox:
-    xalign 1.0
+    xalign 0.10
     xoffset -20
     xmaximum 800
-    yalign 1.0
+    yalign 0.10
     yoffset -20
+#the version number position settings
+style main_menu_version:
+    xalign 0.0
+    xoffset -90
+    xmaximum 700
+    yalign 1.0
+    yoffset 625
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
-
+    
 style main_menu_title:
     properties gui.text_properties("title")
 
@@ -536,6 +548,128 @@ style return_button:
     yoffset -30
 
 
+## Customized History Screen ###################################################
+## Copied and edited the game_menu, and then passed into actually history screen
+## removed the side bar except for the return button, centered the title label
+## centered history text
+screen custom_menu(title, scroll=None, yinitial=0.0):
+
+    if main_menu:
+        add gui.main_menu_background
+    else:
+        add gui.game_menu_background
+
+    frame:
+        style "game_menu_outer_frame"
+
+        hbox:
+
+            ## Reserve space for the navigation section.
+            frame:
+                style "game_menu_navigation_frame"
+
+            frame:
+                style "game_menu_content_frame"
+
+                if scroll == "viewport":
+
+                    viewport:
+            
+                        yinitial yinitial
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        vbox:
+                            transclude
+
+                elif scroll == "vpgrid":
+
+                    vpgrid:
+                        cols 1
+                        yinitial yinitial
+
+                        scrollbars "vertical"
+                        mousewheel True
+                        draggable True
+                        pagekeys True
+
+                        side_yfill True
+
+                        transclude
+
+                else:
+
+                    transclude
+
+    #use navigation
+
+    textbutton _("Return"):
+        style "return_button"
+
+        action Return()
+    #screen size 1280 x 720
+    label title xalign 0.5 text_size 70
+
+    #if main_menu:
+        #key "game_menu" action ShowMenu("main_menu")
+
+
+style game_menu_outer_frame is empty
+style game_menu_navigation_frame is empty
+style game_menu_content_frame is empty
+style game_menu_viewport is gui_viewport
+style game_menu_side is gui_side
+style game_menu_scrollbar is gui_vscrollbar
+
+style game_menu_label is gui_label
+style game_menu_label_text is gui_label_text
+
+style return_button is navigation_button
+style return_button_text is navigation_button_text
+
+style game_menu_outer_frame:
+    bottom_padding 30
+    top_padding 120
+
+    background "gui/nvl.png"
+
+style game_menu_navigation_frame:
+    xsize 180
+    yfill True
+
+style game_menu_content_frame:
+    left_margin 40
+    right_margin 20
+    top_margin 10
+
+style game_menu_viewport:
+    xsize 920
+
+style game_menu_vscrollbar:
+    unscrollable gui.unscrollable
+
+style game_menu_side:
+    spacing 10
+
+style game_menu_label:
+    xpos 50
+    ysize 120
+
+style game_menu_label_text:
+    size gui.title_text_size
+    color gui.accent_color
+    yalign 0.5
+
+style return_button:
+    xpos gui.navigation_xpos
+    yalign 1.0
+    yoffset -30
+
+
 ## About screen ################################################################
 ##
 ## This screen gives credit and copyright information about the game and Ren'Py.
@@ -550,7 +684,7 @@ screen about():
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
+    use custom_menu(_("About"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -572,7 +706,6 @@ style about_text is gui_text
 
 style about_label_text:
     size gui.label_text_size
-
 
 ## Load and Save screens #######################################################
 ##
@@ -716,10 +849,10 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use custom_menu(_("Preferences"), scroll="viewport"):
 
         vbox:
-
+            
             hbox:
                 box_wrap True
 
@@ -783,14 +916,14 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    #if config.has_voice:
+                        #label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                        #hbox:
+                            #bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                            #if config.sample_voice:
+                                #textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -883,12 +1016,13 @@ screen history():
 
     tag menu
 
+
     ## Avoid predicting this screen, as it can be very large.
     predict False
-
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
-
-        style_prefix "history"
+   
+    use custom_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+       
+        style_prefix "ch_history"
 
         for h in _history_list:
 
@@ -897,21 +1031,24 @@ screen history():
                 ## This lays things out properly if history_height is None.
                 has fixed:
                     yfit True
-
+               
                 if h.who:
 
                     label h.who:
                         style "history_name"
                         substitute False
-
+                        text_size 30
+                        
                         ## Take the color of the who text from the Character, if
                         ## set.
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
-
+            
                 $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
                 text what:
                     substitute False
+                    size 25
+
 
         if not _history_list:
             label _("The dialogue history is empty.")
@@ -975,7 +1112,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("Help"), scroll="viewport"):
+    use custom_menu(_("Help"), scroll="viewport"):
 
         style_prefix "help"
 

@@ -58,18 +58,19 @@ init 5 python:
         "get the heck out",
         "i will kill you",
         "you will die here",
-        "death awaits you"
+        "death awaits you",
+        "trespassers will be persecuted"
     ]
 
     # set messages to be told per used-up try (first item = first message shown at the start)
     # player lose feelings to body parts.
     messages_per_try = [
             None,
-            Message("", "... That's strange, my leg fell asleep."),
-            Message("", "Now my other leg fell asleep... What's going on?"),
-            Message("", "I can no longer feel my left arm. This ghost is doing something to me..."),
-            Message("", "My right arm is gone too..."),
-            Message("", "I can't feel my chest anymore... I think I'm going to faint...")
+            Message("", "... That's strange, I can't feel my leg! What's going on?"),
+            Message("", "Now I've suddenly lost feeling in my other leg... I can't even walk like this. The ghost, it's doing something to me."),
+            Message("", "I can no longer feel my left arm. I'm running out of limbs... I've got to find out what the ghost is saying!"),
+            Message("", "My right arm...That's the last of my limbs. I can't move! At this rate..."),
+            Message("", "I can hear my pulse slowing down in my chest. I think... this is my last chance to get it right before I pass out...")
         ]
 
 
@@ -109,7 +110,7 @@ style black_frame:
 """
 # Hangman starts here
 label hangman:
-    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.2 loop
+    play music "<from 11 to 30>./music/Ringin_eaR.wav" fadein 4.0 volume 0.4 loop
 
     python:
         """
@@ -190,7 +191,7 @@ label hangman:
             remaining_tries = max_tries - current_tries
             guess = ""
             while len(guess) == 0:
-                guess = renpy.input("I have only [remaining_tries] tries left, h-huh?. I s-should pick a different letter.", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
+                guess = renpy.input("Guess a letter:", "", length=1, allow="abcdefghijklmnopqrstuvwxyz", exclude=excluded_letters)
 
 
             # exclude the guessed letter
@@ -212,7 +213,7 @@ label hangman:
                         current[i] = True
             else:
                 # Failure case: decrement number of tries
-                renpy.say(None, "I-it's not the letter [guess] h-huh? M-man...what is this ghost trying to say..")
+                renpy.say(None, "Looks like the letter [guess] isn't part of the message. Just what is it trying to say...?")
                 current_tries += 1
             
             """
@@ -234,14 +235,16 @@ label hangman:
         if correct_answer_found:
             renpy.play(audio.correct, channel=u'sound')
             renpy.music.set_volume(0.5, delay=0, channel=u'sound')
-            renpy.say(None, "I did it. I did it!! I guessed correct and was able to communicate with the ghost! \"[answer]\", huh!? Man..this ghost sounds aggressive." )
+            renpy.say(None, "I did it! This must be the correct answer! The ghost is saying \"[answer]\" ...? That's... really aggressive." )
+            renpy.hide_screen("hangman")
+            renpy.jump("hangman_end")
         else:
             renpy.play(audio.buzzWrong, channel=u'sound')
             # Possibly print the last message
             if message_index == current_tries and message_index < len(messages_per_try):
                 say_message_object(messages_per_try[message_index])
                 message_index += 1
-            renpy.say(None, "I couldn't..do..it. My whole body hurts.. The last thing I saw was my teammates running toward me...")
+            renpy.say(None, "I've...failed. This is it. I can feel... the last of my focus fading... away. I'll... do better in my... next life...")
             renpy.jump("restart_hangman")
     stop music fadeout 1.0
     return
@@ -250,3 +253,69 @@ label restart_hangman:
     menu: 
         "{color=#9b0617}Try again.{/color}":
             jump hangman
+
+label hangman_end: 
+    hide ghost mad
+    "My limbs feel heavy, but slowly, I regain feeling in them."
+    "The ghost must have also inflicted this sensation onto my teammates."
+    "I watch as everyone else also struggles to get up."
+    scene bg afterdead with dissolve
+    show ilse shocked at right with easeinleft
+    "With a surge of energy, Ilse stands in the blink of an eye, even with the heft of the Ghyson Vac-Pack weighing them down."
+    play sound clickSingle
+    play sound vacuum
+    "In a single swift motion, the Ghyson is switched on. The loud {i}‘vwwoooooom’{/i} of the vacuum overtakes all other noises in the room."
+    hide ilse shocked 
+    show ghost mad at middle with dissolve:
+        alpha 0.25
+        xzoom 1.0 yzoom 1.0
+        linear 1.0 xzoom 1.20 yzoom .80
+        linear 1.0 xzoom .80 yzoom 1.20
+        linear 1.0 xzoom 1.0 yzoom 1.0
+        repeat 1
+    g "{i}OOooooOooouuuuUuAAHhh{/i}"
+    hide ghost mad with dissolve 
+    "The ghost’s shrieks are drowned out as it’s sucked into the Vac-Pack."
+    "As expected of the boss, forever reliable!"
+    show ilse happy at middle with dissolve 
+    il "Good job, team."
+    show vance neutral at right with moveinright
+    va "Whew, what a relief now that it’s gone. My legs are still shaking..."
+    show elodie scared at left with moveinleft
+    el "Now that what’s gone? By the way, I think there’s a leaky gas pipe somewhere."
+    el "The carbon monoxide poisoning really got us bad." 
+    #show vance scared at offscreenleft with move 
+    hide vance scared with dissolve 
+    #show elodie scared at offscreenleft with move
+    hide elodie scared with dissolve 
+    show ilse neutral 
+    il "That was good work you did back there."
+    show ilse happy 
+    il "Keep it up and before you know it, you’ll be the leader of your own ghost hunting team!"
+    show ilse shocked 
+    stop music fadeout 0.2
+    il "In fact, you’ll be the leader of this team starting tomorrow!"
+    hide ilse shocked 
+    show mc scared at left with dissolve 
+    mc "Huh?"
+    show ilse neutral at right with dissolve 
+    il "This was my last job. I’m retiring."
+    play music setupbgm 
+    "B-But I was looking forward to learning from the boss!"
+    show ilse happy 
+    il "I’m sure you can make use of the team’s individual strengths."
+    "What strengths?!"
+    show ilse neutral 
+    il "You’ve proven yourself capable of being a professional ghost hunter."
+    show ilse neutral at offscreenright with move
+    hide ilse neutral with dissolve 
+    "This was only my first job. I’m still just a beginner!"
+    "Boss, come baaaackkk!!!"
+    show mc scared at offscreenright with move 
+    hide mc scared 
+    stop music
+    jump credits 
+
+
+
+
