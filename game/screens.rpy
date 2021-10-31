@@ -295,7 +295,10 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        if main_menu:
+            yalign 0.65
+        else:
+            yalign 0.5
 
         spacing gui.navigation_spacing
 
@@ -375,7 +378,8 @@ screen main_menu():
 
             text "[config.name!t]":
                 style "main_menu_title"
-
+        vbox:
+            style "main_menu_vbox"
             text "[config.version]":
                 style "main_menu_version"
 
@@ -390,18 +394,25 @@ style main_menu_frame:
     xsize 280
     yfill True
 
-    background "gui/overlay/main_menu4.png"
+    background "gui/main_menu.png"
 
 style main_menu_vbox:
-    xalign 1.0
+    xalign 0.10
     xoffset -20
     xmaximum 800
-    yalign 1.0
+    yalign 0.10
     yoffset -20
+#the version number position settings
+style main_menu_version:
+    xalign 0.0
+    xoffset -90
+    xmaximum 700
+    yalign 1.0
+    yoffset 625
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
-
+    
 style main_menu_title:
     properties gui.text_properties("title")
 
@@ -905,14 +916,14 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    #if config.has_voice:
+                        #label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                        #hbox:
+                            #bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                            #if config.sample_voice:
+                                #textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
