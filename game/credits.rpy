@@ -1,6 +1,11 @@
 image credits_overlay = './gui/nvl.png'
 image credits_bg = './gui/Background.jpg'
 label credits:
+    python:
+        # Only prevent input if the player hasn't seen credits
+        if not persistent.seen_credits:
+            persistent.seen_credits = True      # set this to true
+            set_allowed_input(False)            # block input
     play music ('./music/Ghost_techies.wav')
     $ credits_speed = 15 #scrolling speed in seconds
 
@@ -13,7 +18,7 @@ label credits:
         yanchor 0.5 ypos 0.5
         xanchor 0.5 xpos 0.5
     with dissolve
-    #with Pause(0.5)
+    with Pause(0.5)
     hide theend
     show cred at Move((0.5, 5.0), (0.5, 0.0), credits_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
     with Pause(credits_speed)
@@ -27,6 +32,10 @@ label credits:
     show logo with dissolve
     with Pause(0.5)
     
+    # YOU MUST INCLUDE THIS BEFORE LEAVING THIS LABEL
+    $ set_allowed_input(True)
+
+
     jump ending
 
 init python:
@@ -39,6 +48,14 @@ init python:
         credits_s += "{size=60}" + c[1] + "\n"
         c1=c[0]
     credits_s += "\n{size=40}Engine\n{size=60}Ren'py\n7.4.8.1895" #Don't forget to set this to your Ren'py version
+
+
+    # Function for allowing/preventing input
+    def set_allowed_input(allowed):
+        store._game_menu_screen = u'save_screen' if allowed else None
+        store._dismiss_pause = allowed
+        store._skipping = allowed
+        store._rollback = allowed
     
 init:
 #    image cred = Text(credits_s, font="myfont.ttf", text_align=0.5) #use this if you want to use special fonts
@@ -48,6 +65,8 @@ init:
 
 
 label ending:
+    # This is just in case the previous call to allow input was removed
+    $ set_allowed_input(True)
     # hide everything shown in credits
     hide theend
     hide cred
