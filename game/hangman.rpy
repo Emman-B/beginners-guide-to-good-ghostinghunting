@@ -59,7 +59,7 @@ init 5 python:
         "i will kill you",
         "you will die here",
         "death awaits you",
-        "tresspassers will be persecuted"
+        "trespassers will be persecuted"
     ]
 
     # set messages to be told per used-up try (first item = first message shown at the start)
@@ -259,6 +259,7 @@ label hangman_end:
     "My limbs feel heavy, but slowly, I regain feeling in them."
     "The ghost must have also inflicted this sensation onto my teammates."
     "I watch as everyone else also struggles to get up."
+    scene bg afterdead with dissolve
     show ilse shocked at right with easeinleft
     "With a surge of energy, Ilse stands in the blink of an eye, even with the heft of the Ghyson Vac-Pack weighing them down."
     play sound clickSingle
