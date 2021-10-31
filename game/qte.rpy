@@ -315,6 +315,7 @@ label ghost_explore_very_close_to_mc:
                 
 label ghost_investigates_distraction:
     hide screen countdown
+    play sound glassShatter
     "I hear the sound of glass crunching in the distance."
     "It's not gonna stay distracted forever so I should..."
     $ time = 7.0
@@ -396,14 +397,21 @@ label exit_warehouse:
     scene bg outsideHouse with dissolve 
     show mc neutral at left 
     mc "Boss? I made it out."
+    #music#
+    python:
+        renpy.music.stop(channel=u'music',fadeout=2.0)
+    #music#
+    play sound radioStatic volume 0.5
+    stop sound
     hide mc neutral with dissolve 
-    va "{i}You’re alive! I thought for sure you were dead!{/i}"
-    el "{i}What were you even running from?{/i}"
-    il "{i}That’s good. What happened to the ghost?{/i}"
+    va "You’re alive! I thought for sure you were dead!"
+    el "What were you even running from?"
+    il "That’s good. What happened to the ghost?"
     show mc neutral at left 
+    play music setupbgm
     mc "It’s still inside. It left me alone after I got outside."
     hide mc neutral with dissolve 
-    il "{i}Ah, I see it!{/i}"
+    il "Ah, I see it!"
     "I only hear static through the walkie-talkie as what I assume is the Ghyson Vac-Pack is turned on."
     "Oh, and Vance’s screaming. I also hear that in the background."
     "The team soon makes their way outside."
@@ -422,6 +430,7 @@ label exit_warehouse:
     mc "Was that...something I should’ve been more worried about?"
     "Maybe I should reconsider this ghost hunting job..."
     hide mc scared 
+    hide ilse happy
     jump credits 
     #return
 
@@ -430,12 +439,13 @@ label exit_injured:
     python:
         renpy.music.stop(channel=u'music',fadeout=2.0)
     #music#
-    play music mainbgm fadein 5.0 fadeout 2.5
+    play music mainbgm volume 0.9 fadein 5.0 fadeout 2.5
     scene bg outsideHouse with dissolve
     "I flinch when I touch the bump on my head again."
     show mc neutral at left 
     mc "The van. There must be an ice pack back at the van."
     "Slowly, I make my way around the house to the car. Slapping an ice pack against my head, I wait for the others to make it out."
+    hide mc neutral at left
     show vance neutral at left with moveinright
     show ilse neutral at middle with moveinright
     show elodie neutral at right with moveinright
@@ -484,13 +494,14 @@ label exit_wo_friends:
     show mc happy at left 
     mc "Hello? I made it out to the backyard. Where is everyo-"
     hide mc happy 
+    play sound radioStatic volume 1.0 fadeout 0.1
     "I'm cut off by a loud screech of static. The walkie-talkie drops to the ground when I let go, startled."
     "When the static noises finally fades, it's followed by muffled screaming."
-    play sound radioStatic volume 1.0
     show mc scared at left 
     mc "H-Hey, what's going on? Are you all okay?" with vpunch 
     hide mc scared at left 
     "The screams are overtaken when the static noise starts once more."
+    play sound buzzWrong
     "Then suddenly, it stops."
     show mc scared at left 
     mc "...No... N-no..."
