@@ -6,11 +6,11 @@
 # name of the character.
 
 #mc input name
-define mc = Character("[mcname]", what_prefix='"', what_suffix='"') # purple
-define il = Character("Ilse", what_prefix='"', what_suffix='"') # beekeeper
-define el = Character("Elodie", what_prefix='"', what_suffix='"') # blue
-define va = Character("Vance", what_prefix='"', what_suffix='"') # red
-define g = Character("Ghost", what_prefix='"', what_suffix='"')
+define mc = Character("[mcname]",  color="#8e4eb1", what_prefix='"', what_suffix='"') # purple
+define il = Character("Ilse", color= "#c8b237", what_prefix='"', what_suffix='"') # beekeeper
+define el = Character("Elodie", color = "#48a7b7", what_prefix='"', what_suffix='"') # blue
+define va = Character("Vance", color= "#c23d5b", what_prefix='"', what_suffix='"') # red
+define g = Character("Ghost", color = "#a6c2b0", what_prefix='"', what_suffix='"')
 ##configure fonts ##
 #name: Nova Slim
 #text: Inconsolata

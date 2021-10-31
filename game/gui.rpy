@@ -33,11 +33,11 @@ define gui.idle_color = u'#888888'
 define gui.idle_small_color = u'#aaaaaa'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = u'#464f4b'
+define gui.hover_color = u'#a9c6b6'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = u'#ffffff'
+define gui.selected_color = u'#8ab59b'
 
 ## The color used for a text button when it cannot be selected.
 define gui.insensitive_color = u'#8888887f'
@@ -187,7 +187,7 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(10, 4, 10, 4)
 
 define gui.quick_button_borders = Borders(10, 4, 10, 0)
-define gui.quick_button_text_size = 14
+define gui.quick_button_text_size = 20
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
@@ -195,7 +195,7 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ## For example, you can uncomment the following line to set the width of a
 ## navigation button.
 
-# define gui.navigation_button_width = 250
+#define gui.navigation_button_width = 250
 
 
 ## Choice Buttons ##############################################################
@@ -308,7 +308,7 @@ define gui.frame_tile = False
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 25
 define gui.scrollbar_size = 12
-define gui.slider_size = 25
+define gui.slider_size = 30
 
 ## True if bar images should be tiled. False if they should be linearly scaled.
 define gui.bar_tile = False
@@ -318,7 +318,7 @@ define gui.slider_tile = False
 ## Horizontal borders.
 define gui.bar_borders = Borders(4, 4, 4, 4)
 define gui.scrollbar_borders = Borders(4, 4, 4, 4)
-define gui.slider_borders = Borders(4, 4, 4, 4)
+define gui.slider_borders = Borders(6, 6, 6, 6)
 
 ## Vertical borders.
 define gui.vbar_borders = Borders(4, 4, 4, 4)
@@ -339,20 +339,21 @@ define config.history_length = 250
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
-define gui.history_height = 140
+define gui.history_height = None
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 155
+define gui.history_name_xpos = 20
 define gui.history_name_ypos = 0
-define gui.history_name_width = 155
-define gui.history_name_xalign = 1.0
+define gui.history_name_width = 3000
+define gui.history_name_xalign = 0.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.history_text_xpos = 170
-define gui.history_text_ypos = 2
+define gui.history_text_xpos = 130
+define gui.history_text_ypos = 5
 define gui.history_text_width = 740
 define gui.history_text_xalign = 0.0
+
 
 
 ## NVL-Mode ####################################################################
