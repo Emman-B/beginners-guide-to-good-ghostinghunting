@@ -6,11 +6,11 @@
 # name of the character.
 
 #mc input name
-define mc = Character("[mcname]") # purple
-define il = Character("Ilse") # beekeeper
-define el = Character("Elodie") # blue
-define va = Character("Vance") # red
-define g = Character("Ghost")
+define mc = Character("[mcname]", what_prefix='"', what_suffix='"') # purple
+define il = Character("Ilse", what_prefix='"', what_suffix='"') # beekeeper
+define el = Character("Elodie", what_prefix='"', what_suffix='"') # blue
+define va = Character("Vance", what_prefix='"', what_suffix='"') # red
+define g = Character("Ghost", what_prefix='"', what_suffix='"')
 ##configure fonts ##
 #name: Nova Slim
 #text: Inconsolata
@@ -62,29 +62,95 @@ define audio.footsteps = "./sfx/walking.wav"
 define audio.vroom = "./sfx/wind_ambience.wav"
 #######
 
-##Image Character Sprites##
-image bp sad = "./images/bp_rock_d.png"
-
-image ghost mad = "./images/ghost_mad.png"
+##CONDITION SWITCH-Image Character Sprites## 
+#Highlight Speaker Sprites and Dim non-speaking sprites 
+#image ghost mad = ConditionSwitch(
+            #"_last_say_who == 'g'", "./images/ghost_mad.png",
+            #"not _last_say_who == 'g'", im.MatrixColor("./images/ghost_mad.png", im.matrix.brightness(-0.3)))
+#image ghost neutral = ConditionSwitch(
+            #"_last_say_who == 'g'", "./images/ghost_neutral.png",
+            #"not _last_say_who == 'g'", im.MatrixColor("./images/ghost_neutral.png", im.matrix.brightness(-0.3)))
 image ghost neutral = "./images/ghost_neutral.png"
+image ghost mad = "./images/ghost_mad.png"
 
-image elodie neutral = "./images/elodie_neutral.png"
-image elodie happy = "./images/elodie_happy.png"
-image elodie scared = "./images/elodie_scared.png"
-image elodie smug = "./images/elodie_smug.png"
-image vance neutral = "./images/vance_neutral.png"
-image vance scared = "./images/vance_scared.png"
-image vance happy = "./images/vance_happy.png"
+image elodie neutral = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_neutral.png",
+            "not _last_say_who == 'el'", "./images/elodie _neutral_quiet.png")
+image elodie happy = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_happy.png",
+            "not _last_say_who == 'el'", "./images/elodie _happy_quiet.png")
+image elodie scared = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_scared.png",
+            "not _last_say_who == 'el'", "./images/elodie _scared_quiet.png")
+image elodie smug = ConditionSwitch(
+            "_last_say_who == 'el'", "./images/elodie_smug.png",
+            "not _last_say_who == 'el'", "./images/elodie _smug_quiet.png")
+image vance neutral = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_neutral.png",
+            "not _last_say_who == 'va'", "./images/vance_neutral_quiet.png")
+image vance scared = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_scared.png",
+            "not _last_say_who == 'va'", "./images/vance_scared_quiet.png")
+image vance happy = ConditionSwitch(
+            "_last_say_who == 'va'", "./images/vance_happy.png",
+            "not _last_say_who == 'va'", "./images/vance_happy_quiet.png")
 
-image ilse happy = "./images/ilse_happy.png"
-image ilse mad = "./images/ilse_mad.png"
-image ilse neutral = "./images/ilse_neutral.png"
-image ilse scared = "./images/ilse_scared.png"
-image ilse shocked = "./images/ilse_shocked.png"
 
-image mc happy = "./images/mc_happy.png"
-image mc neutral = "./images/mc_neutral.png"
-image mc scared = "./images/mc_scared.png"
+image ilse happy = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_happy.png",
+            "not _last_say_who == 'il'", "./images/ilse_happy_quiet.png")
+image ilse mad = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_mad.png",
+            "not _last_say_who == 'il'", "./images/ilse_mad_quiet.png")
+image ilse neutral = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_neutral.png",
+            "not _last_say_who == 'il'", "./images/ilse_neutral_quiet.png")
+image ilse scared = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_scared.png",
+            "not _last_say_who == 'il'", "./images/ilse_scared_quiet.png")
+image ilse shocked = ConditionSwitch(
+            "_last_say_who == 'il'", "./images/ilse_shocked.png",
+            "not _last_say_who == 'il'", "./images/ilse_shocked_quiet.png")
+
+
+image mc happy =  ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_happy.png",
+            "not _last_say_who == 'mc'", "./images/mc_happy_quiet.png")
+image mc neutral = ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_neutral.png",
+            "not _last_say_who == 'mc'", "./images/mc_neutral_quiet.png")
+
+image mc scared = ConditionSwitch(
+            "_last_say_who == 'mc'", "./images/mc_scared.png",
+            "not _last_say_who == 'mc'", "./images/mc_scared_quiet.png")
+
+image logo = "./images/logo.png"
+
+
+
+##OLD Image Character Sprites##
+#image bp sad = "./images/bp_rock_d.png"
+
+#image ghost mad = "./images/ghost_mad.png"
+#image ghost neutral = "./images/ghost_neutral.png"
+
+#image elodie neutral = "./images/elodie_neutral.png"
+#image elodie happy = "./images/elodie_happy.png"
+#image elodie scared = "./images/elodie_scared.png"
+#image elodie smug = "./images/elodie_smug.png"
+#image vance neutral = "./images/vance_neutral.png"
+#image vance scared = "./images/vance_scared.png"
+#image vance happy = "./images/vance_happy.png"
+
+#image ilse happy = "./images/ilse_happy.png"
+#image ilse mad = "./images/ilse_mad.png"
+#image ilse neutral = "./images/ilse_neutral.png"
+#image ilse scared = "./images/ilse_scared.png"
+#image ilse shocked = "./images/ilse_shocked.png"
+
+#image mc happy = "./images/mc_happy.png"
+#image mc neutral = "./images/mc_neutral.png"
+#image mc scared = "./images/mc_scared.png"
 
 ##Image Backgrounds##
 image bg dorm night = "./images/A01-3_HomeBase_DormRoom_Night.png"
@@ -102,7 +168,6 @@ image bg door = "./images/door.png"
 image bg hallway = "./images/hallway.png"
 image bg bedroom1 = "./images/bedroom_1.png"
 image bg bedroom2 = "./images/bedroom_2.png"
-
 
 
 ###########################
@@ -133,23 +198,7 @@ label DEBUG_start_menu:
             return
 
 label start:
-    scene bg dorm night with fade
-
-    python:
-        mcname = renpy.input("Your name?", length=32)
-        mcname = mcname.strip()
-        if not mcname: 
-            mcname = "Emm Cee"
-    mc "The name is [mc]."
-    
-    if DEBUG_start_menu_testing:
-        call DEBUG_start_menu
-
-    jump ch01
-
-    return
-
-label ch01:
+    #scene bg dorm night with fade
     scene black
     play sound "<from 1 to 3>./sfx/wind_ambience.wav" volume 0.7 loop
     "\"Your destination is on the right.\""
@@ -158,7 +207,7 @@ label ch01:
     makes me look up and out the van's wide window."
 
     "Squinting through the darkness of night, I can make out an average sized townhouse."
- 
+    scene bg outsideHouse with dissolve 
     "The client had said it wasn't an old or decrepit house, and yet looking at it now,
     I can see chipped paint and a boarded up window. Sure it's not old, but it's definitely damaged."
     
@@ -172,11 +221,33 @@ label ch01:
     
     "There were unknown messes littering the ground, furniture moved to positions they weren't supposed to be in," 
     "appliances broken when they were working the last time they were touched."
-
+    scene black with dissolve 
+    #here the ghost is BARELY VISible, suppose to be VERY subtle and not noticable 
+    show ghost mad at middle with dissolve:
+        alpha 0.085
     "Both attributed these mysteries to the presence of a ghost."
+    hide ghost mad with dissolve 
 
     "That's where we come in."
+    show mc neutral at middle with dissolve 
 
+    python:
+        mcname = renpy.input("My name is?", length=32)
+        mcname = mcname.strip()
+        if not mcname: 
+            mcname = "Emm Cee"
+    #show mc neutral at middle with dissolve 
+    mc "The name is [mc]."
+    
+    if DEBUG_start_menu_testing:
+        call DEBUG_start_menu
+
+    jump ch01
+
+    return
+
+label ch01:
+    hide mc neutral with dissolve 
     "I'm a member of a team of ghost hunters, hired to eliminate threats from the afterlife."
 
     "It's not the most dignified occupation, but I applied hoping to satisfy my need for adventure."
@@ -184,6 +255,7 @@ label ch01:
     "As the newest member of the team, I can only hope that I meet everyone's expectations."
 
     "After all, this is a team of professionals I'm joining."
+    
     stop music
     jump ch02
 
@@ -201,7 +273,8 @@ label ch02:
     ""
     show ilse neutral at right with easeinleft 
     show mc neutral at left
-    mc "Yes, boss!" 
+    #mc "\"Yes, boss!\"" 
+    mc "Yes, boss!"
     hide mc neutral at left
     "Boss" "No need to call me boss. Just Ilse is fine."
     "That's the boss for you; reliable and friendly. They know everything there is to
@@ -320,16 +393,16 @@ label ch02:
     va "If Ilse forgets about me, I won't need to go in."
     
     hide vance neutral at left
-    show mc neutral at left
+    show mc happy at left
    
     mc "What, why not? Isn't this exciting?"
    
-    hide mc neutral at left
-    show vance neutral at left
+    hide mc happy at left
+    show vance scared at left
     
     va "More like the complete opposite! What's fun about sacrificing ourselves to the demons inside that house?!"
     
-    show vance neutral at right with easeoutright
+    show vance scared at right with easeoutright
     
     # Enter Ilse
     show ilse neutral at left
@@ -339,11 +412,11 @@ label ch02:
     va "No. Please, don't make me go in there."
 
     il "It'll be over soon."
-
+    show vance scared 
     va "Nooooo!"
 
-    # Exit Ilse, Vance
-    hide vance neutral
+    # Exit Ilse, Vanced
+    hide vance scared
     hide ilse neutral
     
     "Well, that's everyone."
@@ -358,13 +431,16 @@ label ch03:
     show vance scared at middle with easeinleft
         
     va "No! Can I leave? Three is more than enough people."
-    show elodie smug at left 
+    show elodie smug at left with easeinleft
     el "Calm down, Vance. It's just an old house."
     show vance scared at right 
     va "Just?! Say that again when you're six feet under!" with vpunch
+    hide elodie smug
+    hide vance scared
 
     menu:
         "Yes, boss!":
+            show elodie neutral at left 
             hide vance scared
             show ilse neutral at right with easeinleft
             il "Alright. Looks like we're at a consensus. Let's begin."
@@ -382,9 +458,10 @@ label ch03:
         "Maybe Vance has a point.":
             
             show elodie neutral at left 
+            show vance scared at right 
             el "Aw, not you, too! C'mon, it'll be a quick in and out job."
             hide elodie neutral
-            hide vance neutral
+            hide vance scared
             show ilse neutral at right 
             il "This is your chance to get more experience. It's not as scary as Vance makes it out to be."
             hide ilse neutral 
@@ -538,12 +615,16 @@ label study_ilse:
     it over the sound of the Ghyson."
     play sound clickSingle 
     play sound vacuum volume 0.5 
+    hide mc neutral 
+    #show ilse mad at right with ease
     "They direct the vacuum head over the dangerous shards.
     With a faint clinking noise, the fragments are all sucked into the machine."
     
-    show ilse neutral at middle 
+    show ilse neutral 
     il "There! Now the ground is clear for us to work with."
-    
+    #hide ilse neutral 
+    show mc neutral at left 
+    show ilse neutral at right with ease
     "I shove the rest of the objects to the side of the room while Ilse rummages through their
     deep pockets. "
     "What could they be looking for?"
@@ -551,6 +632,7 @@ label study_ilse:
     play sound glassShatter volume 0.2
     play sound rustling volume 0.2
     
+    show mc scared at left
     show ilse shocked at middle 
     il "Ah ha!" with vpunch 
     
@@ -559,9 +641,10 @@ label study_ilse:
     show ilse happy at middle 
     il "With this, we can protect ourselves, maybe even hurt the ghost. Like so!"
     
+    show mc neutral 
     "They take the carton and pour the salt out, forming a ring of it. They step inside the circle."
     play sound saltScatter volume 0.5
-    show ilse neutral 
+    show ilse neutral at right with ease 
     il "Ta dah!"
     
     show mc happy at left 
@@ -580,23 +663,27 @@ label study_ilse:
     "Ilse beckons me closer."
 
     il "Hold out your hands."
+    hide ilse neutral 
     show mc neutral at left 
+    #show mc neutral at middle with moveinleft
     "I do the best I can while holding onto a video camera and a flashlight.
     They pour the salt into my awkwardly cupped hands."
     hide mc neutral 
+    show ilse neutral at middle 
     il "Now toss it around the room. Sprinkle it."
     play sound saltScatter volume 0.5
     show ilse shocked 
     il "...{w}Hmm, nothing at all. If there were a ghost, it would probably react."
     show mc happy at left 
+    #show ilse shocked at right
     mc "It's a good thing there isn't."
-    show ilse neutral at middle 
+    show ilse neutral at right with ease 
     il "Why is that?"
-    show mc neutral at left 
+    #show mc neutral at left 
     mc "Because your salt circle. The wind's already blown it away."
-    show ilse shocked at middle 
+    show ilse shocked at right
     il "The wind? But the doors and windows are all closed."
-    show ilse scared at middle 
+    show ilse scared at right 
     show mc scared at left 
     "Ilse and I exchange glances. We wordlessly agree that it's time to regroup."
     hide ilse scared 
@@ -626,13 +713,13 @@ label bathroom_vance:
     va "Don't startle me like that! Please."
     show mc scared at left 
     mc "Sorry, I didn't mean to."
-    
+    show mc neutral 
     mc "So what did you bring to help us find the ghost?"
     show vance scared at right
     va "I don't want to find the ghost. In fact, I hope there is no ghost!"
     show mc neutral at left 
     mc "What? Why not? The whole point of this job is to locate the ghost, isn't it?"
-    show vance neutral at right 
+    show vance happy at right 
     va "It pays, [mcname], it pays."
     show mc happy at left 
     "Ah, yes. Money speaks. I guess that's another valid reason for people to apply for this job."
@@ -642,11 +729,11 @@ label bathroom_vance:
     show vance neutral at right 
     va "Correction: We don't get paid if there is a g-ghost and we don't find it.
     If we tell them there wasn't a ghost in the first place, on the other hand..."
-    
+    show mc scared
     mc "You mean lying?"
     show vance scared at right 
     va "No, of course not! This here—"
-    
+    #show mc neutral 
     "He waves the device in his hands around so frantically I can't tell what he's holding.
     I can just make out an antenna sticking out of it."
     show vance neutral at right 
@@ -673,7 +760,7 @@ label bathroom_vance:
     mc "I don't think this frequency is working. Try another?"
     hide mc neutral 
     play sound radioStatic volume 0.7
-    "\" - -s-six - - oint - - - thre - fff - -\""
+    "{i}\" - -s-six - - oint - - - thre - fff - -\"{/i}"
     show vance scared at right 
     va "WAAAAUUGGHH!!!" with vpunch 
     show mc scared at left 
@@ -714,7 +801,7 @@ label bathroom_vance:
 
 
 label diningroom_elodie:
-    show elodie happy 
+    show elodie happy at middle 
     el "Okay. Let's go!"
     hide elodie happy 
 
@@ -722,7 +809,7 @@ label diningroom_elodie:
     
     "We shuffle into the dining room, where a table capable of seating four and its chairs sit."
     
-    show elodie neutral 
+    show elodie neutral at middle
     "Instead of scanning the room for the presence of ghosts,"
     play sound cameraMultiple
     "Elodie pulls out her phone and starts taking pictures of the paintings hanging on the wall."
@@ -842,7 +929,7 @@ label ch04:
     hide elodie neutral with dissolve
     hide vance neutral  with dissolve 
     
-    #show mc neutral at left with ease 
+    show mc neutral at left 
 
     "There’s nothing to do but follow."
     hide mc neutral with dissolve 
@@ -882,50 +969,67 @@ label catchUpWithTeam:
     "I scurry forward into the room. They must be waiting for me…"
     scene bg bedroom2 with dissolve 
     #insert cg here? 
-    "Inside the room is my team, alright. But they’ve all collapsed on the ground!"
+    "Inside the room is my team, alright. But they’ve all collapsed!"
     show mc scared at left with ease 
     mc "Everyone?" 
-    mc "Elodie?"
-    mc "Vance?"
-    mc "Boss?"
     hide mc scared 
+    "No one responds."
+    show mc scared at left with dissolve 
+    mc "Elodie? Vance?"
+    mc "...Boss?"
+    hide mc scared 
+    "They groan weakly. What a relief! At least they’re not dead. {w}Yet."
     "{i}Aaauuuueeeeuuuoooogghhh...{/i}"
-    "And I’m not alone either..."
+    "Huh? That groan didn’t sound like any of my teammates."
+    "It’s all echo-y and it came from behind me, not in front of me."
+    "Waaaait a moment..."
     "I turn around to see —"
 
     #enter ghost    
-    show ghost mad with dissolve 
+    show ghost mad at middle with dissolve:
+        alpha .15 
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
     mc "Aah!" with vpunch 
     hide mc scared 
-    show ghost mad 
-    g "AhhH - Hhh - - hh"
+    show ghost mad at middle with dissolve:
+        alpha .15
+    g "{i}AhhH - Hhh - - hh{/i}"
     hide ghost mad 
     show mc scared at left 
+    mc "The Ghost! We’ve finally found you… {w}but the team is completely out of it! What did you do to them?”"
     mc "What...did you do to my team?"
     hide mc scared 
-    show ghost mad 
-    g "OOoo - - ouuu - u - UUUuu - - - - - tttt"
+    show ghost mad at middle with dissolve:
+        alpha .25
+    g "{i}OOoo - - ouuu - u - UUUuu - - - - - tttt{/i}"
     hide ghost mad 
     show mc scared at left 
-    mc "That...sounds like words. Kind of sounded like ‘out’. Are you...talking to me?"
+    mc "It kind of sounds like it’s saying something. I can’t understand it, though."
+    mc "It hasn’t attacked me just yet. Why is that?"
     hide mc scared 
-    show ghost mad with dissolve 
-    "The ghost hisses again."
+    "The ghost draws slightly nearer."
+    show ghost mad at middle with dissolve: 
+        zoom 1.5 alpha .25 
+    g "{i}Gh - heEE - - hhHee - - - et - T{/i}"
     hide ghost mad with dissolve 
     show mc neutral at left 
-    "I’ve got to figure out what it’s trying to say to find out what happened to the others."
+    "If I can figure out what the ghost is trying to say to me, perhaps I’ll be able to find out what it did to the others to make them pass out." 
+    "That is, if I can guess it without passing out myself."
+    "I’ll save them, even if it takes one letter at a time!"
     hide mc scared at left with dissolve 
+    show ghost mad with dissolve:
+        alpha 0.1
     jump hangman
 
 label littlePeek:
     scene bg bedroom1 with dissolve 
     "I push the door open and nearly run headfirst into another person."
     "Wait. Another person?!"
-    show ghost mad with dissolve 
-    "\"WwwhhhhooOOO\""
+    show ghost mad at middle with dissolve: 
+        alpha .5
+    "{i}\"WwwhhhhooOOO\"{/i}"
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
