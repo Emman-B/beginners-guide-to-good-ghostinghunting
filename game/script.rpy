@@ -168,8 +168,8 @@ image bg door = "./images/door.png"
 image bg hallway = "./images/hallway.png"
 image bg bedroom1 = "./images/bedroom_1.png"
 image bg bedroom2 = "./images/bedroom_2.png"
-
-
+image bg dead = "./images/ded.png"
+image bg afterdead = "./images/after_dead.png"
 ###########################
 
 ##custom x coord for sprites##
@@ -967,7 +967,7 @@ label catchUpWithTeam:
     "I look up to find the hallway empty. Have the others already reached the last room?"
     play sound footsteps
     "I scurry forward into the room. They must be waiting for me…"
-    scene bg bedroom2 with dissolve 
+    scene bg dead with dissolve 
     #insert cg here? 
     "Inside the room is my team, alright. But they’ve all collapsed!"
     show mc scared at left with ease 
@@ -987,14 +987,14 @@ label catchUpWithTeam:
 
     #enter ghost    
     show ghost mad at middle with dissolve:
-        alpha .15 
+        alpha .5 
     "The Ghost!"
     hide ghost mad 
     show mc scared at left 
     mc "Aah!" with vpunch 
     hide mc scared 
     show ghost mad at middle with dissolve:
-        alpha .15
+        alpha .5
     g "{i}AhhH - Hhh - - hh{/i}"
     hide ghost mad 
     show mc scared at left 
@@ -1002,7 +1002,7 @@ label catchUpWithTeam:
     mc "What...did you do to my team?"
     hide mc scared 
     show ghost mad at middle with dissolve:
-        alpha .25
+        alpha .5
     g "{i}OOoo - - ouuu - u - UUUuu - - - - - tttt{/i}"
     hide ghost mad 
     show mc scared at left 
@@ -1011,7 +1011,7 @@ label catchUpWithTeam:
     hide mc scared 
     "The ghost draws slightly nearer."
     show ghost mad at middle with dissolve: 
-        zoom 1.5 alpha .25 
+        zoom 1.5 alpha .5 
     g "{i}Gh - heEE - - hhHee - - - et - T{/i}"
     hide ghost mad with dissolve 
     show mc neutral at left 
@@ -1020,7 +1020,7 @@ label catchUpWithTeam:
     "I’ll save them, even if it takes one letter at a time!"
     hide mc scared at left with dissolve 
     show ghost mad with dissolve:
-        alpha 0.1
+        alpha 0.25
     jump hangman
 
 label littlePeek:

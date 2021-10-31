@@ -37,8 +37,8 @@ label begin_chase_room:
     if visited_right_return_to_start:
         scene bg bedroom1 with dissolve 
         "Somehow, I've ended up outside the same room I started in."
-    $ time = 5.0
-    $ timer_range_chase = 5.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
@@ -76,11 +76,11 @@ label room_02:
     play sound runningLight
     #sfx#
     show ghost mad with dissolve:
-        alpha 0.1
+        alpha 0.25
     "I hear a soft whisper come from behind me. I bolt out of the room and decide to..."
     hide ghost mad 
-    $ time = 5.0
-    $ timer_range_chase = 5.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
@@ -92,7 +92,7 @@ label room_02:
             scene bg hallway with dissolve 
             "I take another left and continue running forward."
             show ghost mad with dissolve:
-                alpha 0.1
+                alpha 0.25
             "I can hear the whispers right behind me. I need to get out of here befo-"
             jump death
 
@@ -120,11 +120,11 @@ label room_03:
     "I see a room up ahead and quickly peek into the it, looking for hiding spots."
     "This room is a bust as well."
     show ghost mad with dissolve:
-        alpha 0.1
+        alpha 0.25
     "All of a sudden, my flashlight starts flickering uncontrollably. That familiar ghostly whisper is creeping closer behind me, so I..."
     hide ghost mad 
-    $ time = 5.0
-    $ timer_range_chase = 5.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
@@ -172,8 +172,8 @@ label ghost_at_exit_mc_hiding:
     "Looking around in the dimmed lights, I notice a few pieces of furniture scattered throughout the room."
     "I crouch down behind a fallen table close by."
     "What should I do now...?"
-    $ time = 7.0
-    $ timer_range_chase = 7.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump= 'timerout'
     #music#
     python:
@@ -202,12 +202,12 @@ label ghost_at_exit_mc_hiding:
 label ghost_explore_another_part_of_room:
     hide screen countdown
     show ghost mad with dissolve: 
-        alpha .1
+        alpha .25
     "Distantly, I can hear the ghost's odd noises. Thumping noises and crashing sounds follow it as objects hit the floor."
     hide ghost mad with dissolve 
     "The ghost... it's over there somewhere. What should I do?"
-    $ time = 7.0
-    $ timer_range_chase = 7.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
@@ -235,8 +235,8 @@ label ghost_gets_close_mc_while_walking_to_distract:
     "The bottle hits the ground a few feet away from me. The bottle shatters, the noise echoing throughout the room."
     "Crap. I thought my throwing arm was stronger than that."
     "Knowing I can't stay in the same spot, I duck behind a nearby couch and think about my available options. I..."
-    $ time = 7.0
-    $ timer_range_chase = 7.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
@@ -244,14 +244,14 @@ label ghost_gets_close_mc_while_walking_to_distract:
             hide screen countdown
             "I clamp both my hands over my mouth and do my best to shrink down even smaller."
             show ghost mad with dissolve: 
-                alpha 0.1 
+                alpha 0.25 
             "The whispy noise I associate with the ghost moving approaches."
             hide ghost mad with dissolve 
             "I dig my nails into my cheeks, hoping to prevent any noise from escaping past my fingers."
             jump ghost_investigates_distraction
         "distract":
             show ghost mad at middle with dissolve:
-                alpha .1 zoom 1.2
+                alpha .25 zoom 1.2
             "It... seems like it worked? But at the same time... Is it just me, or is the ghost even closer to me than before?"
             "I can always try making another distraction by throwing my flashli-"
             "All I feel is a chill fluttering on the back of my neck as my vision starts to blacken."
@@ -269,20 +269,20 @@ label ghost_gets_close_mc_while_walking_to_distract:
             #sfx#
             "However in my mad scramble, a loose floorboard catches my foot and I tumble to the ground right in front of the door."
             show ghost mad with dissolve:
-                alpha 0.1
+                alpha 0.25
             "But I can't afford to lay about and whine; I can hear the ghost coming closer. Ignoring the throbbing pain in my head I got from tumble, I force myself to stand."
             hide ghost mad with dissolve 
             jump mc_gets_injured
 
 label ghost_explore_very_close_to_mc:
     show ghost mad with dissolve:
-        alpha 0.1 
+        alpha 0.25 
     hide screen countdown
     "I hold my breath, trying to make myself as silent as possible. It's so close I can feel it moving."
     hide ghost mad with dissolve 
     "What now?"
-    $ time = 7.0
-    $ timer_range_chase = 7.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu: 
@@ -318,8 +318,8 @@ label ghost_investigates_distraction:
     play sound glassShatter
     "I hear the sound of glass crunching in the distance."
     "It's not gonna stay distracted forever so I should..."
-    $ time = 7.0
-    $ timer_range_chase = 7.0
+    $ time = 2.0
+    $ timer_range_chase = 2.0
     $ timer_jump = 'timerout'
     show screen countdown
     menu:
@@ -358,7 +358,7 @@ label timerout:
     #music#
     hide screen countdown
     show ghost mad with dissolve:
-        alpha 0.05
+        alpha 0.5
     "I spent too long making a decision, the ghost has already caught up to me!"
     show mc scared at left 
     mc "N-no, I should have decided sooner...!"
@@ -370,7 +370,7 @@ label death:
         renpy.play(audio.buzzWrong, channel=u'sound')
     hide screen countdown
     show ghost mad at middle with dissolve:
-        alpha .5 zoom 1.3
+        alpha .75 zoom 1.3
     "{b}You have been killed by the ghost.{/b}"
     hide ghost with dissolve 
     jump restart
@@ -404,14 +404,14 @@ label exit_warehouse:
     play sound radioStatic volume 0.5
     stop sound
     hide mc neutral with dissolve 
-    va "You’re alive! I thought for sure you were dead!"
-    el "What were you even running from?"
-    il "That’s good. What happened to the ghost?"
+    va "{i}You’re alive! I thought for sure you were dead!{/i}"
+    el "{i}What were you even running from?{/i}"
+    il "{i}That’s good. What happened to the ghost?{i}"
     show mc neutral at left 
     play music setupbgm
     mc "It’s still inside. It left me alone after I got outside."
     hide mc neutral with dissolve 
-    il "Ah, I see it!"
+    il "{i}Ah, I see it!{/i}"
     "I only hear static through the walkie-talkie as what I assume is the Ghyson Vac-Pack is turned on."
     "Oh, and Vance’s screaming. I also hear that in the background."
     "The team soon makes their way outside."
